@@ -1,0 +1,156 @@
+
+ContextMap {
+	dddSampleContext
+}
+
+BoundedContext dddSampleContext {
+	
+	Module cargo {
+		basePackage = se.citerus.dddsample.domain.model
+		
+		Aggregate CargoItineraryLegDeliveryRouteSpecification {
+			Entity Cargo {
+				aggregateRoot
+				
+				TrackingId trackingId
+				Location origin
+				RouteSpecification routeSpecification
+				Itinerary itinerary
+				Delivery delivery
+							
+				Repository CargoRepository {
+	                 @Cargo find(@TrackingId trackingId) throws CargoNotFoundException;
+	                 List<@Cargo> findAll;
+	                 store(@Cargo cargo);
+	                 @TrackingId nextTrackingId();
+				}
+			}
+			
+			ValueObject TrackingId {
+				String identifier key
+			}
+			
+			ValueObject Delivery {
+				TransportStatus transportStatus;
+				Location lastKnownLocation;
+				Voyage currentVoyage;
+				boolean misdirected;
+				Date eta;
+				HandlingActivity nextExpectedActivity;
+				boolean isUnloadedAtDestination;
+				RoutingStatus routingStatus;
+				Date calculatedAt;
+				HandlingEvent lastEvent;
+			}
+			
+			ValueObject HandlingActivity {
+				HandlingEvent.Type handlingEventType
+				Location location
+				Voyage voyage
+			}
+			
+			ValueObject Itinerary {
+				List<Leg> legs
+				
+			}
+			
+			ValueObject Leg {
+				Voyage voyage
+				Location loadLocation
+				Location unloadLocation
+				Date loadTime
+				Date unloadTime
+			}
+			
+			ValueObject RouteSpecification {
+				Location origin
+				Location destination
+				Date arrivalDeadline
+			}
+			
+			enum StatusCode {
+	            NOT_RECEIVED, IN_PORT, ONBOARD_CARRIER, CLAIMED, UNKNOWN
+			}
+
+			Service RoutingService {
+            	List<@Itinerary> fetchRoutesForSpecification(@RouteSpecification routeSpecification) throws LocationNotFoundException;
+			}
+				
+		}
+	}
+	
+	Module handling {
+		basePackage = se.citerus.dddsample.domain.model
+		
+		Aggregate Handling {
+			DomainEvent HandlingEvent {
+				aggregateRoot
+				
+				Type handlingType;
+				Voyage voyage;
+				Location location;
+				Date completionTime;
+				Date registrationTime;
+				Cargo cargo;
+				
+				Repository HandlingEventRepository {
+					
+				}
+			}
+			
+			ValueObject HandlingHistory {
+				
+			}
+		}
+	}
+	
+	Module location {
+		basePackage = se.citerus.dddsample.domain.model
+		
+		Aggregate Location {
+			Entity Location {
+				aggregateRoot
+				
+				UnLocode unLocode;
+  				String name;
+				
+				Repository LocationRepository {
+					
+				}
+			}
+			
+			ValueObject UnLocode {
+				
+			}
+		}
+	}
+	
+	Module voyage {
+		basePackage = se.citerus.dddsample.domain.model
+		
+		Aggregate Voyage {
+			Entity Voyage {
+				aggregateRoot
+				
+				VoyageNumber voyageNumber;
+  				Schedule schedule;
+				
+				Repository VoyageRepository {
+					
+				}
+			}
+			
+			ValueObject CarrierMovement {
+				
+			}
+			
+			ValueObject Schedule {
+				
+			}
+			
+			ValueObject VoyageNumber {
+				
+			}
+		}
+	}
+}

@@ -1,0 +1,109 @@
+/* Example Context Map written with 'ContextMapper DSL' */
+ContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+	
+	/* Add contexts to this context map: */
+	CustomerManagementContext
+	CustomerSelfServiceContext
+	PrintingContext
+	PolicyManagementContext
+	RiskManagementContext
+	
+	/* Define the contexts relationships */
+	@rel1
+	CustomerSelfServiceContext -> CustomerManagementContext : Customer-Supplier
+	
+	@rel2
+	CustomerManagementContext -> PrintingContext : Upstream-Downstream {
+		upstream implements OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
+		downstream implements ANTICORRUPTION_LAYER
+	}
+	
+	@rel3
+	PrintingContext <- PolicyManagementContext : Upstream-Downstream {
+		upstream implements OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
+		downstream implements ANTICORRUPTION_LAYER
+	}
+	
+	RiskManagementContext <-> PolicyManagementContext : Partnership
+	
+	PolicyManagementContext -> CustomerManagementContext : Upstream-Downstream {
+		upstream implements OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
+	}
+	
+}
+
+/* Bounded Context Definitions */
+BoundedContext CustomerManagementContext implements CustomerManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "This Bounded Context manages the insurance companies customers."
+	implementationTechnology = "Java, JEE Application"
+	
+	Aggregate Customer {
+		//Entity Customer { // issue: actually not possible to have two Entities with same name over the whole model
+		//	aggregateRoot
+		//}
+	}
+}
+
+BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
+	type = APPLICATION
+	domainVisionStatement = "Provides the customers of the insurance company a web application for self-service tasks such as change of the address."
+	implementationTechnology = "PHP Web Application"
+}
+
+BoundedContext PrintingContext implements PrintingDomain {
+	type = SYSTEM
+	domainVisionStatement = "An external system which provides printing services to the other Bounded Contexts."
+}
+
+BoundedContext PolicyManagementContext implements PolicyManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "Implements the core policy management domain."
+	responsibilities = Offers, Contracts, Policies
+	implementationTechnology = "Java, Spring App"
+}
+
+BoundedContext RiskManagementContext implements RiskManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "Uses data from PolicyManagement context to calculate risks."
+	responsibilities = Customer_Risk_Calculation
+	implementationTechnology = "Java, Spring App"
+}
+
+/* Subdomain Definitions */
+Subdomain CustomerManagementDomain {
+	type = CORE_DOMAIN
+	
+	Entity Customer {
+		String firstname
+		String familyName
+	}
+}
+Subdomain PolicyManagementDomain {
+	type = CORE_DOMAIN
+	
+	Entity Contract {
+		Customer contractCustomer
+		Policy policy
+	}
+	
+	Entity Policy {
+		long policyNr
+	}
+}
+Subdomain PrintingDomain {
+	type = SUPPORTING_DOMAIN
+}
+Subdomain RiskManagementDomain {
+	type = GENERIC_SUBDOMAIN
+	domainVisionStatement = "Lorem Ipsum"
+	
+	Entity CustomerRisks {
+		Contract contract
+	}
+}
+
+
+
