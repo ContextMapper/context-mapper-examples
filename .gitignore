@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 /bin
+/src-gen
 
 # Log file
 *.log
