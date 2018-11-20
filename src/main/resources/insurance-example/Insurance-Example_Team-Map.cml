@@ -1,0 +1,189 @@
+/* Example Context Map written with 'ContextMapper DSL' */
+ContextMap {
+	type = ORGANIZATIONAL
+	state = TO_BE
+	
+	/* Add teams to this organizational map: */
+	add CustomersFrontofficeTeam
+	add CustomersBackofficeTeam
+	add ContractsTeam
+	add ClaimsTeam
+	
+	/* Define the team relationships */
+	@CustomerTeamsRelationship // name of relationship (optional)
+	CustomersFrontofficeTeam -> CustomersBackofficeTeam : Customer-Supplier 
+	
+	ContractsTeam -> CustomersBackofficeTeam : Upstream-Downstream
+	
+	ContractsTeam <-> ClaimsTeam : Partnership
+}
+
+/* Team Definitions */
+BoundedContext CustomersBackofficeTeam implements CustomerManagementDomain realizes CustomerManagementContext {
+	type = TEAM
+	domainVisionStatement = "This team is responsible for implementing the customers module in the back-office system."
+}
+
+BoundedContext CustomersFrontofficeTeam implements CustomerManagementDomain realizes CustomerSelfServiceContext {
+	type = TEAM
+	domainVisionStatement = "This team is responsible for implementing the front-office application for the insurance customers."
+}
+
+BoundedContext ContractsTeam implements PolicyManagementDomain realizes PolicyManagementContext {
+	type = TEAM
+	domainVisionStatement = "This team is responsible for implementing the contract- and policy-management modules in the back-office system."
+}
+
+BoundedContext ClaimsTeam implements RiskManagementDomain realizes RiskManagementContext {
+	type = TEAM
+	domainVisionStatement = "This team is responsible for for implementing the claims module and providing customer risks information."
+}
+
+/* Bounded Context Definitions */
+BoundedContext CustomerManagementContext implements CustomerManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "The customer management context is responsible for managing all the data of the insurance companies customers."
+	implementationTechnology = "Java, JEE Application"
+	responsibilities = Customers, Addresses
+	
+	Aggregate Customers {
+		Entity Customer { 
+			aggregateRoot
+			
+			- SocialInsuranceNumber sin
+			String firstname
+			String lastname
+			- List<Address> addresses
+		}
+		
+		Entity Address {
+			String street
+			int postalCode
+			String city
+		}
+		
+		ValueObject SocialInsuranceNumber {
+			String sin key
+		}
+	}
+	
+}
+
+BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
+	type = APPLICATION
+	domainVisionStatement = "This context represents a web application which allows the customer to login and change basic data records like the address."
+	responsibilities = AddressChange
+	implementationTechnology = "PHP Web Application"
+	
+	Aggregate CustomerFrontend {
+		DomainEvent CustomerAddressChange {
+			aggregateRoot
+			
+			- UserAccount issuer
+			- Address changedAddress
+		}
+	}
+	
+	Aggregate Acounts {
+		Entity UserAccount {
+			aggregateRoot
+			
+			String username
+			- Customer accountCustomer
+		}
+	}
+}
+
+BoundedContext PolicyManagementContext implements PolicyManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "This bounded context manages the contracts and policies of the customers."
+	responsibilities = Offers, Contracts, Policies
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Offers {
+		Entity Offer {
+			aggregateRoot
+			
+			int offerId
+			- Customer client
+			- List<Product> products
+			BigDecimal price
+		}
+	}
+	
+	Aggregate Products {
+		Entity Product {
+			aggregateRoot
+			
+			- ProductId identifier
+			String productName
+		}
+		
+		ValueObject ProductId {
+			int productId key
+		}
+	}
+	
+	Aggregate Contract {
+		Entity Contract {
+			aggregateRoot
+			
+			- ContractId identifier
+			- Customer client
+			- List<Product> products
+		}
+		
+		ValueObject ContractId {
+			int contractId key
+		}
+		
+		Entity Policy {
+			int policyNr
+			- Contract contract
+			BigDecimal price
+		}
+	}
+}
+
+BoundedContext RiskManagementContext implements RiskManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "Uses data from PolicyManagement context to calculate risks."
+	responsibilities = Customer_Risk_Calculation
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Risks {
+		Entity CustomerRiskFactor {
+			aggregateRoot
+			
+			int totalRiskFactor
+			- List<Risk> risks
+			- Customer client
+		}
+		
+		ValueObject Risk {
+			int likelihood
+			String risk
+		}
+	}
+}
+
+/* Subdomain Definitions */
+Subdomain CustomerManagementDomain {
+	type = CORE_DOMAIN
+	domainVisionStatement = "Subdomain managing everything customer-related."
+}
+Subdomain PolicyManagementDomain {
+	type = CORE_DOMAIN
+	domainVisionStatement = "Subdomain managing contracts and policies."
+}
+Subdomain RiskManagementDomain {
+	type = GENERIC_SUBDOMAIN
+	domainVisionStatement = "Subdomain supporting everything which relates to risk management."
+}
+Subdomain DebtsDomain {
+	type = GENERIC_SUBDOMAIN
+	domainVisionStatement = "Subomain including everything related to the incoming money (debts, dunning, etc.)"
+}
+
+
+

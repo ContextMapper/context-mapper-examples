@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="132.20551mm"
+   height="76.927032mm"
+   viewBox="0 0 468.4447 272.57613"
+   id="svg11815"
+   version="1.1"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="DDD-Cargo-Tracking-ContextMap-Illustration.svg"
+   inkscape:export-filename="/home/ska/source/context-mapper-examples/src/main/resources/ddd-sample/DDD-Cargo-Tracking-ContextMap-Illustration.png"
+   inkscape:export-xdpi="368.57001"
+   inkscape:export-ydpi="368.57001">
+  <defs
+     id="defs11817" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="206.80071"
+     inkscape:cy="149.33735"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="3840"
+     inkscape:window-height="2077"
+     inkscape:window-x="0"
+     inkscape:window-y="44"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata11820">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-549.2164,-70.857656)">
+    <g
+       id="g982"
+       transform="translate(33.145634,-50.665468)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path16295"
+         d="m 594.10859,212.5554 c -34.90434,-6.60637 -106.69342,-41.19931 -62.25297,-76.59386 38.34944,-17.79579 83.9307,-10.44909 125.50502,-12.73497 38.94058,-0.30348 113.27918,15.00675 88.38236,64.21196 -23.07441,36.81916 -77.85618,34.98911 -118.19242,31.54912 -11.2864,-1.46818 -22.45108,-3.67242 -33.44199,-6.43225 z"
+         style="opacity:1;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:3.39792013;stroke-linejoin:round;stroke-miterlimit:0.2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <flowRoot
+         inkscape:export-ydpi="105.55"
+         inkscape:export-xdpi="105.55"
+         inkscape:export-filename="/home/ska/g11376.png"
+         transform="translate(296.41288,-23.471155)"
+         style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot10186-5"
+         xml:space="preserve"><flowRegion
+           style="font-family:sans-serif"
+           id="flowRegion10188-0"><rect
+             style="font-size:25px;font-family:sans-serif"
+             y="169.50507"
+             x="225.71428"
+             height="53.169651"
+             width="223.70538"
+             id="rect10190-2" /></flowRegion><flowPara
+           style="font-size:20px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+           id="flowPara10192-9">Cargo Booking</flowPara><flowPara
+           id="flowPara974"
+           style="font-size:20px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle">Context</flowPara></flowRoot>    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.81250024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 695.73067,168.71584 6.25378,79.6868 v 0"
+       id="path16609-4-2-7"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.81250024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 787.50145,269.91755 81.45477,-55.80222 v 0"
+       id="path16609-4-2-7-5-56"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot10186-5-367-3"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(503.77412,-2.5955144)"
+       inkscape:export-filename="/home/ska/g11376.png"
+       inkscape:export-xdpi="105.55"
+       inkscape:export-ydpi="105.55"><flowRegion
+         id="flowRegion10188-0-5-6"
+         style="font-family:sans-serif"><rect
+           id="rect10190-2-3-7"
+           width="223.70538"
+           height="53.169651"
+           x="225.71428"
+           y="169.50507"
+           style="font-size:25px;font-family:sans-serif" /></flowRegion><flowPara
+         id="flowPara10192-9-56-5"
+         style="font-size:12.50000095px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle">U</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot10186-5-367-3-3"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(440.1194,-22.707714)"
+       inkscape:export-filename="/home/ska/g11376.png"
+       inkscape:export-xdpi="105.55"
+       inkscape:export-ydpi="105.55"><flowRegion
+         id="flowRegion10188-0-5-6-5"
+         style="font-family:sans-serif"><rect
+           id="rect10190-2-3-7-6"
+           width="223.70538"
+           height="53.169651"
+           x="225.71428"
+           y="169.50507"
+           style="font-size:25px;font-family:sans-serif" /></flowRegion><flowPara
+         style="font-size:12.50000095px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+         id="flowPara905">D</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot10186-5-367-3-3-0"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(465.97568,93.590009)"
+       inkscape:export-filename="/home/ska/g11376.png"
+       inkscape:export-xdpi="105.55"
+       inkscape:export-ydpi="105.55"><flowRegion
+         id="flowRegion10188-0-5-6-5-9"
+         style="font-family:sans-serif"><rect
+           id="rect10190-2-3-7-6-3"
+           width="223.70538"
+           height="53.169651"
+           x="225.71428"
+           y="169.50507"
+           style="font-size:25px;font-family:sans-serif" /></flowRegion><flowPara
+         style="font-size:12.50000095px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+         id="flowPara905-6">D</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot10186-5-367-3-02"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(530.17681,51.983665)"
+       inkscape:export-filename="/home/ska/g11376.png"
+       inkscape:export-xdpi="105.55"
+       inkscape:export-ydpi="105.55"><flowRegion
+         id="flowRegion10188-0-5-6-3"
+         style="font-family:sans-serif"><rect
+           id="rect10190-2-3-7-7"
+           width="223.70538"
+           height="53.169651"
+           x="225.71428"
+           y="169.50507"
+           style="font-size:25px;font-family:sans-serif" /></flowRegion><flowPara
+         id="flowPara10192-9-56-5-5"
+         style="font-size:12.50000095px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle">U</flowPara></flowRoot>    <g
+       id="g1152"
+       transform="translate(-4.498336,-13.968517)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path830"
+         d="m 883.65868,221.55642 c -93.95702,-101.87563 231.13392,-103.51743 109.49142,-3.58113 -28.71588,20.65793 -80.74179,28.86326 -109.49142,3.58113 z"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.81250024;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <flowRoot
+         inkscape:export-ydpi="105.55"
+         inkscape:export-xdpi="105.55"
+         inkscape:export-filename="/home/ska/g11376.png"
+         transform="translate(650.27507,-1.8585501)"
+         style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot10186-5-3-3"
+         xml:space="preserve"><flowRegion
+           style="font-family:sans-serif"
+           id="flowRegion10188-0-6-6"><rect
+             style="font-size:25px;font-family:sans-serif"
+             y="169.50507"
+             x="225.71428"
+             height="57.187504"
+             width="133.97325"
+             id="rect10190-2-7-7" /></flowRegion><flowPara
+           style="font-size:20px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+           id="flowPara10192-9-5-5">Location Context</flowPara></flowRoot>    </g>
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.0640502;stroke-linejoin:round;stroke-miterlimit:0.2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect16944"
+       width="67.42411"
+       height="23.187084"
+       x="684.14209"
+       y="-551.6604"
+       transform="rotate(50)" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot10186-5-6-6-4"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.44917203,0.53530238,-0.59570762,0.49985804,856.42333,-38.167742)"
+       inkscape:export-filename="/home/ska/g11376.png"
+       inkscape:export-xdpi="105.55"
+       inkscape:export-ydpi="105.55"><flowRegion
+         id="flowRegion10188-0-0-6-3"
+         style="font-family:sans-serif"><rect
+           id="rect10190-2-2-5-5"
+           width="109.54668"
+           height="25.714312"
+           x="225.71428"
+           y="169.50507"
+           style="font-size:25px;font-family:sans-serif;text-align:center;text-anchor:middle" /></flowRegion><flowPara
+         style="font-size:20px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+         id="flowPara16824-5">OHS / PL</flowPara></flowRoot>    <g
+       id="g1140"
+       transform="translate(134.95008,62.029686)">
+      <flowRoot
+         inkscape:export-ydpi="105.55"
+         inkscape:export-xdpi="105.55"
+         inkscape:export-filename="/home/ska/g11376.png"
+         transform="translate(235.54356,43.204648)"
+         style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot10186-5-36"
+         xml:space="preserve"><flowRegion
+           style="font-family:sans-serif"
+           id="flowRegion10188-0-7"><rect
+             style="font-size:25px;font-family:sans-serif"
+             y="169.50507"
+             x="225.71428"
+             height="53.169651"
+             width="223.70538"
+             id="rect10190-2-5" /></flowRegion><flowPara
+           style="font-size:20px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle"
+           id="flowPara10192-9-3">Voyage Planning Context</flowPara></flowRoot>      <path
+         inkscape:connector-curvature="0"
+         id="path16295-6"
+         d="m 494.91574,262.83263 c -18.20539,-11.36577 -22.04233,-30.89072 -14.14317,-46.61766 7.03344,-15.29471 25.18856,-28.34023 47.89333,-31.10467 20.45021,-2.7362 40.52871,2.79719 60.81929,3.739 25.43452,2.96359 52.59369,9.03956 69.08981,24.06332 10.51983,9.26586 13.66629,22.55373 6.5088,33.4796 -11.38454,17.66704 -37.2861,28.52557 -63.41038,31.90804 -36.60952,5.0109 -75.46173,-1.36289 -106.75768,-15.46763 z"
+         style="opacity:1;fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:2.81250024;stroke-linejoin:round;stroke-miterlimit:0.2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.81250024;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 755.05065,157.61732 90.43491,26.54214 v 0"
+       id="path16609-4-2-7-5-56-9"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot10186-5-367-2"
+       style="font-style:normal;font-weight:normal;line-height:0.01%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(313.55014,33.672018)"
+       inkscape:export-filename="/home/ska/g11376.png"
+       inkscape:export-xdpi="105.55"
+       inkscape:export-ydpi="105.55"><flowRegion
+         id="flowRegion10188-0-5-0"
+         style="font-family:sans-serif"><rect
+           id="rect10190-2-3-2"
+           width="223.70538"
+           height="53.169651"
+           x="225.71428"
+           y="169.50507"
+           style="font-size:25px;font-family:sans-serif" /></flowRegion><flowPara
+         id="flowPara10192-9-56-3"
+         style="font-size:12.50000095px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle">Shared Kernel</flowPara></flowRoot>  </g>
+</svg>
