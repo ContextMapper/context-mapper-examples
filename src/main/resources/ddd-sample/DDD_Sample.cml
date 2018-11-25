@@ -1,8 +1,8 @@
 /* The DDD Cargo sample application modeled in CML. Note that we split the application into multiple bounded contexts. */
 ContextMap {
-	add CargoBookingContext
-	add VoyagePlanningContext
-	add LocationContext
+	contains CargoBookingContext
+	contains VoyagePlanningContext
+	contains LocationContext
 	
 	/* As Evans mentions in his book (Bounded Context chapter): The voyage planning can be seen as 
 	 * separated bounded context. However, it still shares code with the booking application (CargoBookingContext).
@@ -32,7 +32,7 @@ BoundedContext CargoBookingContext {
 				aggregateRoot
 				
 				TrackingId trackingId
-				- Location origin
+				- LocationShared origin
 				- RouteSpecification routeSpecification
 				- Itinerary itinerary
 				- Delivery delivery
@@ -47,7 +47,7 @@ BoundedContext CargoBookingContext {
 			
 			ValueObject Delivery {
 				- TransportStatus transportStatus;
-				- Location lastKnownLocation;
+				- LocationShared lastKnownLocation;
 				- Voyage currentVoyage;
 				boolean misdirected;
 				Date eta;
@@ -60,7 +60,7 @@ BoundedContext CargoBookingContext {
 			
 			ValueObject HandlingActivity {
 				HandlingEvent.Type handlingEventType
-				- Location location
+				- LocationShared location
 				- Voyage voyage
 			}
 			
@@ -71,15 +71,15 @@ BoundedContext CargoBookingContext {
 			
 			ValueObject Leg {
 				- Voyage voyage
-				- Location loadLocation
-				- Location unloadLocation
+				- LocationShared loadLocation
+				- LocationShared unloadLocation
 				Date loadTime
 				Date unloadTime
 			}
 			
 			ValueObject RouteSpecification {
-				- Location origin
-				- Location destination
+				- LocationShared origin
+				- LocationShared destination
 				Date arrivalDeadline
 			}
 			
@@ -108,7 +108,7 @@ BoundedContext CargoBookingContext {
 				
 				Type handlingType;
 				- Voyage voyage;
-				- Location location;
+				- LocationShared location;
 				Date completionTime;
 				Date registrationTime;
 				- Cargo cargo;
@@ -143,8 +143,8 @@ BoundedContext VoyagePlanningContext {
 			}
 			
 			ValueObject CarrierMovement {
-				- Location departureLocation;
-  				- Location arrivalLocation;
+				- LocationShared departureLocation;
+  				- LocationShared arrivalLocation;
   				Date departureTime;
   				Date arrivalTime;
 			}
@@ -169,6 +169,7 @@ BoundedContext LocationContext {
 			Entity Location {
 				aggregateRoot
 				
+				PortCode portcode
 				- UnLocode unLocode;
   				String name;
 				
@@ -180,6 +181,11 @@ BoundedContext LocationContext {
 			
 			ValueObject UnLocode {
 				String unLocode
+			}
+			
+			ValueObject LocationShared {
+				PortCode portCode
+				- Location location
 			}
 		}
 	}
