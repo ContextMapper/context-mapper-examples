@@ -4,10 +4,10 @@ ContextMap {
 	state = TO_BE
 	
 	/* Add teams to this organizational map: */
-	add CustomersFrontofficeTeam
-	add CustomersBackofficeTeam
-	add ContractsTeam
-	add ClaimsTeam
+	contains CustomersFrontofficeTeam
+	contains CustomersBackofficeTeam
+	contains ContractsTeam
+	contains ClaimsTeam
 	
 	/* Define the team relationships */
 	@CustomerTeamsRelationship // name of relationship (optional)

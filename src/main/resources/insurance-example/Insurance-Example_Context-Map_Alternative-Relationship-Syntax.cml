@@ -4,12 +4,12 @@ ContextMap {
 	state = TO_BE
 	
 	/* Add bounded contexts to this context map: */
-	add CustomerManagementContext
-	add CustomerSelfServiceContext
-	add PrintingContext
-	add PolicyManagementContext
-	add RiskManagementContext
-	add DebtCollection
+	contains CustomerManagementContext
+	contains CustomerSelfServiceContext
+	contains PrintingContext
+	contains PolicyManagementContext
+	contains RiskManagementContext
+	contains DebtCollection
 	
 	/* Define the contexts relationships */
 	@Customer_Frontend_Backend_Relationship // Relationship name is optional
