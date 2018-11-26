@@ -2,7 +2,7 @@
 
 # ContextMapper DSL Examples
 
-This project contains example DDD Context Maps written in the ContextMapper DSL.
+This project contains example DDD Context Maps written in the ContextMapper DSL. Find out more about the DSL project [here](https://github.com/ContextMapper/context-mapper-dsl)
 
 ## IDE Requirements
 This is a gradle project and can easily be imported into Eclipse by using the "Existing Gradle Project" importer.
