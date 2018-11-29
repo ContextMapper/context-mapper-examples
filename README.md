@@ -16,7 +16,7 @@ Use the following Eclipse Update Site to install it:
 ## The examples:
 
 ### Insurance Example
-In the folder [src/main/resources/insurance-example](./src/main/resources/insurance-example) you find example context maps for a fictive insurance company.
+In the folder [src/main/resources/insurance-example](./src/main/resources/insurance-example) you find example context maps for a fictive insurance company, inspired by [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual).
 
 #### Context Map
 The insurance example contains an example for a classic DDD context map written in the ContextMapper DSL (CML).
