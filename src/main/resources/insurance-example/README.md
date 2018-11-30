@@ -1,6 +1,6 @@
 # Insurance Company Example
 
-This example illustrates the Context Mapper DSL capabilities on the basis of a fictive insurance company scenario. The bounded contexts are partially inspired by the [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual) project.
+This example illustrates the Context Mapper DSL capabilities on the basis of a fictitious insurance company scenario. The bounded contexts are partially inspired by the [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual) project.
 Note that the goal of the example is to give a representative overview over the DSL's context mapping features. The contexts and their relationships may differ considerably in a real-world insurance company.
 
 ## Context Map
