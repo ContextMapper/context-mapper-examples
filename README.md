@@ -34,6 +34,15 @@ To make the sample interesting for our context mapping language, we splitted the
 
 <img alt="Insurance Company Example Context Map" src="./src/main/resources/ddd-sample/images/DDD-Cargo-Tracking-ContextMap-Illustration.png" width="300px">
 
+## Contributing
+Contribution is always welcome! Here are some ways how you can contribute:
+ * Create Github issues if you find bugs or just want to give suggestions for improvements.
+ * This is an open source project: if you want to code, [create pull requests](https://help.github.com/articles/creating-a-pull-request/) from [forks of this repository](https://help.github.com/articles/fork-a-repo/). Please refer to a Github issue if you contribute this way.
+ * If you want to contribute to our documentation and user guides on our website [https://contextmapper.github.io/](https://contextmapper.github.io/), create pull requests from forks of the corresponding page repo [https://github.com/ContextMapper/contextmapper.github.io](https://github.com/ContextMapper/contextmapper.github.io) or create issues [there](https://github.com/ContextMapper/contextmapper.github.io/issues).
+
+## Licence
+ContextMapper is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
 [1]: https://www.oreilly.com/library/view/domain-driven-design-tackling/0321125215/
 [2]: https://www.amazon.de/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577
 [3]: https://www.infoq.com/articles/ddd-contextmapping
