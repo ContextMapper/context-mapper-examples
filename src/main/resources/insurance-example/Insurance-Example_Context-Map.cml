@@ -11,7 +11,14 @@ ContextMap {
 	contains RiskManagementContext
 	contains DebtCollection
 	
-	/* Define the contexts relationships */
+	/* Define the contexts relationships 
+	 * 
+	 * Note that a 'Customer-Supplier' relationship is an 'Upstream-Downstream' relationship as well (special case).
+	 * We are aware that the syntax does not express this explicitly. We are still searching for the right syntax which
+	 * makes this more clear. If you have any ideas or inputs and want to help us to improve this potential ambiguity,
+	 * comment here: https://github.com/ContextMapper/context-mapper-dsl/issues/35 
+	 * Contributions are welcome!
+	 */
 	@Customer_Frontend_Backend_Relationship // Relationship name is optional
 	CustomerSelfServiceContext -> CustomerManagementContext : Customer-Supplier
 	
