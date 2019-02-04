@@ -1,6 +1,6 @@
 ![Context Mapper](https://raw.githubusercontent.com/wiki/ContextMapper/context-mapper-dsl/logo/cm-logo-github-small.png)  
 # DSL Examples [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-This project contains example DDD Context Maps written in the ContextMapper DSL. Find out more about the DSL project on our website [https://contextmapper.github.io/](https://contextmapper.github.io/).
+This project contains example DDD Context Maps written in the ContextMapper DSL. Find out more about the DSL project on our website [https://contextmapper.github.io/](https://contextmapper.github.io/) and the [project report](https://eprints.hsr.ch/722/) published by [HSR](https://www.hsr.ch).
 
 ## IDE Requirements
 This is a gradle project and can easily be imported into Eclipse by using the "Existing Gradle Project" importer.
