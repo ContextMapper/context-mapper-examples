@@ -8,15 +8,15 @@ ContextMap {
 	 * separated bounded context. However, it still shares code with the booking application (CargoBookingContext).
 	 * Thus, they are in a 'Shared-Kernel' relationship.
 	 */
-	CargoBookingContext [SK]<->[SK] VoyagePlanningContext
+	CargoBookingContext Shared-Kernel VoyagePlanningContext
 	
 	/* Note that the splitting of the LocationContext is not mentioned in the original DDD sample of Evans.
 	 * However, locations and the management around them, can somehow be seen as a separated concept which is used by other
 	 * bounded contexts. But this is just an example, since we want to demonstrate our DSL with multiple bounded contexts.
 	 */
-	CargoBookingContext [D]<-[U,OHS,PL] LocationContext
+	CargoBookingContext Downstream-Upstream [OHS,PL]LocationContext
 	
-	VoyagePlanningContext [D]<-[U,OHS,PL] LocationContext
+	LocationContext[OHS,PL] Upstream-Downstream VoyagePlanningContext
 	
 }
 

@@ -11,49 +11,33 @@ ContextMap {
 	contains RiskManagementContext
 	contains DebtCollection
 	
-	/* Define the contexts relationships
-	 * 
-	 * Note that a 'Customer-Supplier' relationship is an 'Upstream-Downstream' relationship as well (special case).
-	 * We are aware that the syntax does not express this explicitly. We are still searching for the right syntax which
-	 * makes this more clear. If you have any ideas or inputs and want to help us to improve this potential ambiguity,
-	 * comment here: https://github.com/ContextMapper/context-mapper-dsl/issues/35
-	 * Contributions are welcome!
-	 */
-	@Customer_Frontend_Backend_Relationship // Relationship name is optional
-	CustomerSelfServiceContext Customer-Supplier CustomerManagementContext 
-	
-	PrintingContext Upstream-Downstream CustomerManagementContext {
+	/* Define the context relationships: */
+
+	CustomerManagementContext [U,S]->[D,C] CustomerSelfServiceContext : Customer_Frontend_Backend_Relationship // Relationship name is optional
+
+	PrintingContext[OHS,PL] Upstream-Downstream [ACL]CustomerManagementContext {
 		implementationTechnology = "SOAP"
-		upstream implements OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
-		downstream implements ANTICORRUPTION_LAYER
 	}
-	
-	PrintingContext Upstream-Downstream PolicyManagementContext {
+
+	PolicyManagementContext[ACL] Downstream-Upstream [OHS,PL]PrintingContext {
 		implementationTechnology = "SOAP"
-		upstream implements OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
-		downstream implements ANTICORRUPTION_LAYER
 	}
-	
+
 	RiskManagementContext Partnership PolicyManagementContext {
 		implementationTechnology = "RabbitMQ"
 	}
-	
-	CustomerManagementContext Upstream-Downstream PolicyManagementContext {
+
+	CustomerManagementContext[OHS,PL] Upstream-Downstream [CF]PolicyManagementContext {
 		implementationTechnology = "RESTful HTTP"
-		upstream implements OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
-		downstream implements CONFORMIST
 	}
-	
-	PrintingContext Upstream-Downstream DebtCollection {
+
+	DebtCollection[ACL] Downstream-Upstream [OHS,PL]PrintingContext {
 		implementationTechnology = "SOAP"
-		upstream implements OPEN_HOST_SERVICE, PUBLISHED_LANGUAGE
-		downstream implements ANTICORRUPTION_LAYER
 	}
-	
+
 	PolicyManagementContext Shared-Kernel DebtCollection {
 		implementationTechnology = "Shared Java Library, Communication over RESTful HTTP"
 	}
-	
 }
 
 /* Bounded Context Definitions */

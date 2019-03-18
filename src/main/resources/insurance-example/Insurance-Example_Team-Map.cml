@@ -9,20 +9,14 @@ ContextMap {
 	contains ContractsTeam
 	contains ClaimsTeam
 	
-	/* Define the team relationships
-	 * 
-	 * Note that a 'Customer-Supplier' relationship is an 'Upstream-Downstream' relationship as well (special case).
-	 * We are aware that the syntax does not express this explicitly. We are still searching for the right syntax which
-	 * makes this more clear. If you have any ideas or inputs and want to help us to improve this potential ambiguity,
-	 * comment here: https://github.com/ContextMapper/context-mapper-dsl/issues/35
-	 * Contributions are welcome!
-	 */
-	@CustomerTeamsRelationship // name of relationship (optional)
-	CustomersFrontofficeTeam -> CustomersBackofficeTeam : Customer-Supplier 
+	/* Define the team relationships: */
+	 
+	CustomersBackofficeTeam [U,S]->[D,C] CustomersFrontofficeTeam : CustomerTeamsRelationship
 	
-	ContractsTeam -> CustomersBackofficeTeam : Upstream-Downstream
+	CustomersBackofficeTeam [U]->[D] ContractsTeam
 	
-	ContractsTeam <-> ClaimsTeam : Partnership
+	ContractsTeam [P]<->[P] ClaimsTeam 
+	 
 }
 
 /* Team Definitions */
