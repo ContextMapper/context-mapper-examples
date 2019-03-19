@@ -13,7 +13,7 @@ ContextMap {
 	
 	/* Define the context relationships: */
 
-	CustomerManagementContext [U,S]->[D,C] CustomerSelfServiceContext : Customer_Frontend_Backend_Relationship // Relationship name is optional
+	CustomerSelfServiceContext Customer-Supplier CustomerManagementContext : Customer_Frontend_Backend_Relationship // Relationship name is optional
 
 	PrintingContext[OHS,PL] Upstream-Downstream [ACL]CustomerManagementContext {
 		implementationTechnology = "SOAP"
