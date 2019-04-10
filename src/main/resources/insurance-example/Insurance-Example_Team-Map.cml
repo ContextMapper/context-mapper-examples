@@ -1,5 +1,5 @@
 /* Example Context Map written with 'ContextMapper DSL' */
-ContextMap {
+ContextMap InsuranceTeamMap {
 	type = ORGANIZATIONAL
 	state = TO_BE
 	
@@ -168,22 +168,24 @@ BoundedContext RiskManagementContext implements RiskManagementDomain {
 	}
 }
 
-/* Subdomain Definitions */
-Subdomain CustomerManagementDomain {
-	type = CORE_DOMAIN
-	domainVisionStatement = "Subdomain managing everything customer-related."
-}
-Subdomain PolicyManagementDomain {
-	type = CORE_DOMAIN
-	domainVisionStatement = "Subdomain managing contracts and policies."
-}
-Subdomain RiskManagementDomain {
-	type = GENERIC_SUBDOMAIN
-	domainVisionStatement = "Subdomain supporting everything which relates to risk management."
-}
-Subdomain DebtsDomain {
-	type = GENERIC_SUBDOMAIN
-	domainVisionStatement = "Subomain including everything related to the incoming money (debts, dunning, etc.)"
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain CustomerManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing everything customer-related."
+	}
+	Subdomain PolicyManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing contracts and policies."
+	}
+	Subdomain RiskManagementDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdomain supporting everything which relates to risk management."
+	}
+	Subdomain DebtsDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subomain including everything related to the incoming money (debts, dunning, etc.)"
+	}
 }
 
 

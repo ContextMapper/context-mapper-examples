@@ -1,5 +1,5 @@
 /* The DDD Cargo sample application modeled in CML. Note that we split the application into multiple bounded contexts. */
-ContextMap {
+ContextMap DDDSampleMap {
 	contains CargoBookingContext
 	contains VoyagePlanningContext
 	contains LocationContext
