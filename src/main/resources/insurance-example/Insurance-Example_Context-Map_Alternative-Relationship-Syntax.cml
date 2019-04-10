@@ -1,5 +1,5 @@
 /* Example Context Map written with 'ContextMapper DSL' */
-ContextMap {
+ContextMap InsuranceContextMapAlternative {
 	type = SYSTEM_LANDSCAPE
 	state = TO_BE
 	
@@ -13,14 +13,19 @@ ContextMap {
 	
 	/* Define the context relationships: */
 
-	CustomerSelfServiceContext Customer-Supplier CustomerManagementContext : Customer_Frontend_Backend_Relationship // Relationship name is optional
-
+	CustomerSelfServiceContext Customer-Supplier CustomerManagementContext : Customer_Frontend_Backend_Relationship { // Relationship name is optional
+		exposedAggregates = Customers
+	}
+	
 	PrintingContext[OHS,PL] Upstream-Downstream [ACL]CustomerManagementContext {
 		implementationTechnology = "SOAP"
+		downstreamRights = INFLUENCER
+		exposedAggregates = Printing
 	}
 
 	PolicyManagementContext[ACL] Downstream-Upstream [OHS,PL]PrintingContext {
 		implementationTechnology = "SOAP"
+		exposedAggregates = Printing
 	}
 
 	RiskManagementContext Partnership PolicyManagementContext {
@@ -29,10 +34,12 @@ ContextMap {
 
 	CustomerManagementContext[OHS,PL] Upstream-Downstream [CF]PolicyManagementContext {
 		implementationTechnology = "RESTful HTTP"
+		exposedAggregates = Customers
 	}
 
 	DebtCollection[ACL] Downstream-Upstream [OHS,PL]PrintingContext {
 		implementationTechnology = "SOAP"
+		exposedAggregates = Printing
 	}
 
 	PolicyManagementContext Shared-Kernel DebtCollection {
@@ -227,24 +234,26 @@ BoundedContext DebtCollection implements DebtsDomain {
 	}
 } 
 
-/* Subdomain Definitions */
-Subdomain CustomerManagementDomain {
-	type = CORE_DOMAIN
-	domainVisionStatement = "Subdomain managing everything customer-related."
-}
-Subdomain PolicyManagementDomain {
-	type = CORE_DOMAIN
-	domainVisionStatement = "Subdomain managing contracts and policies."
-}
-Subdomain PrintingDomain {
-	type = SUPPORTING_DOMAIN
-	domainVisionStatement = "Service (external system) to solve printing for all kinds of documents (debts, policies, etc.)"
-}
-Subdomain RiskManagementDomain {
-	type = GENERIC_SUBDOMAIN
-	domainVisionStatement = "Subdomain supporting everything which relates to risk management."
-}
-Subdomain DebtsDomain {
-	type = GENERIC_SUBDOMAIN
-	domainVisionStatement = "Subomain including everything related to the incoming money (debts, dunning, etc.)"
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain CustomerManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing everything customer-related."
+	}
+	Subdomain PolicyManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing contracts and policies."
+	}
+	Subdomain PrintingDomain {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Service (external system) to solve printing for all kinds of documents (debts, policies, etc.)"
+	}
+	Subdomain RiskManagementDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdomain supporting everything which relates to risk management."
+	}
+	Subdomain DebtsDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subomain including everything related to the incoming money (debts, dunning, etc.)"
+	}
 }
