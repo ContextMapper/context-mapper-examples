@@ -1,0 +1,26 @@
+
+
+/* Example input for 'Split Aggregate by Entities' which splits an aggregate with multiple entities and creates an aggregate per entity. */
+BoundedContext CustomerManagementContext {
+	type = FEATURE
+	domainVisionStatement = "The customer management context is responsible for managing all the data of the insurance companies customers."
+	implementationTechnology = "Java, JEE Application"
+	responsibilities = "Customers, Addresses"
+	
+	Aggregate Customers {
+		Entity Customer {
+			aggregateRoot
+			
+			- SocialInsuranceNumber sin
+			String firstname
+			String lastname
+			- List<Address> addresses
+		}
+		Entity Address {
+			String street
+			int postalCode
+			String city
+		}
+	}
+}
+

@@ -1,0 +1,43 @@
+
+
+/* Example input for 'Split Bounded Context by Owner' which creates Bounded Contexts for every owner. */
+BoundedContext CustomerManagementContext {
+	type = FEATURE
+	domainVisionStatement = "The customer management context is responsible for managing all the data of the insurance companies customers."
+	implementationTechnology = "Java, JEE Application"
+	responsibilities = "Customers, Addresses"
+	
+	Aggregate Customers {
+		owner = CustomerDevTeam
+		
+		Entity Customer {
+			aggregateRoot
+			
+			- SocialInsuranceNumber sin
+			String firstname
+			String lastname
+			- List<Address> addresses
+		}
+		ValueObject SocialInsuranceNumber {
+			String sin key
+		}
+	}
+	Aggregate Addresses {
+		owner = AddressesDevTeam
+		
+		Entity Address {
+			String street
+			int postalCode
+			String city
+		}
+	}
+}
+
+BoundedContext CustomerDevTeam {
+	type = TEAM
+}
+
+BoundedContext AddressesDevTeam {
+	type= TEAM
+}
+
