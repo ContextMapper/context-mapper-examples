@@ -52,7 +52,7 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 	type = FEATURE
 	domainVisionStatement = "The customer management context is responsible for managing all the data of the insurance companies customers."
 	implementationTechnology = "Java, JEE Application"
-	responsibilities = Customers, Addresses
+	responsibilities = "Customers, Addresses"
 	
 	Aggregate Customers {
 		Entity Customer { 
@@ -80,7 +80,7 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 	type = APPLICATION
 	domainVisionStatement = "This context represents a web application which allows the customer to login and change basic data records like the address."
-	responsibilities = AddressChange
+	responsibilities = "Address Change"
 	implementationTechnology = "PHP Web Application"
 	
 	Aggregate CustomerFrontend {
@@ -104,7 +104,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 
 BoundedContext PrintingContext implements PrintingDomain {
 	type = SYSTEM
-	responsibilities = Document_Printing
+	responsibilities = "Document Printing"
 	domainVisionStatement = "An external system which provides printing services to the other Bounded Contexts."
 	
 	Aggregate Printing {
@@ -135,7 +135,7 @@ BoundedContext PrintingContext implements PrintingDomain {
 BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 	type = FEATURE
 	domainVisionStatement = "This bounded context manages the contracts and policies of the customers."
-	responsibilities = Offers, Contracts, Policies
+	responsibilities = "Offers, Contracts, Policies"
 	implementationTechnology = "Java, Spring App"
 	
 	Aggregate Offers {
@@ -186,7 +186,7 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 BoundedContext RiskManagementContext implements RiskManagementDomain {
 	type = FEATURE
 	domainVisionStatement = "Uses data from PolicyManagement context to calculate risks."
-	responsibilities = Customer_Risk_Calculation
+	responsibilities = "Customer Risk Calculation"
 	implementationTechnology = "Java, Spring App"
 	
 	Aggregate Risks {
@@ -208,7 +208,7 @@ BoundedContext RiskManagementContext implements RiskManagementDomain {
 BoundedContext DebtCollection implements DebtsDomain {
 	type = FEATURE
 	domainVisionStatement = "The debt collection context is responsible for the financial income of the insurance company (the debts) which depend on the corresponding contracts and policies."
-	responsibilities = Debts, Dunning
+	responsibilities = "Debts, Dunning"
 	implementationTechnology = "JEE"
 	
 	Aggregate Debts {
