@@ -1,0 +1,48 @@
+/* This is an example output file for the 'Extract Aggregates which are Likely to Change (OFTEN)' refactoring and shows a small part of the insurance example. */
+ContextMap {
+	contains CustomerSelfServiceContext
+
+}
+
+BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
+	domainVisionStatement = "This context represents a web application which allows the customer to login and change basic data records like the address."
+	type = APPLICATION
+	responsibilities = "AddressChange"
+	implementationTechnology = "PHP Web Application"
+	
+	Aggregate Acounts {
+		Entity UserAccount {
+			aggregateRoot
+			
+			String username
+			- Customer accountCustomer
+		}
+	}
+}
+
+/**
+ * The extracted bounded context after applying 'Extract Aggregates which are Likely to Change (OFTEN)'
+ * to 'extract-aggregates-likely-to-change-input-example.cml'.
+ * 
+ * You may want to change the name of newly created bounded contexts after applying refactorings.
+ */
+BoundedContext CustomerSelfServiceContext_Volatile {
+	Aggregate CustomerFrontend {
+		likelihoodForChange = OFTEN
+		
+		DomainEvent CustomerAddressChange {
+			aggregateRoot
+			
+			- UserAccount issuer
+			- Address changedAddress
+		}
+	}
+}
+
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain CustomerManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing everything customer-related."
+	}
+}
