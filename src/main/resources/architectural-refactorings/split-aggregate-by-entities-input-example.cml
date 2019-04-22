@@ -1,12 +1,19 @@
+/* This is an example input file for the 'Split Aggregate by Entities' refactoring and shows a small part of the insurance example. */
+ContextMap {
+	contains CustomerManagementContext
 
+}
 
-/* Example input for 'Split Aggregate by Entities' which splits an aggregate with multiple entities and creates an aggregate per entity. */
 BoundedContext CustomerManagementContext {
 	type = FEATURE
 	domainVisionStatement = "The customer management context is responsible for managing all the data of the insurance companies customers."
 	implementationTechnology = "Java, JEE Application"
 	responsibilities = "Customers, Addresses"
-	
+
+	/* With a Right-Click on the 'Customers' aggregate you can call the 'Split Aggregate by Entities' refactoring in the 
+	 * 'Context Mapper: Refactor' context menu. The refactoring will create a new aggregate and move one of the two entities 
+	 * to the new aggregate (see the result in the 'split-aggregate-by-entities-output-example.cml' file).
+	 */	
 	Aggregate Customers {
 		Entity Customer {
 			aggregateRoot

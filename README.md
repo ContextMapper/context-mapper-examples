@@ -34,6 +34,9 @@ To make the sample interesting for our context mapping language, we splitted the
 
 <img alt="Insurance Company Example Context Map" src="./src/main/resources/ddd-sample/images/DDD-Cargo-Tracking-ContextMap-Illustration.png" width="300px">
 
+### Architectural Refactoring (AR) Examples
+The Context Mapper tool provides several [Architectural Refactorings][4] which can be applied to your models. A documentation of all available refactorings can be found under [https://contextmapper.github.io/docs/architectural-refactorings](https://contextmapper.github.io/docs/architectural-refactorings). The folder [src/main/resources/architectural-refactorings](./src/main/resources/architectural-refactorings) contains example CML models (input and ouput) to illustrate the architectural refactorings purposes.
+
 ## Contributing
 Contribution is always welcome! Here are some ways how you can contribute:
  * Create Github issues if you find bugs or just want to give suggestions for improvements.
@@ -46,3 +49,4 @@ ContextMapper is released under the [Apache License, Version 2.0](http://www.apa
 [1]: https://www.oreilly.com/library/view/domain-driven-design-tackling/0321125215/
 [2]: https://www.amazon.de/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577
 [3]: https://www.infoq.com/articles/ddd-contextmapping
+[4]: https://link.springer.com/article/10.1007%2Fs00607-016-0520-y
