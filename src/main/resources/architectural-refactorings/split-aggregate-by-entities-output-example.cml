@@ -9,6 +9,8 @@ BoundedContext CustomerManagementContext {
 	responsibilities = "Customers, Addresses" implementationTechnology = "Java, JEE Application"
 	Aggregate Customers {
 		Entity Address {
+			aggregateRoot
+			
 			String street
 			int postalCode
 			String city
