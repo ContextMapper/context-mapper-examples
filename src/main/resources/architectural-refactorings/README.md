@@ -12,7 +12,7 @@ This folder contains input and ouput examples written in CML to illustrate the i
 
 If the elements in your CML file are not ordered correspondingly, the execution of a refactoring will **reorder** them. 
 
-## AR: Split Aggregate by Entities
+## AR-1: Split Aggregate by Entities
 Splits an aggregate which contains multiple entities. Produces one aggregate per entity.
 
 Example input: [split-aggregate-by-entities-input-example.cml](./split-aggregate-by-entities-input-example.cml)
@@ -21,7 +21,7 @@ Example output: [split-aggregate-by-entities-output-example.cml](./split-aggrega
 
 **Preconditions:** Aggregate must contain at least two entities.
 
-## AR: Split Bounded Context by Use Cases
+## AR-2: Split Bounded Context by Use Cases
 Splits a bounded context by grouping those aggregates together in one bounded context which are used by the same use case.
 
 Example input: [split-bc-by-use-cases-input-example.cml](./split-bc-by-use-cases-input-example.cml)
@@ -30,7 +30,7 @@ Example output: [split-bc-by-use-cases-output-example.cml](./split-bc-by-use-cas
 
 **Preconditions:** At least to aggregates within the selected bounded context which have different use cases.
 
-## AR: Split Bounded Context by Owner
+## AR-3: Split Bounded Context by Owner
 Splits a bounded context by grouping those aggregates together in one bounded context which maintained by the same owner.
 
 Example input: [split-bc-by-owners-input-example.cml](./split-bc-by-owners-input-example.cml)
@@ -39,34 +39,35 @@ Example output: [split-bc-by-owners-output-example.cml](./split-bc-by-owners-out
 
 **Preconditions:** At least to aggregates within the selected bounded context which belong to different owners.
 
-## AR: Extract Aggregates which are Likely to Change
-Extracts all aggregates from a bounded context which are likely to change (likelihoodForChange = OFTEN) and moves them to a separate context.
+## AR-4: Extract Aggregates by Volatility
+Extracts all aggregates from a bounded context by a given volatility, or _likelihood for change_ (RARELY, NORMAL or OFTEN), and moves them to a separate context.
+See [Structural Volatility](https://github.com/ServiceCutter/ServiceCutter/wiki/CC-4-Structural-Volatility) in the [ServiceCutter](https://github.com/ServiceCutter/ServiceCutter/wiki/Coupling-Criteria) coupling criteria catalog for more information and the idea behind this refactoring.
 
-Example input: [extract-aggregates-likely-to-change-input-example.cml](./extract-aggregates-likely-to-change-input-example.cml)
+Example input: [extract-aggregates-by-volatility-input-example.cml](./extract-aggregates-by-volatility-input-example.cml)
 
-Example output: [extract-aggregates-likely-to-change-output-example.cml](./extract-aggregates-likely-to-change-output-example.cml)
+Example output: [extract-aggregates-by-volatility-output-example.cml](./extract-aggregates-by-volatility-output-example.cml)
 
-**Preconditions:** At least one aggregate with the attribute _likelihoodForChange_ set to _OFTEN_. The bounded context must also contain some other aggregates, otherwise an extraction makes no sense.
+**Preconditions:** At least two aggregates with different values in the attribute _likelihoodForChange_ (RARELY, NORMAL, OFTEN). The bounded context must also contain some other aggregates, otherwise an extraction makes no sense.
 
-## AR: Extract Aggregates by NFR (Manual Selection)
-The user/architect may want to extract certain aggregates of a bounded context based on specific and individual non-functional requirement (NFR) criteria. This refactoring allows manually select these aggregates and extract them to a new bounded context.
+## AR-5: Extract Aggregates by Cohesion
+The user/architect may want to extract certain aggregates of a bounded context based on specific and individual non-functional requirement (NFR) criteria concerning the cohesion between bounded contexts. This refactoring allows manually select these aggregates and extract them to a new bounded context.
 
-Example input: [extract-aggregates-by-nfr-input-example.cml](./extract-aggregates-by-nfr-input-example.cml)
+Example input: [extract-aggregates-by-cohesion-input-example.cml](./extract-aggregates-by-cohesion-input-example.cml)
 
-Example output: [extract-aggregates-by-nfr-output-example.cml](./extract-aggregates-by-nfr-output-example.cml)
+Example output: [extract-aggregates-by-cohesion-output-example.cml](./extract-aggregates-by-cohesion-output-example.cml)
 
 **Preconditions:** Bounded context must contain at least two aggregates.
 
-## AR: Split Bounded Context by Duplicate Entity Name
-As your bounded contexts develop you may find yourself in the situation that you have _two terms with different meanings_ within the ubiquitous language of your bounded context. This refactoring splits a bounded context if you have to aggregates which contains two such entities with the same name
+## AR-6: Merge Aggregates
+Allows you to merge two aggregates within a bounded context. Start the refactoring on one aggregate and a dialog will pop up, asking you for the second aggregate with which you want to merge.
 
-Example input: [split-bc-by-duplicate-entity-input-example.cml](./split-bc-by-duplicate-entity-input-example.cml)
+Example input: [merge-aggregates-input-example.cml](./merge-aggregates-input-example.cml)
 
-Example output: [split-bc-by-duplicate-entity-output-example.cml](./split-bc-by-duplicate-entity-output-example.cml)
+Example output: [merge-aggregates-output-example.cml](./merge-aggregates-output-example.cml)
 
-**Preconditions:** The bounded context must contain two aggregates which contain two entities with the same name
+**Preconditions:** You need at least two bounded contexts in your model to merge.
 
-## AR: Merge Bounded Contexts
+## AR-7: Merge Bounded Contexts
 Allows you to merge two bounded contexts. Start the refactoring on one bounded context and a dialog will pop up, asking you for the second bounded context with which you want to merge.
 
 Example input: [merge-bounded-contexts-input-example.cml](./merge-bounded-contexts-input-example.cml)

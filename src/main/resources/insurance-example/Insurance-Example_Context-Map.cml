@@ -63,6 +63,9 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 			String firstname
 			String lastname
 			- List<Address> addresses
+			
+			def ID createAddress(@Address address);
+			def void changeCustomer(String firstname, String lastname);
 		}
 		
 		Entity Address {
@@ -109,12 +112,14 @@ BoundedContext PrintingContext implements PrintingDomain {
 	domainVisionStatement = "An external system which provides printing services to the other Bounded Contexts."
 	
 	Aggregate Printing {
-		DomainEvent PrintingJob {
+		Entity PrintingJob {
 			aggregateRoot
 			
 			int printingId
 			- Document document
 			- Template template
+			
+			def PrintStatus printJob(ID printingId);
 		}
 		
 		Entity Document {
