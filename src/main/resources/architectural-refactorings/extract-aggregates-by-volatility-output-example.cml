@@ -1,4 +1,4 @@
-/* This is an example output file for the 'Extract Aggregates which are Likely to Change (OFTEN)' refactoring and shows a small part of the insurance example. */
+/* This is an example output file for the 'Extract Aggregates by Volatility' refactoring and shows a small part of the insurance example. */
 ContextMap {
 	contains CustomerSelfServiceContext
 
@@ -21,12 +21,12 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 }
 
 /**
- * The extracted bounded context after applying 'Extract Aggregates which are Likely to Change (OFTEN)'
- * to 'extract-aggregates-likely-to-change-input-example.cml'.
+ * The extracted bounded context after applying 'Extract Aggregates by Volatility'
+ * to 'extract-aggregates-by-volatility-input-example.cml'. The chosen volatility was 'OFTEN'.
  * 
  * You may want to change the name of newly created bounded contexts after applying refactorings.
  */
-BoundedContext CustomerSelfServiceContext_Volatile {
+BoundedContext CustomerSelfServiceContext_Volatility_OFTEN {
 	Aggregate CustomerFrontend {
 		likelihoodForChange = OFTEN
 		
