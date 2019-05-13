@@ -15,9 +15,9 @@ If the elements in your CML file are not ordered correspondingly, the execution 
 ## AR-1: Split Aggregate by Entities
 Splits an aggregate which contains multiple entities. Produces one aggregate per entity.
 
-Example input: [split-aggregate-by-entities-input-example.cml](./split-aggregate-by-entities-input-example.cml)
+Example input: [split-aggregate-by-entities-input-example.cml](AR-1-Split-Aggregate-by-Entities/example-input.cml)
 
-Example output: [split-aggregate-by-entities-output-example.cml](./split-aggregate-by-entities-output-example.cml)
+Example output: [split-aggregate-by-entities-output-example.cml](AR-1-Split-Aggregate-by-Entities/example-output.cml)
 
 **Preconditions:** Aggregate must contain at least two entities.
 
