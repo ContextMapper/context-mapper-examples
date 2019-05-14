@@ -92,7 +92,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 
 /**
  * The extracted bounded context after applying 'Extract Aggregates by Volatility'
- * to 'extract-aggregates-by-volatility-input-example.cml'. The chosen volatility was 'OFTEN'.
+ * to 'example-input.cml'. The chosen volatility was 'OFTEN'.
  * 
  * You may want to change the name of newly created bounded contexts after applying refactorings.
  */

@@ -127,7 +127,7 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 }
 
 /**
- * New bounded context after applying 'Extract Aggregates by Cohesion' to 'extract-aggregates-by-cohesion-input-example.cml'
+ * New bounded context after applying 'Extract Aggregates by Cohesion' to 'example-input.cml'
  * with the following parameters:
  *  - New bounded context name: 'SalesBoundedContext'
  *  - Selected aggregates: 'Offers'

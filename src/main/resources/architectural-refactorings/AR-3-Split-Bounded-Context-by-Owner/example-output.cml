@@ -1,4 +1,4 @@
-/* This is an example output file for the 'Split Bounded Context by Owners' refactoring and shows a small part of the insurance example. */
+/* This is an example output file for the 'Split Bounded Context by Owner' refactoring and shows a small part of the insurance example. */
 ContextMap {
 	contains CustomerSelfServiceContext
 
@@ -32,7 +32,7 @@ BoundedContext CustomerFrontendTeam {
 }
 
 /**
- * The new bounded context created by the 'Split Bounded Context by Owners' refactoring applied to 'split-bc-by-owners-input-example.cml'.
+ * The new bounded context created by the 'Split Bounded Context by Owners' refactoring applied to 'example-input.cml'.
  * 
  * Note that the refactoring does not produce meaningful bounded context names. You can use the 'Rename Element' refactoring (SHIFT-ALT-R) 
  * to rename the new aggregate.

@@ -75,7 +75,7 @@ Applying the AR **Merge Aggregates** with the aggregate selection **[ Customers,
 merges the objects of both aggregates into the _Customers_ aggregate:
 ```
 /* 
- * The resulting bounded context after applying 'Merge Aggregates' to the file 'merge-aggregates-input-example.cml'.
+ * The resulting bounded context after applying 'Merge Aggregates' to the file 'example-input.cml'.
  * The 'Addresses' aggregate has been merged into the 'Customers' aggregate.
  */
 BoundedContext CustomerManagementContext implements CustomerManagementDomain {

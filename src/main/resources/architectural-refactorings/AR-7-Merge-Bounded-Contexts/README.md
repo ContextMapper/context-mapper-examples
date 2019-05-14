@@ -93,7 +93,7 @@ Applying the AR **Merge Bounded Contexts** merges all aggregates of the _Custome
 into the _CustomerManagementContext_ bounded context:
 ```
 /**
- * The merged bounded context after applying 'Merge Bounded Contexts' to 'merge-bounded-contexts-input-example.cml'.
+ * The merged bounded context after applying 'Merge Bounded Contexts' to 'example-input.cml'.
  * We selected the 'CustomerSelfServiceContext' context as second bounded context.
  */
 BoundedContext CustomerManagementContext implements CustomerManagementDomain {

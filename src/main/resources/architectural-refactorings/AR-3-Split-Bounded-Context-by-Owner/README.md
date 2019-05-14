@@ -96,7 +96,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 }
 
 /**
- * The new bounded context created by the 'Split Bounded Context by Owners' refactoring applied to 'split-bc-by-owners-input-example.cml'.
+ * The new bounded context created by the 'Split Bounded Context by Owners' refactoring applied to 'example-input.cml'.
  * 
  * Note that the refactoring does not produce meaningful bounded context names. You can use the 'Rename Element' refactoring (SHIFT-ALT-R) 
  * to rename the new aggregate.

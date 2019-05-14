@@ -32,7 +32,7 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 }
 
 /**
- * A new bounded context created by the 'Split Bounded Context by Use Cases' refactoring applied to 'split-bc-by-use-cases-input-example.cml'.
+ * A new bounded context created by the 'Split Bounded Context by Use Cases' refactoring applied to 'example-input.cml'.
  * 
  * Note that the refactoring does not produce meaningful bounded context names. You can use the 'Rename Element' refactoring (SHIFT-ALT-R) 
  * to rename the new aggregate.
