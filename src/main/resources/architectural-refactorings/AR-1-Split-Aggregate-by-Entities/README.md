@@ -20,6 +20,9 @@ This Architectural Refactoring (AR) splits an aggregate and creates one aggregat
 the entities within an aggregate exhibit unsatisfying cohesiveness and you decide to create multiple aggregates for the single 
 entities.
 
+**Inverse AR's:**
+ * [AR-6: Merge Aggregates](./../AR-6-Merge-Aggregates)
+
 ## Preconditions
  * The input aggregate must contain **at least two entities**.
 
@@ -31,7 +34,7 @@ entities.
  * All entities become **aggregate roots** within their own aggregates.
  
 ## Example
-The following to CML snippets show an example _input_ and _output_ illustrating how this AR works.
+The following two CML snippets show an example _input_ and _output_ illustrating how this AR works.
 
 ### Input
 The following bounded context contains one aggregate with two entities:

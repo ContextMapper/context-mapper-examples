@@ -20,6 +20,9 @@ This Architectural Refactoring (AR) extracts all aggregates with a given volatil
 a certain likelihood for change in one bounded context. This AR can be applied if your model exhibits a bounded context with 
 aggregates which have different likelihoods for change.
 
+**Inverse AR's:**
+ * [AR-7: Merge Bounded Contexts](./../AR-7-Merge-Bounded-Contexts)
+
 ## Preconditions
  * The selected bounded context must contain **at least two aggregates**.
  * The aggregates of the selected bounded context must have **different likelihoods for change**.

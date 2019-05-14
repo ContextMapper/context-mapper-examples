@@ -14,6 +14,9 @@ This Architectural Refactoring (AR) allows to manually select the aggregates whi
 or Non-functional Requirements (NFR). The goal of this AR is to isolate a set of aggregates within a new bounded context by
 an individual criterion.
 
+**Inverse AR's:**
+ * [AR-7: Merge Bounded Contexts](./../AR-7-Merge-Bounded-Contexts)
+
 ## Preconditions
  * The selected bounded context must contain **at least two aggregates**.
 
@@ -25,7 +28,7 @@ an individual criterion.
  * A new bounded context containing the selected aggregates.
  
 ## Example
-The following to CML snippets show an example _input_ and _output_ illustrating how this AR works.
+The following two CML snippets show an example _input_ and _output_ illustrating how this AR works.
 
 ### Input
 The following bounded context contains three aggregates:

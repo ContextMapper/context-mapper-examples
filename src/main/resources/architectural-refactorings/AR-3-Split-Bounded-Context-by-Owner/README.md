@@ -22,6 +22,9 @@ This Architectural Refactoring (AR) splits a bounded context by the owners of th
 containing aggregates which all belong to the same team. It can be applied if your model exhibits a bounded contexts with 
 aggregates which are owned by different teams.
 
+**Inverse AR's:**
+ * [AR-7: Merge Bounded Contexts](./../AR-7-Merge-Bounded-Contexts)
+
 ## Preconditions
   * The bounded context must contain **at least two aggregates**.
   * The aggregates must be **assigned to different teams**.
@@ -34,7 +37,7 @@ aggregates which are owned by different teams.
  team.
  
 ## Example
-The following to CML snippets show an example _input_ and _output_ illustrating how this AR works.
+The following two CML snippets show an example _input_ and _output_ illustrating how this AR works.
 
 ### Input
 The following bounded context contains two aggregates which are owend by two different teams:

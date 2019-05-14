@@ -21,6 +21,9 @@ This Architectural Refactoring (AR) splits a bounded context by use cases. This 
 aggregates which are used by the same use cases. It can be applied if your model exhibits a bounded contexts with aggregates which
 are used by multiple different use cases.
 
+**Inverse AR's:**
+ * [AR-7: Merge Bounded Contexts](./../AR-7-Merge-Bounded-Contexts)
+
 ## Preconditions
  * The bounded context must contain **at least two aggregates**.
  * The aggregates must be **assigned to different use cases**.
@@ -33,7 +36,7 @@ are used by multiple different use cases.
  use cases.
  
 ## Example
-The following to CML snippets show an example _input_ and _output_ illustrating how this AR works.
+The following two CML snippets show an example _input_ and _output_ illustrating how this AR works.
 
 ### Input
 The following bounded context three aggregates which are used by two different use cases:
