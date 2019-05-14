@@ -18,6 +18,11 @@ code samples for each AR:
 
 You can also find the ARs in our [documentation page](https://contextmapper.github.io/docs/architectural-refactorings/).
 
+## Motivation to use ARs
+The provided refactorings offer the advantage that the result is always a correct CML model which compiles without errors. 
+If you perform similar changes manually, you also have to fix upcoming errors within the context map manually.
+The AR's ensure that corresponding references and dependencies in other parts of the model are respected and adjusted if necessary.
+
 ## AR Overview
 | Name                                                                                              | Subject         | Description                                                                                                                                                     | Input              | Output             |
 |---------------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|--------------------|
