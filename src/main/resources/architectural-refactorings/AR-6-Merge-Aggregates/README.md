@@ -21,7 +21,7 @@ in a situation where the entities in the two aggregates somehow belong together 
 coupling and cohesion. 
 
 **Inverse AR's:**
- * [AR-1 Split Aggregate by Entities](./../AR-1-Split-Aggregate-by-Entities)
+ * [AR-1: Split Aggregate by Entities](./../AR-1-Split-Aggregate-by-Entities)
 
 ## Preconditions
  * Your bounded context must contain **at least two aggregates** which can be merged.
