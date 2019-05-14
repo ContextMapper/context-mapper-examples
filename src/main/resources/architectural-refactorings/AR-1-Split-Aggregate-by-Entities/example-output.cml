@@ -17,7 +17,7 @@ BoundedContext CustomerManagementContext {
 		}
 	}
 	/* The newly created aggregate after applying 'Split Aggregate by Entities' on the aggregate in the input file 
-	 * 'split-aggregate-by-entities-input-example.cml'.
+	 * 'example-input.cml'.
 	 * 
 	 * Note that the refactoring does not produce meaningful aggregate names. You can use the 'Rename Element' 
 	 * refactoring (SHIFT-ALT-R) to rename the new aggregate.

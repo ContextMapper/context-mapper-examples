@@ -10,7 +10,7 @@ ContextMap {
 }
 
 /* 
- * The resulting bounded context after applying 'Merge Aggregates' to the file 'merge-aggregates-input-example.cml'.
+ * The resulting bounded context after applying 'Merge Aggregates' to the file 'example-input.cml'.
  * The 'Addresses' aggregate has been merged into the 'Customers' aggregate.
  */
 BoundedContext CustomerManagementContext implements CustomerManagementDomain {

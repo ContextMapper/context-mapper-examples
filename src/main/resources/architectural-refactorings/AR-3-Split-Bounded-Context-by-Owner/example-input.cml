@@ -1,4 +1,4 @@
-/* This is an example input file for the 'Split Bounded Context by Owners' refactoring and shows a small part of the insurance example. */
+/* This is an example input file for the 'Split Bounded Context by Owner' refactoring and shows a small part of the insurance example. */
 ContextMap {
 	contains CustomerSelfServiceContext
 
