@@ -30,7 +30,7 @@ BoundedContext CustomerSelfServiceContext_Volatility_OFTEN {
 	Aggregate CustomerFrontend {
 		likelihoodForChange = OFTEN
 		
-		DomainEvent CustomerAddressChange {
+		Entity CustomerAddressChange {
 			aggregateRoot
 			
 			- UserAccount issuer

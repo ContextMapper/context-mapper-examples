@@ -13,7 +13,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 	Aggregate CustomerFrontend {
 		owner = CustomerFrontendTeam
 		
-		DomainEvent CustomerAddressChange {
+		Entity CustomerAddressChange {
 			aggregateRoot
 			
 			- UserAccount issuer

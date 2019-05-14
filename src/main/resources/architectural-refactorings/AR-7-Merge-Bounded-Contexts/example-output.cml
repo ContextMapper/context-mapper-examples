@@ -37,7 +37,7 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 		}
 	}
 	Aggregate CustomerFrontend {
-		DomainEvent CustomerAddressChange {
+		Entity CustomerAddressChange {
 			aggregateRoot
 			
 			- UserAccount issuer
@@ -59,7 +59,7 @@ BoundedContext PrintingContext implements PrintingDomain {
 	type = SYSTEM
 	responsibilities = "Document Printing"
 	Aggregate Printing {
-		DomainEvent PrintingJob {
+		Entity PrintingJob {
 			aggregateRoot
 			
 			int printingId
