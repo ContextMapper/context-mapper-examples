@@ -53,7 +53,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 	implementationTechnology = "PHP Web Application"
 	
 	Aggregate CustomerFrontend {
-		DomainEvent CustomerAddressChange {
+		Entity CustomerAddressChange {
 			aggregateRoot
 			
 			- UserAccount issuer
@@ -76,7 +76,7 @@ BoundedContext PrintingContext implements PrintingDomain {
 	domainVisionStatement = "An external system which provides printing services to the other Bounded Contexts."
 	
 	Aggregate Printing {
-		DomainEvent PrintingJob {
+		Entity PrintingJob {
 			aggregateRoot
 			
 			int printingId

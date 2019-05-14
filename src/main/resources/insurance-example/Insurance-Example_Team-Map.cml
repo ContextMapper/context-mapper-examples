@@ -77,7 +77,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 	implementationTechnology = "PHP Web Application"
 	
 	Aggregate CustomerFrontend {
-		DomainEvent CustomerAddressChange {
+		Entity CustomerAddressChange {
 			aggregateRoot
 			
 			- UserAccount issuer

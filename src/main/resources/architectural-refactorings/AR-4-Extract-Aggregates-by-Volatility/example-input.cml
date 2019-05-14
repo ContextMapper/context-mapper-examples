@@ -16,7 +16,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 	Aggregate CustomerFrontend {
 		likelihoodForChange = OFTEN
 		
-		DomainEvent CustomerAddressChange {
+		Entity CustomerAddressChange {
 			aggregateRoot
 			
 			- UserAccount issuer
