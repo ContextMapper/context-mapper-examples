@@ -12,6 +12,9 @@ This Architectural Refactoring (AR) merges two bounded contexts together. The re
 of the two input bounded contexts. It can be applied if two bounded context are tightly coupled and the aggregates somehow
 belong together. This may improve the cohesion within the resulting bounded context.
 
+**Notes:**
+ * By applying this AR multiple times you may end with one single Bounded Context and an empty Context Map (no relationships).
+ 
 **Inverse AR's:**
  * [AR-4: Extract Aggregates by Volatility](./../AR-4-Extract-Aggregates-by-Volatility)
  * [AR-5: Extract Aggregates by Cohesion](./../AR-5-Extract-Aggregates-by-Cohesion)
