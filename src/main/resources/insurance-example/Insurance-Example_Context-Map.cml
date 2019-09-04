@@ -33,7 +33,7 @@ ContextMap InsuranceContextMap {
 	}	
 
 	PolicyManagementContext [D,CF]<-[U,OHS,PL] CustomerManagementContext {
-		implementationTechnology = "RESTful HTTP"
+		implementationTechnology = "RESTfulHTTP"
 		exposedAggregates = Customers
 	}
 
@@ -65,7 +65,7 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 			- List<Address> addresses
 			
 			def AddressId createAddress(@Address address);
-			def void changeCustomer(String firstname, String lastname);
+			def boolean changeCustomer(String firstname, String lastname);
 		}
 		
 		Entity Address {
@@ -119,7 +119,7 @@ BoundedContext PrintingContext implements PrintingDomain {
 			- Document document
 			- Template template
 			
-			def PrintStatus printJob(PrintindId printingId);
+			def PrintStatus printJob(PrintingId printingId);
 		}
 		
 		Entity Document {
