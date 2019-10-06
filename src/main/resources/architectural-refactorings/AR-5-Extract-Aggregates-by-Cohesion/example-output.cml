@@ -25,7 +25,7 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 			aggregateRoot
 			
 			- ContractId identifier
-			- Customer client
+			Customer client
 			- List<Product> products
 		}
 		ValueObject ContractId {
@@ -52,7 +52,7 @@ BoundedContext SalesBoundedContext {
 			aggregateRoot
 			
 			int offerId
-			- Customer client
+			Customer client
 			- List<Product> products
 			BigDecimal price
 		}

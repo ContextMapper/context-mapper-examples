@@ -20,7 +20,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 			aggregateRoot
 			
 			- UserAccount issuer
-			- Address changedAddress
+			Address changedAddress
 		}
 	}
 	Aggregate Acounts {
@@ -30,7 +30,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 			aggregateRoot
 			
 			String username
-			- Customer accountCustomer
+			Customer accountCustomer
 		}
 	}
 }

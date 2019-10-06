@@ -15,7 +15,7 @@ BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 			aggregateRoot
 			
 			String username
-			- Customer accountCustomer
+			Customer accountCustomer
 		}
 	}
 }
@@ -34,7 +34,7 @@ BoundedContext CustomerSelfServiceContext_Volatility_OFTEN {
 			aggregateRoot
 			
 			- UserAccount issuer
-			- Address changedAddress
+			Address changedAddress
 		}
 	}
 }
