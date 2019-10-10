@@ -15,27 +15,27 @@ Use the following Eclipse Update Site to install it:
 The following graphical illustrations of the Context Maps are inspired by [Vernon][2] and [Brandolini][3].
 
 ### Insurance Example
-In the folder [src/main/resources/insurance-example](./src/main/resources/insurance-example) you find example context maps for a fictitious insurance company, inspired by [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual).
+In the folder [src/main/cml/insurance-example](./src/main/cml/insurance-example) you find example context maps for a fictitious insurance company, inspired by [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual).
 
 #### Context Map
 The insurance example contains an example for a classic DDD context map written in the ContextMapper DSL (CML).
 
-<img alt="Insurance Company Example Context Map" src="./src/main/resources/insurance-example/images/ContextMap-Illustration.png" width="500px">
+<img alt="Insurance Company Example Context Map" src="./src/main/cml/insurance-example/images/ContextMap-Illustration.png" width="500px">
 
 #### Team Map
 It further contains a team map, illustrating the teams and their relationships. Additionally, CML allows to define which bounded contexts are implemented by which teams.
 
-<img alt="Insurance Company Example Context Map" src="./src/main/resources/insurance-example/images/TeamMap-Illustration.png" width="500px">
+<img alt="Insurance Company Example Context Map" src="./src/main/cml/insurance-example/images/TeamMap-Illustration.png" width="500px">
 
 ### DDD Sample
-The folder [src/main/resources/ddd-sample](./src/main/resources/ddd-sample) contains a context map based on the [DDD sample](https://github.com/citerus/dddsample-core) from [Eric Evans DDD book][1]. 
+The folder [src/main/cml/ddd-sample](./src/main/cml/ddd-sample) contains a context map based on the [DDD sample](https://github.com/citerus/dddsample-core) from [Eric Evans DDD book][1]. 
 
 To make the sample interesting for our context mapping language, we splitted the Cargo application into three bounded contexts.
 
-<img alt="Insurance Company Example Context Map" src="./src/main/resources/ddd-sample/images/DDD-Cargo-Tracking-ContextMap-Illustration.png" width="300px">
+<img alt="Insurance Company Example Context Map" src="./src/main/cml/ddd-sample/images/DDD-Cargo-Tracking-ContextMap-Illustration.png" width="300px">
 
 ### Architectural Refactoring (AR) Examples
-The Context Mapper tool provides several [Architectural Refactorings][4] which can be applied to your models. A documentation of all available refactorings can be found under [https://contextmapper.github.io/docs/architectural-refactorings](https://contextmapper.github.io/docs/architectural-refactorings). The folder [src/main/resources/architectural-refactorings](./src/main/resources/architectural-refactorings) contains example CML models (input and ouput) to illustrate the architectural refactorings purposes.
+The Context Mapper tool provides several [Architectural Refactorings][4] which can be applied to your models. A documentation of all available refactorings can be found under [https://contextmapper.github.io/docs/architectural-refactorings](https://contextmapper.github.io/docs/architectural-refactorings). The folder [src/main/cml/architectural-refactorings](./src/main/cml/architectural-refactorings) contains example CML models (input and ouput) to illustrate the architectural refactorings purposes.
 
 ## Contributing
 Contribution is always welcome! Here are some ways how you can contribute:

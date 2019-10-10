@@ -1,4 +1,40 @@
+plugins {
+  id "java"
+  id "org.xtext.builder" version "2.0.7"
+}
+
 group 'org.contextmapper.dsl'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    xtextLanguages 'org.contextmapper:context-mapper-dsl:4.2.0'
+
+    implementation 'org.eclipse.xtend:org.eclipse.xtend.lib:2.19.0'
+    implementation 'org.contextmapper:context-mapper-dsl:4.2.0'
+    
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+}
+
+xtext {
+    languages {
+        cml {
+            fileExtension = 'cml'
+            setup = 'org.contextmapper.dsl.ContextMappingDSLStandaloneSetup'
+            generator.outlet.producesJava = true
+        }
+    }
+
+    sourceSets {
+        main {
+            srcDir 'src/main/cml'
+        }
+    }
+}

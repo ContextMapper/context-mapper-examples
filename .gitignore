@@ -23,6 +23,7 @@
 
 # Gradle #
 .gradle
+build
 
 # Eclipse #
 *.project
