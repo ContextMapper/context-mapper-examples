@@ -14,13 +14,13 @@ repositories {
 }
 
 dependencies {
-    xtextLanguages 'org.contextmapper:context-mapper-dsl:4.2.0'
+    xtextLanguages "org.contextmapper:context-mapper-dsl:${cmlVersion}"
 
-    implementation 'org.eclipse.xtend:org.eclipse.xtend.lib:2.19.0'
-    implementation 'org.contextmapper:context-mapper-dsl:4.2.0'
+    implementation "org.eclipse.xtend:org.eclipse.xtend.lib:${xtendLibVersion}"
+    implementation "org.contextmapper:context-mapper-dsl:${cmlVersion}"
     
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
 xtext {
