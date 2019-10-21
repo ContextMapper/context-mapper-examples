@@ -106,5 +106,5 @@ BoundedContext CustomerManagementContext {
  * Example output source: [example-output.cml](./example-output.cml)
  
 ## Further documentation
- * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.github.io/docs/architectural-refactorings/)
- * [AR-1: Split Aggregate by Entities](https://contextmapper.github.io/docs/ar-split-aggregate-by-entities/)
+ * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.org/docs/architectural-refactorings/)
+ * [AR-1: Split Aggregate by Entities](https://contextmapper.org/docs/ar-split-aggregate-by-entities/)

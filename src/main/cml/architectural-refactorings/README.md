@@ -2,7 +2,7 @@
 
 This folder contains input and ouput examples written in CML to illustrate the idea behind the [Architectural Refactorings (ARs)][1] 
 implemented by the Context Mapper tool. The refactorings can be executed with a right-click on the corresponding element in 
-the editor (aggregate or bounded context) and choosing the AR in the _Context Mapper: Refactor_ context menu entry. 
+the editor (aggregate, bounded context, or relationship arrows) and choosing the AR in the _Context Mapper: Refactor_ context menu entry. 
 The context menu shows only refactorings for which the selected model element fulfills the preconditions.
 
 You find an overview table with all ARs below. Within the sub-folders of this directory you find detailed descriptions and the
@@ -15,8 +15,10 @@ code samples for each AR:
  * [AR-5: Extract Aggregates by Cohesion](./AR-5-Extract-Aggregates-by-Cohesion)
  * [AR-6: Merge Aggregates](./AR-6-Merge-Aggregates)
  * [AR-7: Merge Bounded Contexts](./AR-7-Merge-Bounded-Contexts)
+ * [AR-8: Extract Shared Kernel](./AR-8-Extract-Shared-Kernel)
+ * [AR-9: Suspend Partnership](./AR-9-Suspend-Partnership)
 
-You can also find the ARs in our [documentation page](https://contextmapper.github.io/docs/architectural-refactorings/).
+You can also find the ARs in our [documentation page](https://contextmapper.org/docs/architectural-refactorings/).
 
 ## Motivation to use ARs
 The provided refactorings offer the advantage that the result is always a correct CML model which compiles without errors. 
@@ -24,15 +26,17 @@ If you perform similar changes manually, you also have to fix upcoming errors wi
 The AR's ensure that corresponding references and dependencies in other parts of the model are respected and adjusted if necessary.
 
 ## AR Overview
-| Name                                                                                              | Subject         | Description                                                                                                                                                     | Input              | Output             |
-|---------------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|--------------------|
-| [AR-1: Split Aggregate by Entities](./AR-1-Split-Aggregate-by-Entities)                           | Aggregate       | Splits an aggregate which contains multiple entities and produces one aggregate per entity.                                                                     | 1 Aggregate        | n Aggregates       |
-| [AR-2: Split Bounded Context by Use Cases<sup>1</sup>](./AR-2-Split-Bounded-Context-by-Use-Cases) | Bounded Context | Splits a bounded context by grouping those aggregates together into one bounded context which are used by the same use case(s).                                 | 1 Bounded Context  | n Bounded Contexts |
-| [AR-3: Split Bounded Context by Owner<sup>1</sup>](./AR-3-Split-Bounded-Context-by-Owner)         | Bounded Context | Splits a bounded context by grouping those aggregates together into one bounded context which belong to the same team.                                          | 1 Bounded Context  | n Bounded Contexts |
-| [AR-4: Extract Aggregates by Volatility](./AR-4-Extract-Aggregates-by-Volatility)                 | Bounded Context | Extracts all aggregates from a bounded context by a given volatility, or likelihood for change (RARELY, NORMAL or OFTEN), and moves them to a separate context. | 1 Bounded Context  | 2 Bounded Contexts |
-| [AR-5: Extract Aggregates by Cohesion](./AR-5-Extract-Aggregates-by-Cohesion)                     | Bounded Context | Extracts a set of aggregates which are chosen by certain cohesion criteria and moves them to a separate bounded context.                                        | 1 Bounded Context  | 2 Bounded Contexts |
-| [AR-6: Merge Aggregates](./AR-6-Merge-Aggregates)                                                 | Aggregate       | Merges two aggregates within a bounded context together to one aggregate.                                                                                       | 2 Aggregates       | 1 Aggregate        |
-| [AR-7: Merge Bounded Contexts](./AR-7-Merge-Bounded-Contexts)                                     | Bounded Context | Merges two bounded contexts together. The result is one bounded context containing all the aggregates of the two input boundedcontexts.                         | 2 Bounded Contexts | 1 Bounded Context  |
+| Name                                                                                              | Subject                    | Description                                                                                                                                                                                   | Input                        | Output                                                            |
+|---------------------------------------------------------------------------------------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------|
+| [AR-1: Split Aggregate by Entities](./AR-1-Split-Aggregate-by-Entities)                           | Aggregate                  | Splits an aggregate which contains multiple entities and produces one aggregate per entity.                                                                                                   | 1 Aggregate                  | n Aggregates                                                      |
+| [AR-2: Split Bounded Context by Use Cases<sup>1</sup>](./AR-2-Split-Bounded-Context-by-Use-Cases) | Bounded Context            | Splits a bounded context by grouping those aggregates together into one bounded context which are used by the same use case(s).                                                               | 1 Bounded Context            | n Bounded Contexts                                                |
+| [AR-3: Split Bounded Context by Owner<sup>1</sup>](./AR-3-Split-Bounded-Context-by-Owner)         | Bounded Context            | Splits a bounded context by grouping those aggregates together into one bounded context which belong to the same team.                                                                        | 1 Bounded Context            | n Bounded Contexts                                                |
+| [AR-4: Extract Aggregates by Volatility](./AR-4-Extract-Aggregates-by-Volatility)                 | Bounded Context            | Extracts all aggregates from a bounded context by a given volatility, or likelihood for change (RARELY, NORMAL or OFTEN), and moves them to a separate context.                               | 1 Bounded Context            | 2 Bounded Contexts                                                |
+| [AR-5: Extract Aggregates by Cohesion](./AR-5-Extract-Aggregates-by-Cohesion)                     | Bounded Context            | Extracts a set of aggregates which are chosen by certain cohesion criteria and moves them to a separate bounded context.                                                                      | 1 Bounded Context            | 2 Bounded Contexts                                                |
+| [AR-6: Merge Aggregates](./AR-6-Merge-Aggregates)                                                 | Aggregate                  | Merges two aggregates within a bounded context together to one aggregate.                                                                                                                     | 2 Aggregates                 | 1 Aggregate                                                       |
+| [AR-7: Merge Bounded Contexts](./AR-7-Merge-Bounded-Contexts)                                     | Bounded Context            | Merges two bounded contexts together. The result is one bounded context containing all the aggregates of the two input boundedcontexts.                                                       | 2 Bounded Contexts           | 1 Bounded Context                                                 |
+| [AR-8: Extract Shared Kernel](./AR-8-Extract-Shared-Kernel)                                       | Shared Kernel relationship | Extracts a new bounded context for the common model parts of the Shared Kernel and establishes two upstream-downstream relationship between the new and the existing Bounded Contexts.        | 1 Shared Kernel relationship | 1 New Bounded Context and 2 new upstream-downstream relationships |
+| [AR-9: Suspend Partnership](./AR-9-Suspend-Partnership)                                           | Partnership relationship   | Suspends a Partnership relationship and replaces it with another structure how the two Bounded Context can depend on each other. The AR provides three strategies to suspend the partnership. | 1 Partnership relationship   | _Depends on the selected mode_                                    |
 
 <sup>1</sup>: An aggregate in CML can be used by **multiple** use cases and is owned by **one** owner (team).
 

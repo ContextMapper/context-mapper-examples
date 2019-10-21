@@ -145,5 +145,5 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
  * Example output source: [example-output.cml](./example-output.cml)
  
 ## Further documentation
- * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.github.io/docs/architectural-refactorings/)
- * [AR-7 Merge Bounded Contexts](https://contextmapper.github.io/docs/ar-merge-bounded-contexts/)
+ * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.org/docs/architectural-refactorings/)
+ * [AR-7 Merge Bounded Contexts](https://contextmapper.org/docs/ar-merge-bounded-contexts/)

@@ -151,5 +151,5 @@ BoundedContext SalesBoundedContext {
  * Example output source: [example-output.cml](./example-output.cml)
  
 ## Further documentation
- * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.github.io/docs/architectural-refactorings/)
- * [AR-5: Extract Aggregates by Cohesion](https://contextmapper.github.io/docs/ar-extract-aggregates-by-cohesion/)
+ * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.org/docs/architectural-refactorings/)
+ * [AR-5: Extract Aggregates by Cohesion](https://contextmapper.org/docs/ar-extract-aggregates-by-cohesion/)

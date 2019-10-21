@@ -1,0 +1,90 @@
+/* This is an example output file for the 'Suspend Partnership' refactoring and shows a small part of the insurance example.
+ * 
+ * In this case we selected to REPLACE the partnership with an upstream-downstream relationship.
+ */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+	
+	contains PolicyManagementContext
+	contains RiskManagementContext
+
+	/* The new upstream-downstream relationship replacing the original Partnership relationship: */
+	
+	PolicyManagementContext [ U ] -> [ D ] RiskManagementContext
+
+}
+
+BoundedContext PolicyManagementContext implements PolicyManagementDomain {
+	domainVisionStatement = "This bounded context manages the contracts and policies of the customers."
+	responsibilities = "Offers, Contracts, Policies"
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Offers {
+		Entity Offer {
+			aggregateRoot
+			int offerId
+			Customer client
+			- List<Product> products
+			BigDecimal price
+		}
+	}
+	Aggregate Products {
+		Entity Product {
+			aggregateRoot
+			- ProductId identifier
+			String productName
+		}
+		ValueObject ProductId {
+			int productId key
+		}
+	}
+	Aggregate Contract {
+		Entity Contract {
+			aggregateRoot
+			- ContractId identifier
+			Customer client
+			- List<Product> products
+		}
+		ValueObject ContractId {
+			int contractId key
+		}
+		
+		Entity Policy {
+			int policyNr
+			- Contract contract
+			BigDecimal price
+		}
+	}
+}
+
+BoundedContext RiskManagementContext implements RiskManagementDomain {
+	domainVisionStatement = "Uses data from PolicyManagement context to calculate risks."
+	responsibilities = "Customer Risk Calculation"
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Risks {
+		Entity CustomerRiskFactor {
+			aggregateRoot
+			int totalRiskFactor
+			- List<Risk> risks
+			Customer client
+		}
+		ValueObject Risk {
+			int likelihood
+			String risk
+		}
+	}
+}
+
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain PolicyManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing contracts and policies."
+	}
+	Subdomain RiskManagementDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdomain supporting everything which relates to risk management."
+	}
+}

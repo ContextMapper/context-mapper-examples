@@ -13,7 +13,7 @@ within them. One approach to achieve this and to decompose a system into compone
  * [Single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
 
 In Context Mapper you can assign multiple use cases to an aggregate, which allows you to model by which use cases an aggregate
-is used. Consult our [aggregate documentation page](https://contextmapper.github.io/docs/aggregate/#aggregate-use-cases) to see
+is used. Consult our [aggregate documentation page](https://contextmapper.org/docs/aggregate/#aggregate-use-cases) to see
 how this can be modeled in CML.
 
 ## Goal
@@ -169,5 +169,5 @@ BoundedContext NewBoundedContext1 {
  * Example output source: [example-output.cml](./example-output.cml)
  
 ## Further documentation
- * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.github.io/docs/architectural-refactorings/)
- * [AR-2: Split Bounded Context by Use Cases](https://contextmapper.github.io/docs/ar-split-bounded-context-by-use-cases/)
+ * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.org/docs/architectural-refactorings/)
+ * [AR-2: Split Bounded Context by Use Cases](https://contextmapper.org/docs/ar-split-bounded-context-by-use-cases/)

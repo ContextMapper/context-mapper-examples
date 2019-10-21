@@ -14,7 +14,7 @@ within them. One approach to achieve this and to decompose a system into compone
  by [Nick Tune](http://www.ntcoding.co.uk/)
 
 In Context Mapper you can assign an aggregate the owning team. Consult our 
-[aggregate documentation page](https://contextmapper.github.io/docs/aggregate/#aggregate-owner) to see
+[aggregate documentation page](https://contextmapper.org/docs/aggregate/#aggregate-owner) to see
 how this can be modeled in CML.
 
 ## Goal
@@ -123,5 +123,5 @@ BoundedContext NewBoundedContext1 {
  * Example output source: [example-output.cml](./example-output.cml)
  
 ## Further documentation
- * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.github.io/docs/architectural-refactorings/)
- * [AR-3: Split Bounded Context by Owner](https://contextmapper.github.io/docs/ar-split-bounded-context-by-owners/)
+ * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.org/docs/architectural-refactorings/)
+ * [AR-3: Split Bounded Context by Owner](https://contextmapper.org/docs/ar-split-bounded-context-by-owners/)

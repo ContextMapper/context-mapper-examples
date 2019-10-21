@@ -1,0 +1,80 @@
+/* This is an example output file for the 'Suspend Partnership' refactoring and shows a small part of the insurance example.
+ * 
+ * In this case we selected to MERGE the Bounded Contexts to suspend the partnership.
+ */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+	
+	contains RiskManagementContext
+	
+	/* Since the AR merged the two Bounded Context, the relationship has been removed. */
+}
+
+/* The merged Bounded Context contains all Aggregates of both contexts now. It further implements both Subdomains. */
+BoundedContext RiskManagementContext implements RiskManagementDomain , PolicyManagementDomain {
+	domainVisionStatement "Uses data from PolicyManagement context to calculate risks."
+	responsibilities = "Customer Risk Calculation", "Offers, Contracts, Policies" 
+	implementationTechnology "Java, Spring App"
+	
+	Aggregate Risks {
+		Entity CustomerRiskFactor {
+			aggregateRoot
+			int totalRiskFactor
+			- List<Risk> risks
+			Customer client
+		}
+		ValueObject Risk {
+			int likelihood
+			String risk
+		}
+	}
+	Aggregate Offers {
+		Entity Offer {
+			aggregateRoot
+			int offerId
+			Customer client
+			- List<Product> products
+			BigDecimal price
+		}
+	}
+	Aggregate Products {
+		Entity Product {
+			aggregateRoot
+			- ProductId identifier
+			String productName
+		}
+		ValueObject ProductId {
+			int productId key
+		}
+	}
+	Aggregate Contract {
+		Entity Contract {
+			aggregateRoot
+			- ContractId identifier
+			Customer client
+			- List<Product> products
+		}
+		ValueObject ContractId {
+			int contractId key
+		}
+		
+		Entity Policy {
+			int policyNr
+			- Contract contract
+			BigDecimal price
+		}
+	}
+}
+
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain PolicyManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing contracts and policies."
+	}
+	Subdomain RiskManagementDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdomain supporting everything which relates to risk management."
+	}
+}

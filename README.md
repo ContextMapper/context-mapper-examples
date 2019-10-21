@@ -1,6 +1,6 @@
 ![Context Mapper](https://raw.githubusercontent.com/wiki/ContextMapper/context-mapper-dsl/logo/cm-logo-github-small.png)  
 # DSL Examples [![Build Status](https://travis-ci.com/ContextMapper/context-mapper-examples.svg?branch=master)](https://travis-ci.com/ContextMapper/context-mapper-examples) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-This project contains example DDD Context Maps written in the ContextMapper DSL. Find out more about the DSL project on our website [https://contextmapper.github.io/](https://contextmapper.github.io/) and in the [project report](https://eprints.hsr.ch/722/) published by [HSR](https://www.hsr.ch).
+This project contains example DDD Context Maps written in the ContextMapper DSL. Find out more about the DSL project on our website [https://contextmapper.org/](https://contextmapper.org/) and in the [project report](https://eprints.hsr.ch/722/) published by [HSR](https://www.hsr.ch).
 
 ## IDE Requirements
 This is a gradle project and can easily be imported into Eclipse by using the "Existing Gradle Project" importer.
@@ -35,13 +35,13 @@ To make the sample interesting for our context mapping language, we splitted the
 <img alt="Insurance Company Example Context Map" src="./src/main/cml/ddd-sample/images/DDD-Cargo-Tracking-ContextMap-Illustration.png" width="300px">
 
 ### Architectural Refactoring (AR) Examples
-The Context Mapper tool provides several [Architectural Refactorings][4] which can be applied to your models. A documentation of all available refactorings can be found under [https://contextmapper.github.io/docs/architectural-refactorings](https://contextmapper.github.io/docs/architectural-refactorings). The folder [src/main/cml/architectural-refactorings](./src/main/cml/architectural-refactorings) contains example CML models (input and ouput) to illustrate the architectural refactorings purposes.
+The Context Mapper tool provides several [Architectural Refactorings][4] which can be applied to your models. A documentation of all available refactorings can be found under [https://contextmapper.org/docs/architectural-refactorings](https://contextmapper.org/docs/architectural-refactorings). The folder [src/main/cml/architectural-refactorings](./src/main/cml/architectural-refactorings) contains example CML models (input and ouput) to illustrate the architectural refactorings purposes.
 
 ## Contributing
 Contribution is always welcome! Here are some ways how you can contribute:
  * Create Github issues if you find bugs or just want to give suggestions for improvements.
  * This is an open source project: if you want to code, [create pull requests](https://help.github.com/articles/creating-a-pull-request/) from [forks of this repository](https://help.github.com/articles/fork-a-repo/). Please refer to a Github issue if you contribute this way.
- * If you want to contribute to our documentation and user guides on our website [https://contextmapper.github.io/](https://contextmapper.github.io/), create pull requests from forks of the corresponding page repo [https://github.com/ContextMapper/contextmapper.github.io](https://github.com/ContextMapper/contextmapper.github.io) or create issues [there](https://github.com/ContextMapper/contextmapper.github.io/issues).
+ * If you want to contribute to our documentation and user guides on our website [https://contextmapper.org/](https://contextmapper.org/), create pull requests from forks of the corresponding page repo [https://github.com/ContextMapper/contextmapper.github.io](https://github.com/ContextMapper/contextmapper.github.io) or create issues [there](https://github.com/ContextMapper/contextmapper.github.io/issues).
 
 ## Licence
 ContextMapper is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).

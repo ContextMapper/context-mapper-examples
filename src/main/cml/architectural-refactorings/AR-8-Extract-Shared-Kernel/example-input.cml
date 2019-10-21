@@ -1,0 +1,103 @@
+/* This is an example input file for the 'Extract Shared Kernel' refactoring and shows a small part of the insurance example. */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+	
+	contains PolicyManagementContext
+	contains DebtCollection
+
+	/* With a right-click on the Shared Kernel relationship ([SK]<->[SK]) you can execute the 'Extract Shared Kernel' 
+	 * refactoring. It will create a new Bounded Context for the shared code (content of new Bounded Context has to
+	 * specified manually). Two new upstream-downstream relationships will be created to connect the existing Bounded
+	 * Contexts with the new one. After applying this AR, you can use the 'Rename Element' refactoring to change
+	 * the generated name of the new Bounded Context.
+	 */
+	PolicyManagementContext [SK]<->[SK] DebtCollection {
+		implementationTechnology = "Shared Java Library, Communication over RESTful HTTP"
+	}
+
+}
+
+BoundedContext PolicyManagementContext implements PolicyManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "This bounded context manages the contracts and policies of the customers."
+	responsibilities = "Offers, Contracts, Policies"
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Offers {
+		Entity Offer {
+			aggregateRoot
+			int offerId
+			Customer client
+			- List<Product> products
+			BigDecimal price
+		}
+	}
+	Aggregate Products {
+		Entity Product {
+			aggregateRoot
+			- ProductId identifier
+			String productName
+		}
+		ValueObject ProductId {
+			int productId key
+		}
+	}
+	Aggregate Contract {
+		Entity Contract {
+			aggregateRoot
+			- ContractId identifier
+			Customer client
+			- List<Product> products
+		}
+		ValueObject ContractId {
+			int contractId key
+		}
+		
+		Entity Policy {
+			int policyNr
+			- Contract contract
+			BigDecimal price
+		}
+	}
+}
+
+BoundedContext DebtCollection implements DebtsDomain {
+	type = FEATURE
+	domainVisionStatement = "The debt collection context is responsible for the financial income of the insurance company (the debts) which depend on the corresponding contracts and policies."
+	responsibilities = "Debts, Dunning"
+	implementationTechnology = "JEE"
+	
+	Aggregate Debts {
+		Entity Debt {
+			aggregateRoot
+			int debtNr
+			- Policy policy
+			Date creationDate
+			Date paymentDate
+			Date paymentDeadline
+			BigDecimal price
+			PaymentStatus status
+			- List<Dunning> dunnigs
+		}
+		Entity Dunning {
+			int dunningNr
+			- Debt debt
+			Date dunningDate
+			Date paymentDeadline
+		}
+	}
+}
+
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain PolicyManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing contracts and policies."
+	}
+	Subdomain DebtsDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subomain including everything related to the incoming money (debts, dunning, etc.)"
+	}
+}
+

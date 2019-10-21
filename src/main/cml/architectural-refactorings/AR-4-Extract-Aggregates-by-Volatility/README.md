@@ -11,7 +11,7 @@ within them. One approach of decomposing components is to isolate parts which ar
  * [On the criteria to be used in decomposing systems into modules](https://dl.acm.org/citation.cfm?id=361623) by D. L. Parnas
 
 In the Context Mapper DSL you can specify how often an aggregate changes with the _likelihoodForChange_ attribute.
-See our page [aggregate documentation page](https://contextmapper.github.io/docs/aggregate/#likelihood-for-change) for more 
+See our page [aggregate documentation page](https://contextmapper.org/docs/aggregate/#likelihood-for-change) for more 
 details.
 
 ## Goal
@@ -115,5 +115,5 @@ BoundedContext CustomerSelfServiceContext_Volatility_OFTEN {
  * Example output source: [example-output.cml](./example-output.cml)
  
 ## Further documentation
- * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.github.io/docs/architectural-refactorings/)
- * [AR-4: Extract Aggregates by Volatility](https://contextmapper.github.io/docs/ar-extract-aggregates-by-volatility/)
+ * Context Mapper [Architectural Refactorings (ARs)](https://contextmapper.org/docs/architectural-refactorings/)
+ * [AR-4: Extract Aggregates by Volatility](https://contextmapper.org/docs/ar-extract-aggregates-by-volatility/)
