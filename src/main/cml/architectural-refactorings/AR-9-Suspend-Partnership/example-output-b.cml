@@ -83,7 +83,14 @@ BoundedContext RiskManagementContext implements RiskManagementDomain {
 /* The new Bounded Context created by the 'Suspend Partnership' refactoring:
  * (can be renamed with the 'Rename Element' refactoring)
  */
-BoundedContext RiskManagementContext_PolicyManagementContext_Partnership
+// Extracted Bounded Context for common model parts. Please specify the common model here:
+BoundedContext RiskManagementContext_PolicyManagementContext_Partnership {
+	Aggregate CommonModelAggregate {
+		Entity CommonModelPartRoot {
+			aggregateRoot
+		}
+	}
+}
 
 /* Domain & Subdomain Definitions */
 Domain InsuranceDomain {

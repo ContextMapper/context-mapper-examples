@@ -88,7 +88,14 @@ BoundedContext DebtCollection implements DebtsDomain {
  * be renamed with the 'Rename Element' refactoring. The user can further specify the comment parts here after applying 
  * the AR (create new Aggregates and entities or move them from existing contexts to this one). 
  */
-BoundedContext PolicyManagementContext_DebtCollection_SharedKernel
+// Extracted Bounded Context for Shared Kernel. Please specify the kernel model here:
+BoundedContext PolicyManagementContext_DebtCollection_SharedKernel {
+	Aggregate SharedKernelAggregate {
+		Entity SharedKernelRoot {
+			aggregateRoot
+		}
+	}
+}
 
 /* Domain & Subdomain Definitions */
 Domain InsuranceDomain {
