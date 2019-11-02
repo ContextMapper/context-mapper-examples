@@ -216,7 +216,7 @@ BoundedContext DebtCollection implements DebtsDomain {
 			aggregateRoot
 			
 			int debtNr
-			- Policy> policy
+			- Policy policy
 			Date creationDate
 			Date paymentDate
 			Date paymentDeadline
