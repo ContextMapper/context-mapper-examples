@@ -1,0 +1,65 @@
+ContextMap ContextMapper {
+	contains LanguageCore, ArchitecturalRefactorings, ServiceCutterAnalysis, ReverseEngineeringLibrary, Generators
+	
+	LanguageCore [PL]->[CF] ReverseEngineeringLibrary
+	
+	LanguageCore [SK]<->[SK] ArchitecturalRefactorings
+	
+	LanguageCore [PL]-> ServiceCutterAnalysis
+	
+	LanguageCore [PL]-> Generators
+}
+
+BoundedContext LanguageCore {
+	domainVisionStatement "Provides the Context Mapper DSL (CML) modeling language to express architectures on the basis of Strategic Domain-driven Design (DDD) patterns."
+	
+	Aggregate StrategicDesign {
+		Entity Context_Map {
+			aggregateRoot
+		}
+		
+		Entity Bounded_Context
+		Entity UbiquitousLanguage
+		
+		Entity CustomerSupplierRelationship
+		Entity UpstreamDownstreamRelationship
+		Entity PartnershipRelationship
+		Entity SharedKernelRelationship
+		
+		Entity OpenHostService
+		Entity PublishedLanguage
+		Entity AntiCorruptionLayer
+		Entity Conformist
+	}
+	
+	Aggregate TacticDesign {
+		Entity ^Aggregate {
+			aggregateRoot
+		}
+	
+		Entity ^Entity
+		Entity ^ValueObject
+		Entity ^DomainEvent
+		Entity ^Service
+		Entity ^Repository
+		Entity ^Factory
+	}
+	
+}
+
+BoundedContext ArchitecturalRefactorings {
+	domainVisionStatement "Architectural Refactorings (ARs) allow to improve the architecture model iteratively."
+	
+}
+
+BoundedContext ServiceCutterAnalysis {
+	domainVisionStatement "The Service Cutter integration into Context Mapper allows to analyze the Context Map with respect to coupling criteria and supports to suggest improved Context Maps."
+}
+
+BoundedContext ReverseEngineeringLibrary {
+	domainVisionStatement "The reverse engineering component can generate CML Context Maps from existing source code. This allows to reverse engineer the architecture model in projects with existing monoliths or microservices."
+}
+
+BoundedContext Generators {
+	domainVisionStatement "The generators allow to generate other representations of the architecture derived by a given CML Context Map."
+}
