@@ -1,0 +1,17 @@
+/* This is an example output file for the 'Change Partnership to Shared Kernel' refactoring and shows a small part of the insurance example. */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+	contains PolicyManagementContext
+	contains RiskManagementContext
+
+	/* The new Shared Kernel relationship after applying the 'Change Partnership to Shared Kernel' refactoring to the 
+	 * Partnership within the 'example-input.cml' file:
+	 */
+	RiskManagementContext [SK] <-> [SK] PolicyManagementContext
+
+}
+
+BoundedContext PolicyManagementContext
+
+BoundedContext RiskManagementContext

@@ -8,15 +8,17 @@ The context menu shows only refactorings for which the selected model element fu
 You find an overview table with all ARs below. Within the sub-folders of this directory you find detailed descriptions and the
 code samples for each AR:
 
- * [AR-1: Split Aggregate by Entities](./AR-1-Split-Aggregate-by-Entities)
- * [AR-2: Split Bounded Context by Use Cases](./AR-2-Split-Bounded-Context-by-Use-Cases)
- * [AR-3: Split Bounded Context by Owner](./AR-3-Split-Bounded-Context-by-Owner)
- * [AR-4: Extract Aggregates by Volatility](./AR-4-Extract-Aggregates-by-Volatility)
- * [AR-5: Extract Aggregates by Cohesion](./AR-5-Extract-Aggregates-by-Cohesion)
- * [AR-6: Merge Aggregates](./AR-6-Merge-Aggregates)
- * [AR-7: Merge Bounded Contexts](./AR-7-Merge-Bounded-Contexts)
- * [AR-8: Extract Shared Kernel](./AR-8-Extract-Shared-Kernel)
- * [AR-9: Suspend Partnership](./AR-9-Suspend-Partnership)
+ * [AR-1: Split Aggregate by Entities](./AR-01-Split-Aggregate-by-Entities)
+ * [AR-2: Split Bounded Context by Use Cases](./AR-02-Split-Bounded-Context-by-Use-Cases)
+ * [AR-3: Split Bounded Context by Owner](./AR-03-Split-Bounded-Context-by-Owner)
+ * [AR-4: Extract Aggregates by Volatility](./AR-04-Extract-Aggregates-by-Volatility)
+ * [AR-5: Extract Aggregates by Cohesion](./AR-05-Extract-Aggregates-by-Cohesion)
+ * [AR-6: Merge Aggregates](./AR-06-Merge-Aggregates)
+ * [AR-7: Merge Bounded Contexts](./AR-07-Merge-Bounded-Contexts)
+ * [AR-8: Extract Shared Kernel](./AR-08-Extract-Shared-Kernel)
+ * [AR-9: Suspend Partnership](./AR-09-Suspend-Partnership)
+ * [AR-10: Change Shared Kernel to Partnership](./AR-10-Change-Shared-Kernel-To-Partnership)
+ * [AR-11: Change Partnership to Shared Kernel](./AR-11-Change-Partnership-To-Shared-Kernel)
 
 You can also find the ARs in our [documentation page](https://contextmapper.org/docs/architectural-refactorings/).
 
@@ -25,7 +27,13 @@ The provided refactorings offer the advantage that the result is always a correc
 If you perform similar changes manually, you also have to fix upcoming errors within the context map manually.
 The AR's ensure that corresponding references and dependencies in other parts of the model are respected and adjusted if necessary.
 
-## AR Overview
+## AR Categories
+The ARs are divided into the following categories:
+
+ * **Structural Refactorings**: Change the structure of the decomposition (impact on Bounded Contexts and/or Aggregates).
+ * **Relationship Refactorings**: Just change the type of a relationship on the Context Map, but do not change the structure of the decomposition.
+
+## Structural AR Overview
 | Name                                                                                              | Subject                    | Description                                                                                                                                                                                   | Input                        | Output                                                            |
 |---------------------------------------------------------------------------------------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|-------------------------------------------------------------------|
 | [AR-1: Split Aggregate by Entities](./AR-1-Split-Aggregate-by-Entities)                           | Aggregate                  | Splits an aggregate which contains multiple entities and produces one aggregate per entity.                                                                                                   | 1 Aggregate                  | n Aggregates                                                      |
@@ -39,6 +47,13 @@ The AR's ensure that corresponding references and dependencies in other parts of
 | [AR-9: Suspend Partnership](./AR-9-Suspend-Partnership)                                           | Partnership relationship   | Suspends a Partnership relationship and replaces it with another structure how the two Bounded Context can depend on each other. The AR provides three strategies to suspend the partnership. | 1 Partnership relationship   | _Depends on the selected mode_                                    |
 
 <sup>1</sup>: An aggregate in CML can be used by **multiple** use cases and is owned by **one** owner (team).
+
+## Relationship AR Overview
+| Name                                                                                           | Subject                    | Description                                                                     | Input                      | Output                     |
+|------------------------------------------------------------------------------------------------|----------------------------|---------------------------------------------------------------------------------|----------------------------|----------------------------|
+| [**AR-10: Change Shared Kernel to Partnership**](./AR-10-Change-Shared-Kernel-To-Partnership) | Shared Kernel relationship | Changes the type of a Shared Kernel relationship to a Partnership relationship. | Shared Kernel relationship | Partnership relationship   |
+| [**AR-11: Change Partnership to Shared Kernel**](./AR-11-Change-Partnership-To-Shared-Kernel) | Partnership relationship   | Changes the type of a Partnership relationship to a Shared Kernel relationship. | Partnership relationship   | Shared Kernel relationship |
+
 
 ## Hints
 * **Split** vs. **Extract**:
