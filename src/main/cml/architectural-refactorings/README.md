@@ -51,8 +51,8 @@ The ARs are divided into the following categories:
 ## Relationship AR Overview
 | Name                                                                                           | Subject                    | Description                                                                     | Input                      | Output                     |
 |------------------------------------------------------------------------------------------------|----------------------------|---------------------------------------------------------------------------------|----------------------------|----------------------------|
-| [**AR-10: Change Shared Kernel to Partnership**](./AR-10-Change-Shared-Kernel-To-Partnership) | Shared Kernel relationship | Changes the type of a Shared Kernel relationship to a Partnership relationship. | Shared Kernel relationship | Partnership relationship   |
-| [**AR-11: Change Partnership to Shared Kernel**](./AR-11-Change-Partnership-To-Shared-Kernel) | Partnership relationship   | Changes the type of a Partnership relationship to a Shared Kernel relationship. | Partnership relationship   | Shared Kernel relationship |
+| [AR-10: Change Shared Kernel to Partnership](./AR-10-Change-Shared-Kernel-To-Partnership) | Shared Kernel relationship | Changes the type of a Shared Kernel relationship to a Partnership relationship. | Shared Kernel relationship | Partnership relationship   |
+| [AR-11: Change Partnership to Shared Kernel](./AR-11-Change-Partnership-To-Shared-Kernel) | Partnership relationship   | Changes the type of a Partnership relationship to a Shared Kernel relationship. | Partnership relationship   | Shared Kernel relationship |
 
 
 ## Hints
