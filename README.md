@@ -1,18 +1,20 @@
 ![Context Mapper](https://raw.githubusercontent.com/wiki/ContextMapper/context-mapper-dsl/logo/cm-logo-github-small.png)  
 # DSL Examples [![Build Status](https://travis-ci.com/ContextMapper/context-mapper-examples.svg?branch=master)](https://travis-ci.com/ContextMapper/context-mapper-examples) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-This project contains example DDD Context Maps written in the ContextMapper DSL. Find out more about the DSL project on our website [https://contextmapper.org/](https://contextmapper.org/) and in the [project report](https://eprints.hsr.ch/722/) published by [HSR](https://www.hsr.ch).
+This project contains example DDD Context Maps written in the ContextMapper DSL. The examples are provided for two different types of users. The simpler business analysis examples should be easy to understand for business analysts without technical background, while the detailed examples are meant for software architects and/or engineers.  
+
+Find out more about our DSL and tools on our website [https://contextmapper.org/](https://contextmapper.org/) and [papers](https://contextmapper.org/background-and-publications/) published by [HSR](https://www.hsr.ch).
 
 ## IDE Requirements
-This is a gradle project and can easily be imported into Eclipse by using the "Existing Gradle Project" importer.
+This is a Gradle project and can easily be imported into Eclipse by using the "Existing Gradle Project" importer.
 
 ### ContextMapper Eclipse Plugin
 In order to have language support for editing the CML files (Context Mapper Language), you need to install the ContextMapper Eclipse Plugin.
 Use the following Eclipse Update Site to install it:
 
-[https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/](https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/)
+**[https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/](https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/)**
 
 ## The examples:
-The following graphical illustrations of the Context Maps are inspired by [Vernon][2] and [Brandolini][3].
+The following graphical illustrations of the context maps are inspired by [Vernon][2] and [Brandolini][3]. Once you modelled your context map in CML you can [generate such graphical representations](https://contextmapper.org/docs/context-map-generator/).
 
 ### Insurance Example
 In the folder [src/main/cml/insurance-example](./src/main/cml/insurance-example) you find example context maps for a fictitious insurance company, inspired by [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual).
