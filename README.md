@@ -16,7 +16,7 @@ Use the following Eclipse Update Site to install it:
 ## The examples:
 The following graphical illustrations of the context maps are inspired by [Vernon][2] and [Brandolini][3]. Once you modelled your context map in CML you can [generate such graphical representations](https://contextmapper.org/docs/context-map-generator/).
 
-### Insurance Example
+### [Insurance Example](./src/main/cml/insurance-example)
 In the folder [src/main/cml/insurance-example](./src/main/cml/insurance-example) you find example context maps for a fictitious insurance company, inspired by [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual).
 
 #### Context Map
@@ -29,14 +29,14 @@ It further contains a team map, illustrating the teams and their relationships. 
 
 <img alt="Insurance Company Example Context Map" src="./src/main/cml/insurance-example/images/TeamMap-Illustration.png" width="500px">
 
-### DDD Sample
+### [DDD Cargo Sample](./src/main/cml/ddd-sample)
 The folder [src/main/cml/ddd-sample](./src/main/cml/ddd-sample) contains a context map based on the [DDD sample](https://github.com/citerus/dddsample-core) from [Eric Evans DDD book][1]. 
 
 To make the sample interesting for our context mapping language, we splitted the Cargo application into three bounded contexts.
 
 <img alt="Insurance Company Example Context Map" src="./src/main/cml/ddd-sample/images/DDD-Cargo-Tracking-ContextMap-Illustration.png" width="300px">
 
-### Architectural Refactoring (AR) Examples
+### [Architectural Refactoring (AR) Examples](./src/main/cml/architectural-refactorings)
 The Context Mapper tool provides several [Architectural Refactorings][4] which can be applied to your models. A documentation of all available refactorings can be found under [https://contextmapper.org/docs/architectural-refactorings](https://contextmapper.org/docs/architectural-refactorings). The folder [src/main/cml/architectural-refactorings](./src/main/cml/architectural-refactorings) contains example CML models (input and ouput) to illustrate the architectural refactorings purposes.
 
 ## Contributing
