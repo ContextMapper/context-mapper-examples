@@ -1,5 +1,5 @@
 /* Example Context Map written with 'ContextMapper DSL' */
-ContextMap InsuranceContextMapAlternative {
+ContextMap InsuranceContextMap {
 	type = SYSTEM_LANDSCAPE
 	state = TO_BE
 	
@@ -11,40 +11,21 @@ ContextMap InsuranceContextMapAlternative {
 	contains RiskManagementContext
 	contains DebtCollection
 	
-	/* Define the context relationships: */
+	/* Define the context relationships: */ 
 
-	CustomerSelfServiceContext Customer-Supplier CustomerManagementContext : Customer_Frontend_Backend_Relationship { // Relationship name is optional
-		exposedAggregates = Customers
-	}
+	CustomerSelfServiceContext [D,C]<-[U,S] CustomerManagementContext
 	
-	PrintingContext[OHS,PL] Upstream-Downstream [ACL]CustomerManagementContext {
-		implementationTechnology = "SOAP"
-		downstreamRights = INFLUENCER
-		exposedAggregates = Printing
-	}
+	CustomerManagementContext [D,ACL]<-[U,OHS,PL] PrintingContext
+	
+	PrintingContext [U,OHS,PL]->[D,ACL] PolicyManagementContext
+	
+	RiskManagementContext [P]<->[P] PolicyManagementContext
 
-	PolicyManagementContext[ACL] Downstream-Upstream [OHS,PL]PrintingContext {
-		implementationTechnology = "SOAP"
-		exposedAggregates = Printing
-	}
+	PolicyManagementContext [D,CF]<-[U,OHS,PL] CustomerManagementContext
 
-	RiskManagementContext Partnership PolicyManagementContext {
-		implementationTechnology = "RabbitMQ"
-	}
+	DebtCollection [D,ACL]<-[U,OHS,PL] PrintingContext
 
-	CustomerManagementContext[OHS,PL] Upstream-Downstream [CF]PolicyManagementContext {
-		implementationTechnology = "RESTful HTTP"
-		exposedAggregates = Customers
-	}
-
-	DebtCollection[ACL] Downstream-Upstream [OHS,PL]PrintingContext {
-		implementationTechnology = "SOAP"
-		exposedAggregates = Printing
-	}
-
-	PolicyManagementContext Shared-Kernel DebtCollection {
-		implementationTechnology = "Shared Java Library, Communication over RESTful HTTP"
-	}
+	PolicyManagementContext [SK]<->[SK] DebtCollection	
 }
 
 /* Bounded Context Definitions */
@@ -55,24 +36,9 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 	responsibilities = "Customers, Addresses"
 	
 	Aggregate Customers {
-		Entity Customer { 
-			aggregateRoot
-			
-			- SocialInsuranceNumber sin
-			String firstname
-			String lastname
-			- List<Address> addresses
-		}
-		
-		Entity Address {
-			String street
-			int postalCode
-			String city
-		}
-		
-		ValueObject SocialInsuranceNumber {
-			String sin key
-		}
+		Entity Customer		
+		Entity Address		
+		ValueObject SocialInsuranceNumber {}
 	}
 	
 }
@@ -80,25 +46,15 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
 	type = APPLICATION
 	domainVisionStatement = "This context represents a web application which allows the customer to login and change basic data records like the address."
-	responsibilities = "Address Change"
+	responsibilities = "AddressChange"
 	implementationTechnology = "PHP Web Application"
 	
 	Aggregate CustomerFrontend {
-		Entity CustomerAddressChange {
-			aggregateRoot
-			
-			- UserAccount issuer
-			- Address changedAddress
-		}
+		Entity CustomerAddressChange
 	}
 	
 	Aggregate Acounts {
-		Entity UserAccount {
-			aggregateRoot
-			
-			String username
-			- Customer accountCustomer
-		}
+		Entity UserAccount
 	}
 }
 
@@ -108,27 +64,12 @@ BoundedContext PrintingContext implements PrintingDomain {
 	domainVisionStatement = "An external system which provides printing services to the other Bounded Contexts."
 	
 	Aggregate Printing {
-		Entity PrintingJob {
-			aggregateRoot
-			
-			int printingId
-			- Document document
-			- Template template
-		}
-		
-		Entity Document {
-			DomainObject source
-			String template
-		}
+		Entity PrintingJob
+		Entity Document
 	}
 	
 	Aggregate Templating {
-		Entity Template {
-			aggregateRoot
-			
-			int templateId
-			String templateName
-		}
+		Entity Template
 	}
 }
 
@@ -139,47 +80,18 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 	implementationTechnology = "Java, Spring App"
 	
 	Aggregate Offers {
-		Entity Offer {
-			aggregateRoot
-			
-			int offerId
-			- Customer client
-			- List<Product> products
-			BigDecimal price
-		}
+		Entity Offer
 	}
 	
 	Aggregate Products {
-		Entity Product {
-			aggregateRoot
-			
-			- ProductId identifier
-			String productName
-		}
-		
-		ValueObject ProductId {
-			int productId key
-		}
+		Entity Product
+		ValueObject ProductId {}
 	}
 	
 	Aggregate Contract {
-		Entity Contract {
-			aggregateRoot
-			
-			- ContractId identifier
-			- Customer client
-			- List<Product> products
-		}
-		
-		ValueObject ContractId {
-			int contractId key
-		}
-		
-		Entity Policy {
-			int policyNr
-			- Contract contract
-			BigDecimal price
-		}
+		Entity Contract
+		ValueObject ContractId {}		
+		Entity Policy
 	}
 }
 
@@ -190,18 +102,8 @@ BoundedContext RiskManagementContext implements RiskManagementDomain {
 	implementationTechnology = "Java, Spring App"
 	
 	Aggregate Risks {
-		Entity CustomerRiskFactor {
-			aggregateRoot
-			
-			int totalRiskFactor
-			- List<Risk> risks
-			- Customer client
-		}
-		
-		ValueObject Risk {
-			int likelihood
-			String risk
-		}
+		Entity CustomerRiskFactor
+		ValueObject Risk {}
 	}
 }
 
@@ -212,25 +114,8 @@ BoundedContext DebtCollection implements DebtsDomain {
 	implementationTechnology = "JEE"
 	
 	Aggregate Debts {
-		Entity Debt {
-			aggregateRoot
-			
-			int debtNr
-			- Policy policy
-			Date creationDate
-			Date paymentDate
-			Date paymentDeadline
-			BigDecimal price
-			PaymentStatus status
-			- List<Dunning> dunnigs
-		}
-		
-		Entity Dunning {
-			int dunningNr
-			- Debt debt
-			Date dunningDate
-			Date paymentDeadline
-		}
+		Entity Debt
+		Entity Dunning
 	}
 } 
 
