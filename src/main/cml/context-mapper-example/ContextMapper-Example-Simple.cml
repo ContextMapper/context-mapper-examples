@@ -1,0 +1,154 @@
+ContextMap ContextMapper {
+	contains LanguageCore, ArchitecturalRefactorings, ServiceCutterAnalysis, ReverseEngineeringLibrary, Generators
+	
+	LanguageCore [PL]->[CF] ReverseEngineeringLibrary
+	
+	LanguageCore [SK]<->[SK] ArchitecturalRefactorings
+	
+	LanguageCore [PL]-> ServiceCutterAnalysis
+	
+	LanguageCore [PL]-> Generators
+}
+
+BoundedContext LanguageCore {
+	domainVisionStatement "Provides the Context Mapper DSL (CML) modeling language to express architectures on the basis of Strategic Domain-driven Design (DDD) patterns."
+	
+	Aggregate StrategicDesign {
+		Entity Context_Map {
+			aggregateRoot
+		}
+		
+		Entity Bounded_Context
+		Entity UbiquitousLanguage
+		
+		Entity CustomerSupplierRelationship
+		Entity UpstreamDownstreamRelationship
+		Entity PartnershipRelationship
+		Entity SharedKernelRelationship
+		
+		Entity OpenHostService
+		Entity PublishedLanguage
+		Entity AntiCorruptionLayer
+		Entity Conformist
+	}
+	
+	Aggregate TacticDesign {
+		Entity ^Aggregate {
+			aggregateRoot
+		}
+	
+		Entity ^Entity
+		Entity ^ValueObject
+		Entity ^DomainEvent
+		Entity ^Service
+		Entity ^Repository
+		Entity ^Factory
+	}
+	
+}
+
+BoundedContext ArchitecturalRefactorings {
+	domainVisionStatement "Architectural Refactorings (ARs) allow to improve the architecture model iteratively."
+	
+	Aggregate StructuralRefactorings {
+		Service SplitAggregateByEntities {}
+		Service SplitBoundedContextByUseCase {}
+		Service SplitBoundedContextByOwner {}
+		Service ExtractAggregatesByVolatility {}
+		Service ExtractAggregatesByCohesion {}
+		Service MergeAggregates {}
+		Service MergeBoundedContexts {}
+		Service ExtractSharedKernel {}
+		Service SuspendPartnership {}
+	}
+	
+	Aggregate RelationshipRefactorings{
+		Service ChangeSharedKernelToPartnership {}
+		Service ChangePartnershipToSharedKernel {}
+	}
+}
+
+BoundedContext ServiceCutterAnalysis {
+	domainVisionStatement "The Service Cutter integration into Context Mapper allows to analyze the Context Map with respect to coupling criteria and supports to suggest improved Context Maps."
+	
+	Aggregate ERDModel { // input
+		responsibilities "ERD input model for Service Cutter"
+		
+		Entity ^Entity
+		Entity Nanoentity
+		Entity EntityRelation
+	}
+	
+	Aggregate UserRepresentations { // input
+		responsibilities "User representations model for Service Cutter to improve service cuts"
+		
+		Entity ^UseCase
+		Entity AvailabilityCriticality
+		Entity ConsistencyCriticality
+		Entity ContentVolatility
+		Entity SecurityCriticality
+		Entity StorageSimilarity
+		Entity StructuralVolatility
+		Entity ^Aggregate
+		Entity PredefinedService
+		Entity SharedOwnerGroup
+		Entity ^Entity
+		Entity SecurityAccessGroup
+		Entity SeparatedSecurityZone
+	}
+	
+	Aggregate CouplingCriteria { // service decomposition process
+		responsibilities "Criteria used to derive service decompositions: https://github.com/ServiceCutter/ServiceCutter/wiki/Coupling-Criteria "
+	}
+	
+	Aggregate GraphClusteringAlgorithms { // service decomposition process
+		responsibilities "Algorithms to compute decompositions on the basis of the coupling criteria."
+		
+		Entity Leung
+	}
+	
+	Aggregate ServiceDecompositions { // output
+		responsibilities "Resulting service cuts/decompositions."
+		
+		Entity ServiceCut
+		Entity ^Service // mapped to Bounded Contexts in CML
+		Entity ServiceRelation // relationship between Bounded Context
+		Entity ^Entity
+		Entity Nanoentity
+	}
+}
+
+BoundedContext ReverseEngineeringLibrary {
+	domainVisionStatement "The reverse engineering component can generate CML Context Maps from existing source code. This allows to reverse engineer the architecture model in projects with existing monoliths or microservices."
+	
+	Aggregate BoundedContextDiscoveryStrategies {
+		responsibilities "Strategies to discover Bounded Contexts in existing source code."
+		
+		Entity SpringBootBoundedContextDiscoveryStrategy // discover Spring Boot applications (including aggregates, entities and value objects on the basis of RESTful HTTP resources)
+		Entity DockerComposeRelationshipDiscoveryStrategy // discover relationships between (micro-)services on the basis of docker-compose files
+	}
+	
+	Aggregate RelationshipDiscoveryStrategies {
+		responsibilities "Strategies to discover relationships between Bounded Contexts in existing source code."
+	}
+}
+
+BoundedContext Generators {
+	domainVisionStatement "The generators allow to generate other representations of the architecture derived by a given CML Context Map."
+	
+	Aggregate GraphicalGenerators {
+		Entity ContextMapGenerator
+		Entity PlantUMLGenerator
+	}
+
+	Aggregate ServiceContractsGenerators { // generate (micro-)service generators
+		Entity MDSLGenerator
+	}
+	
+	Aggregate ServiceCutterGenerators { // generate ServiceCutter input files
+		Entity ERDInputFileGenerator
+		Entity UserRepresentationExamplesGenerator
+		Entity UserRepresentationsJSONGenerator
+		Entity CMLFromServiceCutterResultGenerator
+	}
+}
