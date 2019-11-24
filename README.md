@@ -16,6 +16,11 @@ Use the following Eclipse Update Site to install it:
 ## The examples:
 The following graphical illustrations of the context maps are inspired by [Vernon][2] and [Brandolini][3]. Once you modelled your context map in CML you can [generate such graphical representations](https://contextmapper.org/docs/context-map-generator/).
 
+ * [Insurance Example](#insurance-example)
+ * [Context Mapper Example](#context-mapper-example)
+ * [DDD Cargo Sample](#ddd-cargo-sample)
+ * [Architectural Refactoring (AR) Examples](#architectural-refactoring-ar-examples)
+
 ### [Insurance Example](./src/main/cml/insurance-example)
 In the folder [src/main/cml/insurance-example](./src/main/cml/insurance-example) you find example context maps for a fictitious insurance company, inspired by [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual).
 
@@ -28,6 +33,11 @@ The insurance example contains an example for a classic DDD context map written 
 It further contains a team map, illustrating the teams and their relationships. Additionally, CML allows to define which bounded contexts are implemented by which teams.
 
 <img alt="Insurance Company Example Context Map" src="./src/main/cml/insurance-example/images/TeamMap-Illustration.png" width="500px">
+
+### [Context Mapper Example](./src/main/cml/context-mapper-example)
+In the folder [src/main/cml/context-mapper-example](./src/main/cml/context-mapper-example) we modelled our own tool and framework with CML. The following context map illustration of our bounded contexts and framework components is generated out of the CML model with the [Context Map generator](https://contextmapper.org/docs/context-map-generator/):
+
+<img alt="Context Mapper Example Context Map" src="./src/main/cml/context-mapper-example/images/ContextMapper-Example-Simple_ContextMap.png">
 
 ### [DDD Cargo Sample](./src/main/cml/ddd-sample)
 The folder [src/main/cml/ddd-sample](./src/main/cml/ddd-sample) contains a context map based on the [DDD sample](https://github.com/citerus/dddsample-core) from [Eric Evans DDD book][1]. 
