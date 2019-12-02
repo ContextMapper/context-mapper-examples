@@ -38,7 +38,7 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 	Aggregate Customers {
 		Entity Customer		
 		Entity Address		
-		ValueObject SocialInsuranceNumber {}
+		ValueObject SocialInsuranceNumber
 	}
 	
 }
@@ -85,12 +85,12 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 	
 	Aggregate Products {
 		Entity Product
-		ValueObject ProductId {}
+		ValueObject ProductId
 	}
 	
 	Aggregate Contract {
 		Entity Contract
-		ValueObject ContractId {}		
+		ValueObject ContractId		
 		Entity Policy
 	}
 }
@@ -103,7 +103,7 @@ BoundedContext RiskManagementContext implements RiskManagementDomain {
 	
 	Aggregate Risks {
 		Entity CustomerRiskFactor
-		ValueObject Risk {}
+		ValueObject Risk
 	}
 }
 

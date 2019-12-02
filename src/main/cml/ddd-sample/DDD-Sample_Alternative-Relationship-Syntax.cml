@@ -28,11 +28,11 @@ BoundedContext CargoBookingContext {
 		
 		Aggregate CargoItineraryLegDeliveryRouteSpecification {
 			Entity Cargo
-			ValueObject Delivery {}
-			ValueObject HandlingActivity {}
-			ValueObject Itinerary {}
-			ValueObject Leg {}
-			ValueObject RouteSpecification {}
+			ValueObject Delivery
+			ValueObject HandlingActivity
+			ValueObject Itinerary
+			ValueObject Leg
+			ValueObject RouteSpecification
 			enum TransportStatus {
 	            NOT_RECEIVED, IN_PORT, ONBOARD_CARRIER, CLAIMED, UNKNOWN
 			}
@@ -46,8 +46,8 @@ BoundedContext CargoBookingContext {
 		basePackage = se.citerus.dddsample.domain.model
 		
 		Aggregate Handling {
-			DomainEvent HandlingEvent {}
-			ValueObject HandlingHistory {}
+			DomainEvent HandlingEvent
+			ValueObject HandlingHistory
 		}
 	}
 }
@@ -59,9 +59,9 @@ BoundedContext VoyagePlanningContext {
 		
 		Aggregate Voyage {
 			Entity Voyage
-			ValueObject CarrierMovement {}
-			ValueObject Schedule {}
-			ValueObject VoyageNumber {}
+			ValueObject CarrierMovement
+			ValueObject Schedule
+			ValueObject VoyageNumber
 		}
 	}
 }
@@ -73,8 +73,8 @@ BoundedContext LocationContext {
 		
 		Aggregate Location {
 			Entity Location
-			ValueObject UnLocode {}
-			ValueObject LocationShared {}
+			ValueObject UnLocode
+			ValueObject LocationShared
 		}
 	}
 }

@@ -69,20 +69,20 @@ BoundedContext ArchitecturalRefactorings {
 	domainVisionStatement "Architectural Refactorings (ARs) allow to improve the architecture model iteratively."
 	
 	Aggregate StructuralRefactorings {
-		Service SplitAggregateByEntities {}
-		Service SplitBoundedContextByUseCase {}
-		Service SplitBoundedContextByOwner {}
-		Service ExtractAggregatesByVolatility {}
-		Service ExtractAggregatesByCohesion {}
-		Service MergeAggregates {}
-		Service MergeBoundedContexts {}
-		Service ExtractSharedKernel {}
-		Service SuspendPartnership {}
+		Service SplitAggregateByEntities
+		Service SplitBoundedContextByUseCase
+		Service SplitBoundedContextByOwner
+		Service ExtractAggregatesByVolatility
+		Service ExtractAggregatesByCohesion
+		Service MergeAggregates
+		Service MergeBoundedContexts
+		Service ExtractSharedKernel
+		Service SuspendPartnership
 	}
 	
 	Aggregate RelationshipRefactorings{
-		Service ChangeSharedKernelToPartnership {}
-		Service ChangePartnershipToSharedKernel {}
+		Service ChangeSharedKernelToPartnership
+		Service ChangePartnershipToSharedKernel
 	}
 }
 
