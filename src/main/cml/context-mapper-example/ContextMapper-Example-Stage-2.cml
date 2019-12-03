@@ -1,0 +1,39 @@
+ContextMap ContextMapper {
+	contains LanguageCore, ArchitecturalRefactorings, ServiceCutterAnalysis, ReverseEngineeringLibrary, Generators
+	
+	/**
+	 * Pattern selection:
+	 * ==================
+	 * 
+	 * The language core (CML language) provides a Published Language (PL) allowing to describe software systems
+	 * in terms of DDD patterns. This PL is used by the other components. Since its not a public API (REST, Messaging, 
+	 * or similar) we haven't added the Open Host Service (OHS) pattern.
+	 * 
+	 * 
+	 * The reverse engineering library conforms to the model provided by the language core (we always generate CML models
+	 * according to the core). The generators and Service Cutter integration on the other hand may also influence the language
+	 * sometimes.
+	 */	
+	
+	LanguageCore [PL]->[CF] ReverseEngineeringLibrary
+
+	LanguageCore [PL]-> ServiceCutterAnalysis
+	
+	LanguageCore [PL]-> Generators
+	
+	/* The refactorings are tightly coupled with the language. In this case the semantic model of the language
+	 * can be seen as a Shared Kernel:
+	 */
+	LanguageCore [SK]<->[SK] ArchitecturalRefactorings
+	
+}
+
+BoundedContext LanguageCore
+
+BoundedContext ArchitecturalRefactorings
+
+BoundedContext ServiceCutterAnalysis
+
+BoundedContext ReverseEngineeringLibrary
+
+BoundedContext Generators
