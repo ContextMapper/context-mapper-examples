@@ -1,0 +1,116 @@
+/* Example Context Map written with 'ContextMapper DSL' */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+	
+	/* Add bounded contexts to this context map: */
+	contains CustomerManagementContext
+	contains CustomerSelfServiceContext
+	contains PrintingContext
+	contains PolicyManagementContext
+	contains RiskManagementContext
+	contains DebtCollection
+	
+	/* Define the context relationships: */ 
+
+	CustomerSelfServiceContext [D,C]<-[U,S] CustomerManagementContext
+	
+	CustomerManagementContext [D,ACL]<-[U,OHS,PL] PrintingContext
+	
+	PrintingContext [U,OHS,PL]->[D,ACL] PolicyManagementContext
+	
+	RiskManagementContext [P]<->[P] PolicyManagementContext
+
+	PolicyManagementContext [D,CF]<-[U,OHS,PL] CustomerManagementContext
+
+	DebtCollection [D,ACL]<-[U,OHS,PL] PrintingContext
+
+	PolicyManagementContext [SK]<->[SK] DebtCollection	
+}
+
+/* Bounded Context Definitions */
+BoundedContext CustomerManagementContext implements CustomerManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "The customer management context is responsible for managing all the data of the insurance companies customers."
+	implementationTechnology = "Java, JEE Application"
+	responsibilities = "Customers, Addresses"
+	
+	Aggregate Customers
+	
+}
+
+BoundedContext CustomerSelfServiceContext implements CustomerManagementDomain {
+	type = APPLICATION
+	domainVisionStatement = "This context represents a web application which allows the customer to login and change basic data records like the address."
+	responsibilities = "AddressChange"
+	implementationTechnology = "PHP Web Application"
+	
+	Aggregate CustomerFrontend
+	
+	Aggregate Acounts
+}
+
+BoundedContext PrintingContext implements PrintingDomain {
+	type = SYSTEM
+	responsibilities = "Document Printing"
+	domainVisionStatement = "An external system which provides printing services to the other Bounded Contexts."
+	
+	Aggregate Printing
+	
+	Aggregate Templating
+}
+
+BoundedContext PolicyManagementContext implements PolicyManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "This bounded context manages the contracts and policies of the customers."
+	responsibilities = "Offers, Contracts, Policies"
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Offers
+	
+	Aggregate Products
+	
+	Aggregate Contract
+}
+
+BoundedContext RiskManagementContext implements RiskManagementDomain {
+	type = FEATURE
+	domainVisionStatement = "Uses data from PolicyManagement context to calculate risks."
+	responsibilities = "Customer Risk Calculation"
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Risks
+}
+
+BoundedContext DebtCollection implements DebtsDomain {
+	type = FEATURE
+	domainVisionStatement = "The debt collection context is responsible for the financial income of the insurance company (the debts) which depend on the corresponding contracts and policies."
+	responsibilities = "Debts, Dunning"
+	implementationTechnology = "JEE"
+	
+	Aggregate Debts
+} 
+
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain CustomerManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing everything customer-related."
+	}
+	Subdomain PolicyManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing contracts and policies."
+	}
+	Subdomain PrintingDomain {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Service (external system) to solve printing for all kinds of documents (debts, policies, etc.)"
+	}
+	Subdomain RiskManagementDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdomain supporting everything which relates to risk management."
+	}
+	Subdomain DebtsDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subomain including everything related to the incoming money (debts, dunning, etc.)"
+	}
+}

@@ -1,5 +1,5 @@
 /* Example Context Map written with 'ContextMapper DSL' */
-ContextMap InsuranceContextMapAlternative {
+ContextMap InsuranceContextMap {
 	type = SYSTEM_LANDSCAPE
 	state = TO_BE
 	
@@ -11,21 +11,21 @@ ContextMap InsuranceContextMapAlternative {
 	contains RiskManagementContext
 	contains DebtCollection
 	
-	/* Define the context relationships: */
+	/* Define the context relationships: */ 
 
-	CustomerSelfServiceContext Customer-Supplier CustomerManagementContext
+	CustomerSelfServiceContext [D,C]<-[U,S] CustomerManagementContext
 	
-	PrintingContext[OHS,PL] Upstream-Downstream [ACL]CustomerManagementContext
+	CustomerManagementContext [D,ACL]<-[U,OHS,PL] PrintingContext
+	
+	PrintingContext [U,OHS,PL]->[D,ACL] PolicyManagementContext
+	
+	RiskManagementContext [P]<->[P] PolicyManagementContext
 
-	PolicyManagementContext[ACL] Downstream-Upstream [OHS,PL]PrintingContext
+	PolicyManagementContext [D,CF]<-[U,OHS,PL] CustomerManagementContext
 
-	RiskManagementContext Partnership PolicyManagementContext
+	DebtCollection [D,ACL]<-[U,OHS,PL] PrintingContext
 
-	CustomerManagementContext[OHS,PL] Upstream-Downstream [CF]PolicyManagementContext
-
-	DebtCollection[ACL] Downstream-Upstream [OHS,PL]PrintingContext
-
-	PolicyManagementContext Shared-Kernel DebtCollection
+	PolicyManagementContext [SK]<->[SK] DebtCollection	
 }
 
 /* Bounded Context Definitions */

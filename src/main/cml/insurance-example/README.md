@@ -7,11 +7,16 @@ The following figure illustrates the Context Map in a graphical representation i
 
 <img alt="Insurance Company Example Context Map" src="./images/ContextMap-Illustration.png" width="650px">
 
-You can find the corresponding context map in CML (Context Mapper Language) here in different versions and levels of detail: 
+You can find the corresponding context map in CML (Context Mapper Language) here in different versions and levels of detail (stages). The first four stages do
+not contain detailed domain models and should be understandable for users without technical knowledge (business analysis only). The last stage contains details of
+the domain models including attributes for all domain objects and are designed for software engineers and architects. 
 
- * [Insurance-Example-Simple](./Insurance-Example-Simple.cml): Business analysis level (no detailed specification of data types etc.)
- * [Insurance-Example-Detailed](./Insurance-Example-Detailed.cml): Software architect and engineering level
- * [Insurance-Example_Alternative-Relationship-Syntax](./Insurance-Example_Alternative-Relationship-Syntax.cml): Simple context map illustrating the alternative relationship syntax
+ * [Insurance-Example-Stage-1](./Insurance-Example-Stage-1.cml): A simple context map without relationship patterns in upstream-downstream relationships and without details of the bounded contexts.
+ * [Insurance-Example-Stage-2](./Insurance-Example-Stage-2.cml): This stage refines the relationships on the context map and adds the corresponding DDD relationship patterns.
+ * [Insurance-Example-Stage-3](./Insurance-Example-Stage-3.cml): In stage three we added first details to the bounded contexts and specified the aggregates.
+ * [Insurance-Example-Stage-4](./Insurance-Example-Stage-4.cml): A simple version including all domain objects but no attributes. This stage should still be understandable for users without technical knowledge.
+ * [Insurance-Example-Stage-5](./Insurance-Example-Stage-5.cml): Finally, a detailed context map on the architect and engineering level. All domain objects are specified in detail (including attributes). This example further contains the repositories and services of the DDD sample app.
+ * [Insurance-Example_Alternative-Relationship-Syntax](./Insurance-Example_Alternative-Relationship-Syntax.cml): The simple context map example in stage two, but illustrating the alternative relationship syntax.
  * [Insurance-Example_User_Representations](./Insurance-Example_User_Representations.scl): Service Cutter user representations file (for Service Cutter integration) to generate new service cuts
 
 The following bounded contexts are involved in the system:
