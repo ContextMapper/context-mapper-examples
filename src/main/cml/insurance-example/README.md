@@ -15,7 +15,7 @@ the domain models including attributes for all domain objects and are designed f
  * [Insurance-Example-Stage-2](./Insurance-Example-Stage-2.cml): This stage refines the relationships on the context map and adds the corresponding DDD relationship patterns.
  * [Insurance-Example-Stage-3](./Insurance-Example-Stage-3.cml): In stage three we added first details to the bounded contexts and specified the aggregates.
  * [Insurance-Example-Stage-4](./Insurance-Example-Stage-4.cml): A simple version including all domain objects but no attributes. This stage should still be understandable for users without technical knowledge.
- * [Insurance-Example-Stage-5](./Insurance-Example-Stage-5.cml): Finally, a detailed context map on the architect and engineering level. All domain objects are specified in detail (including attributes). This example further contains the repositories and services of the DDD sample app.
+ * [Insurance-Example-Stage-5](./Insurance-Example-Stage-5.cml): Finally, a detailed context map on the architect and engineering level. All domain objects are specified in detail (including attributes). This example further contains methods in aggregate root entities.
  * [Insurance-Example_Alternative-Relationship-Syntax](./Insurance-Example_Alternative-Relationship-Syntax.cml): The simple context map example in stage two, but illustrating the alternative relationship syntax.
  * [Insurance-Example_User_Representations](./Insurance-Example_User_Representations.scl): Service Cutter user representations file (for Service Cutter integration) to generate new service cuts
 
