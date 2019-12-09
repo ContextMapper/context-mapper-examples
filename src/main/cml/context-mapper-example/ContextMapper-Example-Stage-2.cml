@@ -1,5 +1,5 @@
 ContextMap ContextMapper {
-	contains LanguageCore, ArchitecturalRefactorings, ServiceCutterAnalysis, ReverseEngineeringLibrary, Generators
+	contains LanguageCore, ArchitecturalRefactorings, StructuredServiceDecomposition, DiscoveryLibrary, Generators
 	
 	/**
 	 * Pattern selection:
@@ -10,14 +10,14 @@ ContextMap ContextMapper {
 	 * or similar) we haven't added the Open Host Service (OHS) pattern.
 	 * 
 	 * 
-	 * The reverse engineering library conforms to the model provided by the language core (we always generate CML models
-	 * according to the core). The generators and Service Cutter integration on the other hand may also influence the language
-	 * sometimes.
+	 * The discovery library conforms to the model provided by the language core (we always generate CML models
+	 * according to the core). The generators and Service Cutter integration (structured service decomposition) 
+	 * on the other hand may also influence the language sometimes.
 	 */	
 	
-	LanguageCore [PL]->[CF] ReverseEngineeringLibrary
+	LanguageCore [PL]->[CF] DiscoveryLibrary
 
-	LanguageCore [PL]-> ServiceCutterAnalysis
+	LanguageCore [PL]-> StructuredServiceDecomposition
 	
 	LanguageCore [PL]-> Generators
 	
@@ -32,8 +32,8 @@ BoundedContext LanguageCore
 
 BoundedContext ArchitecturalRefactorings
 
-BoundedContext ServiceCutterAnalysis
+BoundedContext StructuredServiceDecomposition
 
-BoundedContext ReverseEngineeringLibrary
+BoundedContext DiscoveryLibrary
 
 BoundedContext Generators

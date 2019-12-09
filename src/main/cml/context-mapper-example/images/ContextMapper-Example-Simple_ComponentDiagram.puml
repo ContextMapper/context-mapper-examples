@@ -17,8 +17,8 @@ allow to improve the architecture
 model iteratively. 
 end note
 
-component [ServiceCutterAnalysis]
-note bottom of [ServiceCutterAnalysis]
+component [StructuredServiceDecomposition]
+note bottom of [StructuredServiceDecomposition]
 The Service Cutter integration 
 into Context Mapper allows to 
 analyze the Context Map with respect 
@@ -27,14 +27,14 @@ to suggest improved Context Maps.
 
 end note
 
-component [ReverseEngineeringLibrary]
-note right of [ReverseEngineeringLibrary]
-The reverse engineering component 
-can generate CML Context Maps 
-from existing source code. This 
-allows to reverse engineer the 
-architecture model in projects 
-with existing monoliths or microservices. 
+component [DiscoveryLibrary]
+note left of [DiscoveryLibrary]
+The reverse engineering and discovery 
+component can generate CML Context Maps 
+from existing source code. This allows 
+to reverse engineer the architecture 
+model in projects with existing monoliths 
+or microservices. 
 
 end note
 
@@ -46,17 +46,17 @@ derived by a given CML Context
 Map. 
 end note
 
-interface "Upstream-Downstream" as ReverseEngineeringLibrary_to_LanguageCore
-[LanguageCore] -up-> ReverseEngineeringLibrary_to_LanguageCore : PUBLISHED_LANGUAGE
-[ReverseEngineeringLibrary] ..> ReverseEngineeringLibrary_to_LanguageCore : use as CONFORMIST
+interface "Upstream-Downstream" as DiscoveryLibrary_to_LanguageCore
+[LanguageCore] -up-> DiscoveryLibrary_to_LanguageCore : PUBLISHED_LANGUAGE
+[DiscoveryLibrary] ..> DiscoveryLibrary_to_LanguageCore : " use as CONFORMIST"
 
-[ArchitecturalRefactorings] <-> [LanguageCore] : Shared Kernel
+interface "Upstream-Downstream" as StructuredServiceDecomposition_to_LanguageCore
+[LanguageCore] -left-> StructuredServiceDecomposition_to_LanguageCore : PUBLISHED_LANGUAGE
+[StructuredServiceDecomposition] .> StructuredServiceDecomposition_to_LanguageCore : "      use" 
 
-interface "Upstream-Downstream" as ServiceCutterAnalysis_to_LanguageCore
-[LanguageCore] -right-> ServiceCutterAnalysis_to_LanguageCore : PUBLISHED_LANGUAGE
-ServiceCutterAnalysis_to_LanguageCore <. [ServiceCutterAnalysis] : use 
+[LanguageCore] <-> [ArchitecturalRefactorings] : "    Shared Kernel    "
 
 interface "Upstream-Downstream" as Generators_to_LanguageCore
-[LanguageCore] -down-> Generators_to_LanguageCore : PUBLISHED_LANGUAGE
-Generators_to_LanguageCore <.. [Generators] : use
+[LanguageCore] -down-> Generators_to_LanguageCore : " PUBLISHED_LANGUAGE"
+Generators_to_LanguageCore <.. [Generators] : " use"
 @enduml

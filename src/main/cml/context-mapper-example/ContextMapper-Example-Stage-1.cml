@@ -1,9 +1,9 @@
 ContextMap ContextMapper {
-	contains LanguageCore, ArchitecturalRefactorings, ServiceCutterAnalysis, ReverseEngineeringLibrary, Generators
+	contains LanguageCore, ArchitecturalRefactorings, StructuredServiceDecomposition, DiscoveryLibrary, Generators
 	
-	LanguageCore -> ReverseEngineeringLibrary
+	LanguageCore -> DiscoveryLibrary
 
-	LanguageCore -> ServiceCutterAnalysis
+	LanguageCore -> StructuredServiceDecomposition
 	
 	LanguageCore -> Generators
 	
@@ -15,8 +15,8 @@ BoundedContext LanguageCore
 
 BoundedContext ArchitecturalRefactorings
 
-BoundedContext ServiceCutterAnalysis
+BoundedContext StructuredServiceDecomposition
 
-BoundedContext ReverseEngineeringLibrary
+BoundedContext DiscoveryLibrary
 
 BoundedContext Generators
