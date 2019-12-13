@@ -3,7 +3,7 @@ ContextMap ContextMapper {
 	
 	LanguageCore -> DiscoveryLibrary
 
-	LanguageCore -> StructuredServiceDecomposition
+	LanguageCore <- StructuredServiceDecomposition
 	
 	LanguageCore -> Generators
 	

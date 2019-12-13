@@ -19,12 +19,14 @@ end note
 
 component [StructuredServiceDecomposition]
 note bottom of [StructuredServiceDecomposition]
-The Service Cutter integration 
-into Context Mapper allows to 
-analyze the Context Map with respect 
-to coupling criteria and supports 
-to suggest improved Context Maps. 
-
+The Service Cutter integration into Context 
+Mapper allows to analyze the Context Map 
+with respect to coupling criteria and 
+supports to suggest improved Context Maps.
+The Service Cutter library exposes an API
+(Open Host Service and Published Language)
+used by Context Mapper to generate the
+new decompositions. 
 end note
 
 component [DiscoveryLibrary]
@@ -35,7 +37,6 @@ from existing source code. This allows
 to reverse engineer the architecture 
 model in projects with existing monoliths 
 or microservices. 
-
 end note
 
 component [Generators]
@@ -47,16 +48,16 @@ Map.
 end note
 
 interface "Upstream-Downstream" as DiscoveryLibrary_to_LanguageCore
-[LanguageCore] -up-> DiscoveryLibrary_to_LanguageCore : PUBLISHED_LANGUAGE
-[DiscoveryLibrary] ..> DiscoveryLibrary_to_LanguageCore : " use as CONFORMIST"
+[LanguageCore] -up-> DiscoveryLibrary_to_LanguageCore : "PUBLISHED_LANGUAGE (PL)"
+[DiscoveryLibrary] ..> DiscoveryLibrary_to_LanguageCore : " use as CONFORMIST (CF)"
 
-interface "Upstream-Downstream" as StructuredServiceDecomposition_to_LanguageCore
-[LanguageCore] -left-> StructuredServiceDecomposition_to_LanguageCore : PUBLISHED_LANGUAGE
-[StructuredServiceDecomposition] .> StructuredServiceDecomposition_to_LanguageCore : "      use" 
+interface "Upstream-Downstream" as LanguageCore_to_StructuredServiceDecomposition
+[StructuredServiceDecomposition] -right-> LanguageCore_to_StructuredServiceDecomposition : "OHS, PL"
+LanguageCore_to_StructuredServiceDecomposition <. [LanguageCore] : "use via ACL" 
 
 [LanguageCore] <-> [ArchitecturalRefactorings] : "    Shared Kernel    "
 
 interface "Upstream-Downstream" as Generators_to_LanguageCore
-[LanguageCore] -down-> Generators_to_LanguageCore : " PUBLISHED_LANGUAGE"
+[LanguageCore] -down-> Generators_to_LanguageCore : " PUBLISHED_LANGUAGE (PL)"
 Generators_to_LanguageCore <.. [Generators] : " use"
 @enduml

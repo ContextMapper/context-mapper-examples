@@ -11,13 +11,13 @@ ContextMap ContextMapper {
 	 * 
 	 * 
 	 * The discovery library conforms to the model provided by the language core (we always generate CML models
-	 * according to the core). The generators and Service Cutter integration (structured service decomposition) 
-	 * on the other hand may also influence the language sometimes.
+	 * according to the core). The generators and on the other hand may also influence the language sometimes.
+	 * The core further uses the API of our Service Cutter library to generate new decompositions.
 	 */	
 	
 	LanguageCore [PL]->[CF] DiscoveryLibrary
 
-	LanguageCore [PL]-> StructuredServiceDecomposition
+	LanguageCore [ACL]<-[OHS,PL] StructuredServiceDecomposition
 	
 	LanguageCore [PL]-> Generators
 	
