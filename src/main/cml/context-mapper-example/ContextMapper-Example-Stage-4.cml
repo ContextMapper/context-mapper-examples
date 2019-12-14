@@ -17,7 +17,9 @@ ContextMap ContextMapper {
 	
 	LanguageCore [PL]->[CF] DiscoveryLibrary
 
-	LanguageCore [ACL]<-[OHS,PL] StructuredServiceDecomposition
+	LanguageCore [ACL]<-[OHS,PL] StructuredServiceDecomposition {
+		exposedAggregates ServiceCutterInput, ServiceCutterAPI
+	}
 	
 	LanguageCore [PL]-> Generators
 	
@@ -89,30 +91,114 @@ BoundedContext ArchitecturalRefactorings {
 BoundedContext StructuredServiceDecomposition {
 	domainVisionStatement "The Service Cutter integration into Context Mapper allows to analyze the Context Map with respect to coupling criteria and supports to suggest improved Context Maps."
 	
-	Aggregate ERDModel { // input
-		responsibilities "ERD input model for Service Cutter"
+	Aggregate ServiceCutterInput { // input
+		responsibilities "Input data needed to use the Service Cutter library"
+	
+		Entity EntityRelationshipDiagram {
+			String name
+			- List<^Entity> entities
+			- List<EntityRelation> relations
+		}
 		
-		Entity ^Entity
-		Entity Nanoentity
-		Entity EntityRelation
+		Entity ^Entity {
+			String name
+			List<String> nanoentities
+		}
+		
+		Entity EntityRelation {
+			- ^Entity origin
+			- ^Entity destination
+			- RelationType relationType
+		}
+		
+		enum RelationType {
+			AGGREGATION, COMPOSITION, INHERITANCE
+		}
+		
+		ValueObject UserRepresentationContainer {
+			- List<^UseCase> ^useCases	
+			- List<SharedOwnerGroup> sharedOwnerGroups
+			- List<^Aggregate> aggregates
+			- List<^Entity> entities
+			- List<PredefinedService> predefinedServices
+			- List<SeparatedSecurityZone> separtedSecurityZones
+			- List<SecurityAccessGroup> securityAccessGroup
+			- List<Compatibilities> compatibilities
+		}
+		
+		Entity ^UseCase {
+			String name
+			List<String> nanoentitiesRead
+			List<String> nanoentitiesWritten
+			boolean latencyCritical
+		}
+		
+		Entity AvailabilityCriticality extends @RelatedGroup
+		Entity ConsistencyCriticality extends @RelatedGroup
+		Entity ContentVolatility extends @RelatedGroup
+		Entity SecurityCriticality extends @RelatedGroup
+		Entity StorageSimilarity extends @RelatedGroup
+		Entity StructuralVolatility extends @RelatedGroup
+		Entity ^Aggregate extends @RelatedGroup
+		Entity PredefinedService extends @RelatedGroup
+		Entity SharedOwnerGroup extends @RelatedGroup
+		Entity SecurityAccessGroup extends @RelatedGroup
+		Entity SeparatedSecurityZone extends @RelatedGroup
+		
+		Entity RelatedGroup {
+			String name
+			List<String> nanoentities
+		}
+		
+		Entity Compatibilities {
+			- List<Characteristic> contentVolatility
+			- List<Characteristic> structuralVolatility
+			- List<Characteristic> availabilityCriticality
+			- List<Characteristic> consistencyCriticality
+			- List<Characteristic> storageSimilarity
+			- List<Characteristic> securityCriticality
+		}
+		
+		Entity Characteristic {
+			String characteristic
+			List<String> nanoentities
+		}
+		
+		ValueObject ServiceCutterContext {
+			String systemName
+			- SolverConfiguration solverConfiguration
+			CouplingCriteriaCatalog criteriaCatalog
+			List<CouplingInstance> couplingInstances
+			Set<String> nanoEntities
+		}
+		
+		ValueObject SolverConfiguration {
+			String algorithm
+			- List<CriterionPriority> solverPriorities
+		}
+		
+		ValueObject CriterionPriority {
+			String criterion
+			- SolverPriority priority
+		}
+		
+		enum SolverPriority {
+			IGNORE, XS, ^S, M, L, XL, XXL;
+		}
+		
+		Service ServiceCutterContextBuilder {
+			@ServiceCutterContext buildCuttingContext(@EntityRelationshipDiagram erd);
+			
+			@ServiceCutterContext buildCuttingContextWithUserRepresentations(@EntityRelationshipDiagram erd, @UserRepresentationContainer userRepresentations);
+			
+			void useCustomSolverConfiguration(@SolverConfiguration customSolverConfiguration);
+		}
 	}
 	
-	Aggregate UserRepresentations { // input
-		responsibilities "User representations model for Service Cutter to improve service cuts"
-		
-		Entity ^UseCase
-		Entity AvailabilityCriticality
-		Entity ConsistencyCriticality
-		Entity ContentVolatility
-		Entity SecurityCriticality
-		Entity StorageSimilarity
-		Entity StructuralVolatility
-		Entity ^Aggregate
-		Entity PredefinedService
-		Entity SharedOwnerGroup
-		Entity ^Entity
-		Entity SecurityAccessGroup
-		Entity SeparatedSecurityZone
+	Aggregate ServiceCutterAPI {
+		Service ServiceCutter {
+			@SolverResult generateDecomposition(@ServiceCutterContext context);
+		}
 	}
 	
 	Aggregate CouplingCriteria { // service decomposition process
@@ -128,11 +214,26 @@ BoundedContext StructuredServiceDecomposition {
 	Aggregate ServiceDecompositions { // output
 		responsibilities "Resulting service cuts/decompositions."
 		
+		Entity SolverResult {
+			- Set<^Service> services
+			- List<ServiceRelation> relations
+		}
+		
 		Entity ServiceCut
-		Entity ^Service // mapped to Bounded Contexts in CML
-		Entity ServiceRelation // relationship between Bounded Context
-		Entity ^Entity
-		Entity Nanoentity
+		Entity ^Service { // mapped to Bounded Contexts in CML
+			List<String> nanoentities
+			char id
+		}
+		Entity ServiceRelation { // relationship between Bounded Context
+			String serviceA
+			String serviceB
+			Set<String> sharedEntities
+			- Direction direction
+		}
+		
+		enum Direction {
+			OUTGOING, INCOMING, BIDIRECTIONAL
+		}
 	}
 }
 

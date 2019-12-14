@@ -1,0 +1,51 @@
+API description ServiceCutterLibraryAPI
+usage context PUBLIC_API for BACKEND_INTEGRATION
+
+data type CouplingCriteriaCatalog P // not specified in detail due to complexity
+data type CouplingInstance P // not specified in detail due to complexity
+data type Direction { "OUTGOING" | "INCOMING" | "BIDIRECTIONAL" }
+data type EntityRelationshipDiagram { "name":V<string>, "relations":{ "relationType":RelationType }* }
+data type RelationType { "AGGREGATION" | "COMPOSITION" | "INHERITANCE" }
+data type ServiceCutterContext { "systemName":V<string>, "criteriaCatalog":CouplingCriteriaCatalog, "couplingInstances":CouplingInstance*, "nanoEntities":V<string>*, "solverConfiguration":{ "algorithm":V<string>, "solverPriorities":{ "criterion":V<string>, "priority":SolverPriority }* } }
+data type SolverConfiguration { "algorithm":V<string>, "solverPriorities":{ "criterion":V<string>, "priority":SolverPriority }* }
+data type SolverPriority { "IGNORE" | "XS" | "S" | "M" | "L" | "XL" | "XXL" }
+data type SolverResult { "relations":{ "serviceA":V<string>, "serviceB":V<string>, "sharedEntities":V<string>*, "direction":Direction }* }
+data type EntityRelationshipDiagramAndUserRepresentations { "erd":{ "name":V<string>, "relations":{ "relationType":RelationType }* }, "userRepresentations":{ "useCases":{ "name":V<string>, "nanoentitiesRead":V<string>*, "nanoentitiesWritten":V<string>*, "latencyCritical":V<bool> }*, "compatibilities":{ "contentVolatility":{ "characteristic":V<string>, "nanoentities":V<string>* }*, "structuralVolatility":{ "characteristic":V<string>, "nanoentities":V<string>* }*, "availabilityCriticality":{ "characteristic":V<string>, "nanoentities":V<string>* }*, "consistencyCriticality":{ "characteristic":V<string>, "nanoentities":V<string>* }*, "storageSimilarity":{ "characteristic":V<string>, "nanoentities":V<string>* }*, "securityCriticality":{ "characteristic":V<string>, "nanoentities":V<string>* }* }* } }
+
+endpoint type ServiceCutterContextBuilder
+	exposes
+		operation buildCuttingContext
+			expecting
+				payload EntityRelationshipDiagram
+			delivering
+				payload ServiceCutterContext
+		
+		operation buildCuttingContextWithUserRepresentations
+			expecting
+				payload EntityRelationshipDiagramAndUserRepresentations
+			delivering
+				payload ServiceCutterContext
+				
+		// solver configuration (stateful context builder class)
+		operation useCustomSolverConfiguration
+			expecting
+				payload SolverConfiguration
+
+endpoint type ServiceCutter
+	exposes
+		operation generateDecomposition
+			expecting
+				payload ServiceCutterContext
+			delivering
+				payload SolverResult
+
+
+API provider ServiceCutterLibrary
+	offers ServiceCutterContextBuilder
+	offers ServiceCutter
+
+API client LanguageCore
+	consumes ServiceCutterContextBuilder
+	consumes ServiceCutter
+
+IPA
