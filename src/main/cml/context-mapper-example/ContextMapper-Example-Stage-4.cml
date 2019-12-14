@@ -96,18 +96,18 @@ BoundedContext StructuredServiceDecomposition {
 	
 		Entity EntityRelationshipDiagram {
 			String name
-			- List<^Entity> entities
+			- List<ServiceCutterEntity> entities
 			- List<EntityRelation> relations
 		}
 		
-		Entity ^Entity {
+		Entity ServiceCutterEntity {
 			String name
 			List<String> nanoentities
 		}
 		
 		Entity EntityRelation {
-			- ^Entity origin
-			- ^Entity destination
+			- ServiceCutterEntity origin
+			- ServiceCutterEntity destination
 			- RelationType relationType
 		}
 		
@@ -215,12 +215,12 @@ BoundedContext StructuredServiceDecomposition {
 		responsibilities "Resulting service cuts/decompositions."
 		
 		Entity SolverResult {
-			- Set<^Service> services
+			- Set<ResultService> services
 			- List<ServiceRelation> relations
 		}
 		
 		Entity ServiceCut
-		Entity ^Service { // mapped to Bounded Contexts in CML
+		Entity ResultService { // mapped to Bounded Contexts in CML
 			List<String> nanoentities
 			char id
 		}
