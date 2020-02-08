@@ -56,6 +56,8 @@ BoundedContext CustomerManagementContext implements CustomerManagementDomain {
 	responsibilities = "Customers, Addresses"
 	
 	Aggregate Customers {
+		owner ContractsTeam
+		
 		Entity Customer { 
 			aggregateRoot
 			
@@ -145,6 +147,8 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 	implementationTechnology = "Java, Spring App"
 	
 	Aggregate Offers {
+		owner ContractsTeam
+		
 		Entity Offer {
 			aggregateRoot
 			
@@ -156,6 +160,8 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 	}
 	
 	Aggregate Products {
+		owner ProductsTeam
+		
 		Entity Product {
 			aggregateRoot
 			
@@ -169,6 +175,8 @@ BoundedContext PolicyManagementContext implements PolicyManagementDomain {
 	}
 	
 	Aggregate Contract {
+		owner ContractsTeam
+		
 		Entity Contract {
 			aggregateRoot
 			
@@ -196,6 +204,8 @@ BoundedContext RiskManagementContext implements RiskManagementDomain {
 	implementationTechnology = "Java, Spring App"
 	
 	Aggregate Risks {
+		owner RisksTeam
+		
 		Entity CustomerRiskFactor {
 			aggregateRoot
 			
@@ -218,6 +228,8 @@ BoundedContext DebtCollection implements DebtsDomain {
 	implementationTechnology = "JEE"
 	
 	Aggregate Debts {
+		owner = FinancesTeam
+		
 		Entity Debt {
 			aggregateRoot
 			
@@ -239,6 +251,12 @@ BoundedContext DebtCollection implements DebtsDomain {
 		}
 	}
 } 
+
+/* Team's: */
+BoundedContext ContractsTeam { type TEAM }
+BoundedContext ProductsTeam { type TEAM }
+BoundedContext FinancesTeam { type TEAM }
+BoundedContext RisksTeam { type TEAM }
 
 /* Domain & Subdomain Definitions */
 Domain InsuranceDomain {
