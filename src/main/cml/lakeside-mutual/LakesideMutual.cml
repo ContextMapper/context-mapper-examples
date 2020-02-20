@@ -1,0 +1,22 @@
+ContextMap LakesideMutual {
+	contains CustomerCore, CustomerManagement, CustomerSelfService
+	contains PolicyManagement, RiskManagement
+	
+	CustomerCore [OHS,PL]-> CustomerManagement
+	
+	CustomerManagement [S]->[C] CustomerSelfService
+	
+	CustomerCore [OHS, PL]->[CF] CustomerSelfService
+	
+	CustomerCore [OHS, PL]->[ACL] PolicyManagement
+	
+	PolicyManagement [P]<->[P] RiskManagement
+	
+	CustomerSelfService [SK]<->[SK] PolicyManagement
+}
+
+BoundedContext CustomerCore
+BoundedContext CustomerManagement
+BoundedContext CustomerSelfService
+BoundedContext PolicyManagement
+BoundedContext RiskManagement
