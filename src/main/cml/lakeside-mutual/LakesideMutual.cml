@@ -2,20 +2,52 @@ ContextMap LakesideMutual {
 	contains CustomerCore, CustomerManagement, CustomerSelfService
 	contains PolicyManagement, RiskManagement
 	
-	CustomerCore [OHS,PL]-> CustomerManagement
+	CustomerCore [OHS,PL]-> CustomerManagement {
+		exposedAggregates Customers, Addresses
+	}
 	
 	CustomerManagement [S]->[C] CustomerSelfService
 	
-	CustomerCore [OHS, PL]->[CF] CustomerSelfService
+	CustomerCore [OHS, PL]->[CF] CustomerSelfService {
+		exposedAggregates Customers, Addresses
+	}
 	
-	CustomerCore [OHS, PL]->[ACL] PolicyManagement
+	CustomerCore [OHS, PL]->[ACL] PolicyManagement {
+		exposedAggregates Customers, Addresses
+	}
 	
 	PolicyManagement [P]<->[P] RiskManagement
 	
 	CustomerSelfService [SK]<->[SK] PolicyManagement
 }
 
-BoundedContext CustomerCore
+BoundedContext CustomerCore {
+	Aggregate Customers {
+		Entity Customer {
+			String firstName
+			String lastName
+			String socialInsuranceNumber
+			- Set<Address> addresses
+		}
+		
+		Service CustomerService {
+			boolean create(@Customer customer);
+			boolean update(@Customer customer);
+		}
+	}
+	
+	Aggregate Addresses {
+		Entity Address {
+			String street
+			String city
+		}
+		
+		Service AddressService {
+			void create(@Customer customer, @Address address);
+			void move(@Customer customer, @Address newAddress);
+		}
+	}
+}
 BoundedContext CustomerManagement
 BoundedContext CustomerSelfService
 BoundedContext PolicyManagement
