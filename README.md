@@ -35,7 +35,7 @@ It further contains a team map, illustrating the teams and their relationships. 
 
 <img alt="Insurance Company Example Context Map" src="./src/main/cml/insurance-example/images/TeamMap-Illustration.png" width="600px">
 
-### Lakeside Mutual
+### [Lakeside Mutual](./src/main/cml/lakeside-mutual)
 The [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual) microservice project is another fictitious insurance application that demonstrates microservices and the application of 
 [Microservice API Patterns (MAP)](https://microservice-api-patterns.org/). 
 
