@@ -14,6 +14,6 @@ analyze the subdomain for the new feature. The example shall illustrate how Even
 
 (a tutorial how Context Mapper can be used to model Event Storming results will be published on our website soon) 
 
-The following graphic shows the [result of our Event Storming](/images/event-storming-result.jpg):
+The following graphic shows the [result of our Event Storming](https://raw.githubusercontent.com/ContextMapper/context-mapper-examples/master/src/main/cml/lakeside-mutual/images/event-storming-result.jpg):
 
-<img alt="Lakeside Mutual Claim Processing Event Storming" src="./images/event-storming-result.jpg">
+<img alt="Lakeside Mutual Claim Processing Event Storming" src="https://raw.githubusercontent.com/ContextMapper/context-mapper-examples/master/src/main/cml/lakeside-mutual/images/event-storming-result.jpg">
