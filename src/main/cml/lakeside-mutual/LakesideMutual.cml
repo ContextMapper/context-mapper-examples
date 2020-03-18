@@ -35,6 +35,9 @@ ContextMap LakesideMutual {
 		exposedAggregates policies, riskfactor
 	}
 
+	ClaimsManagement -> CustomerSelfService {
+		exposedAggregates Claims, Payment, Notification
+	}
 }
 
 /**
@@ -46,6 +49,20 @@ ContextMap LakesideMutual {
  */
 BoundedContext ClaimsManagement {
 	domainVisionStatement "This Bounded Context manages the processing of claims ..."
+	
+	Aggregate ClaimSelfService {
+		Entity ClaimSubmission {
+			aggregateRoot
+			
+			SelfServicePortalUser user
+			- Claim claim
+		}
+
+		"role: Customer"		
+		CommandEvent SubmitClaim
+		
+		DomainEvent ClaimSubmitted // triggers CheckClaimDocumentation command
+	}
 	
 	Aggregate Claims {
 		Entity Claim {
@@ -72,20 +89,24 @@ BoundedContext ClaimsManagement {
 			- Claim claim
 		}
 	
+		"role: Administrator in charge"
 		CommandEvent CheckClaimDocumentation extends @AbstractClaimCommand
 	
 		DomainEvent ClaimRegistered extends @AbstractClaimEvent // triggers CheckInsurance command
 	
+		"role: Responsible person in claims department"
 		CommandEvent CheckInsurance extends @AbstractClaimCommand {
 			- Set<PolicyId> policies
 		}
 		
 		DomainEvent AssessmentPerformed extends @AbstractClaimEvent // triggers AcceptClaim or RejectClaim command depending on result
 	
+		"role: Responsible person in claims department"
 		CommandEvent AcceptClaim extends @AbstractClaimCommand
 		
 		DomainEvent ClaimAccepted extends @AbstractClaimEvent // triggers SchedulePayment command
 	
+		"role: Responsible person in claims department"
 		CommandEvent RejectClaim extends @AbstractClaimCommand
 		
 		DomainEvent ClaimRejected extends @AbstractClaimEvent // triggers NofifyCustomer command
@@ -95,9 +116,9 @@ BoundedContext ClaimsManagement {
 			
 			@AssessmentPerformed checkInsurance(@CheckInsurance command);
 			
-			@AcceptClaim acceptClaim(@AcceptClaim command);
+			@ClaimAccepted acceptClaim(@AcceptClaim command);
 			
-			@RejectClaim rejectClaim(@RejectClaim commandcal);
+			@ClaimRejected rejectClaim(@RejectClaim commandcal);
 		}
 	}
 	
