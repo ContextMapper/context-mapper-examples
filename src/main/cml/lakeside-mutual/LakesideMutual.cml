@@ -47,7 +47,8 @@ ContextMap LakesideMutual {
  * Issue: We currently modeled the feature within a new Bounded Context, although it 
  * would also be possible to implement it as part of the Policy Management Context. 
  */
-BoundedContext ClaimsManagement {
+BoundedContext ClaimsManagement implements ClaimsManagement {
+	type FEATURE
 	domainVisionStatement "This Bounded Context manages the processing of claims ..."
 	
 	Aggregate ClaimSelfService {
@@ -181,7 +182,8 @@ BoundedContext ClaimsManagement {
  * The following Bounded Contexts are reverse engineered with our discovery library
  * (https://github.com/ContextMapper/context-map-discovery): 
  */
-BoundedContext PolicyManagement {
+BoundedContext PolicyManagement implements PolicyManagement {
+	type FEATURE
 	implementationTechnology "Spring Boot"
 	// This Aggregate has been created on the basis of the RESTful HTTP controller com.lakesidemutual.policymanagement.interfaces.InsuranceQuoteRequestInformationHolder.
 	Aggregate insurance_quote_requests {
@@ -297,7 +299,8 @@ BoundedContext PolicyManagement {
 	}
 }
 
-BoundedContext CustomerManagement {
+BoundedContext CustomerManagement implements CustomerManagement {
+	type FEATURE
 	implementationTechnology "Spring Boot"
 	// This Aggregate has been created on the basis of the RESTful HTTP controller com.lakesidemutual.customermanagement.interfaces.CustomerInformationHolder.
 	Aggregate CustomerManagement_customers {
@@ -372,7 +375,8 @@ BoundedContext CustomerManagement {
 	}
 }
 
-BoundedContext CustomerSelfService {
+BoundedContext CustomerSelfService implements SelfService {
+	type FEATURE
 	implementationTechnology "Spring Boot"
 	// This Aggregate has been created on the basis of the RESTful HTTP controller com.lakesidemutual.customerselfservice.interfaces.AuthenticationController.
 	Aggregate auth {
@@ -459,7 +463,8 @@ BoundedContext CustomerSelfService {
 	}
 }
 
-BoundedContext CustomerCore {
+BoundedContext CustomerCore implements CustomerManagement {
+	type FEATURE
 	implementationTechnology "Spring Boot"
 	// This Aggregate has been created on the basis of the RESTful HTTP controller com.lakesidemutual.customercore.interfaces.CityStaticDataHolder.
 	Aggregate cities {
@@ -532,5 +537,25 @@ BoundedContext CustomerCore {
 			- List<CustomerResponseDto> customers
 		}
 	}
+}
+
+Domain InsuranceDomain {
+	
+	Subdomain CustomerManagement {
+		type CORE_DOMAIN
+	}
+	
+	Subdomain SelfService {
+		type SUPPORTING_DOMAIN
+	}
+	
+	Subdomain PolicyManagement {
+		type CORE_DOMAIN
+	}
+	
+	Subdomain ClaimsManagement {
+		type CORE_DOMAIN
+	}
+	
 }
 
