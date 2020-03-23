@@ -578,12 +578,11 @@ BoundedContext CustomerCore implements CustomerManagement {
   			@CustomerDto findCustomerById(@CustomerId customerId);
   			List<@CustomerDto> findCustomersByName(String name);
 		}
-
-		ValueObject OfferId
-		CommandEvent RecordOfferArrival {
- 			 -OfferId shipment
- 			 Date arrivalDate
-		}		
+		
+		CommandEvent RecordAddressChange {
+ 			 -AddressDto newAddress
+ 			 Date changeDate
+		}			
 	}
 	
 	// CQRS Step 3:
