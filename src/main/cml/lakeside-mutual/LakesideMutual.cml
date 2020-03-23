@@ -537,6 +537,123 @@ BoundedContext CustomerCore implements CustomerManagement {
 			- List<CustomerResponseDto> customers
 		}
 	}
+	
+		// our webpage content:
+	// https://contextmapper.org/docs/event-sourcing-and-cqrs-modeling/
+	
+	Aggregate CustomerRelationshipManagement {
+		abstract DomainEvent AbstractDomainEvent {
+  			Date timestamp
+  		}
+
+		DomainEvent CustomerVerifiedEvent extends AbstractDomainEvent {
+  			- CustomerId customer
+		}
+
+		DomainEvent AddressUpdatedEvent extends AbstractDomainEvent {
+  			- CustomerId customer  
+  			- AddressDto address
+		}	
+		Service AddressService {
+ 			 @AddressUpdatedEvent updateAddress(@AddressDto address);
+		}
+		
+		// CQRS Step 1:
+		Service CustomerService {
+  			@CustomerId createCustomer(@CustomerDto customer);
+  			void updateCustomer(@CustomerDto customer);
+  			boolean deleteCustomer(@CustomerId customer);
+  			@CustomerDto findCustomerById(@CustomerId customerId);
+ 			 List<@CustomerDto> findCustomersByName(String name);
+		}
+		
+		// CQRS Step 2:
+		Service CustomerCommandService1 {
+  			@CustomerId createCustomer(@CustomerDto customer);
+  			void updateCustomer(@CustomerDto customer);
+  			boolean deleteCustomer(@CustomerId customer);
+		}
+
+		Service CustomerQueryService1 {
+  			@CustomerDto findCustomerById(@CustomerId customerId);
+  			List<@CustomerDto> findCustomersByName(String name);
+		}
+
+		ValueObject OfferId
+		CommandEvent RecordOfferArrival {
+ 			 -OfferId shipment
+ 			 Date arrivalDate
+		}		
+	}
+	
+	// CQRS Step 3:
+	Aggregate CustomerAggregate {
+  		ValueObject CustomerId {
+   			UUID uniqueCustomerId
+  		}
+
+ 		Entity Customer {
+    		aggregateRoot
+
+   		 	-CustomerId customerId
+   	 		String firstName
+    		String lastName
+    		-List<@AddressDto> addresses
+ 		 }
+ 
+  		Entity Address // not designed in detail 
+
+  		Service CustomerCommandService2 {
+    		@CustomerId createCustomer(@Customer customer);
+    		void updateCustomer(@Customer customer);
+    		boolean deleteCustomer(@CustomerId customer);
+  		}
+	}
+
+	Aggregate CustomerReadModel {
+		DataTransferObject CustomerDTO {
+    		String firstName
+    		String lastName
+  		}
+
+  		Service CustomerQueryService2 {
+    		@CustomerDTO findCustomerById(@CustomerId customerId);
+    		List<@CustomerDTO> findCustomersByName(String name);
+  		}
+	}	
+	
+	// proposal for representing slide 44 in speaker deck from MP:
+	// https://speakerdeck.com/mploed/event-sourcing-workshop-at-software-architecture-summit-2016?slide=44
+	
+	Aggregate CQRS_CommonInfrastructure {
+		DomainEvent AbstractDomainEvent {
+			Date timestamp
+		}
+		ValueObject EventSequence {
+			-Set<@AbstractDomainEvent> events
+		}   
+	}
+	Aggregate CQRS_CommandInfrastructure { 
+		Service CommandDAO {
+			@EventSequence storeAndForwardEvents() publish to EventHandlerChannel;
+			// store in EventStore and let QueryInfrastructure know (via Handler)
+		} 
+		Entity EventStore { 
+			aggregateRoot
+			Repository EventStoreRepository {}
+		}
+	}
+	Aggregate CQRS_QueryInfrastructure {
+		Entity QueryDAO {
+			// talks to ReadStorage (BAU)
+		}
+		Entity ReadStorage { 
+			aggregateRoot
+			Repository ReadStorageRepository {
+				subscribe to EventHandlerChannel
+			}
+		}
+	}
 }
 
 Domain InsuranceDomain {
