@@ -543,17 +543,18 @@ BoundedContext CustomerCore implements CustomerManagement {
 	
 	Aggregate CustomerRelationshipManagement {
 		abstract DomainEvent AbstractDomainEvent {
-  			Date timestamp
-  		}
-
-		DomainEvent CustomerVerifiedEvent extends AbstractDomainEvent {
-  			- CustomerId customer
+			Date timestamp
 		}
-
+		
+		DomainEvent CustomerVerifiedEvent extends AbstractDomainEvent {
+			- CustomerId customer
+		}
+		
 		DomainEvent AddressUpdatedEvent extends AbstractDomainEvent {
-  			- CustomerId customer  
+			- CustomerId customer  
   			- AddressDto address
-		}	
+		}
+		
 		Service AddressService {
  			 @AddressUpdatedEvent updateAddress(@AddressDto address);
 		}
@@ -580,27 +581,27 @@ BoundedContext CustomerCore implements CustomerManagement {
 		}
 		
 		CommandEvent RecordAddressChange {
- 			 -AddressDto newAddress
+			-AddressDto newAddress
  			 Date changeDate
-		}			
+		}
 	}
 	
 	// CQRS Step 3:
 	Aggregate CustomerAggregate {
-  		ValueObject CustomerId {
-   			UUID uniqueCustomerId
-  		}
-
- 		Entity Customer {
-    		aggregateRoot
-
+		ValueObject CustomerId {
+			UUID uniqueCustomerId
+		}
+		
+		Entity Customer {
+			aggregateRoot
+			
 			-CustomerId customerId
 			String firstName
 			String lastName
 			-List<@AddressDto> addresses
- 		}
- 
-  		Entity Address // not designed in detail 
+		}
+		
+		Entity Address // not designed in detail 
 
   		Service CustomerCommandService2 {
 			@CustomerId createCustomer(@Customer customer);
@@ -619,7 +620,7 @@ BoundedContext CustomerCore implements CustomerManagement {
     		@CustomerDTO findCustomerById(@CustomerId customerId);
     		List<@CustomerDTO> findCustomersByName(String name);
   		}
-	}	
+	}
 	
 	// proposal for representing slide 44 in speaker deck from MP:
 	// https://speakerdeck.com/mploed/event-sourcing-workshop-at-software-architecture-summit-2016?slide=44
@@ -630,14 +631,14 @@ BoundedContext CustomerCore implements CustomerManagement {
 		}
 		ValueObject EventSequence {
 			-Set<@AbstractDomainEvent> events
-		}   
+		}
 	}
-	Aggregate CQRS_CommandInfrastructure { 
+	Aggregate CQRS_CommandInfrastructure {
 		Service CommandDAO {
 			@EventSequence storeAndForwardEvents() publish to EventHandlerChannel;
 			// store in EventStore and let QueryInfrastructure know (via Handler)
-		} 
-		Entity EventStore { 
+		}
+		Entity EventStore {
 			aggregateRoot
 			Repository EventStoreRepository {}
 		}
@@ -646,7 +647,7 @@ BoundedContext CustomerCore implements CustomerManagement {
 		Entity QueryDAO {
 			// talks to ReadStorage (BAU)
 		}
-		Entity ReadStorage { 
+		Entity ReadStorage {
 			aggregateRoot
 			Repository ReadStorageRepository {
 				subscribe to EventHandlerChannel
