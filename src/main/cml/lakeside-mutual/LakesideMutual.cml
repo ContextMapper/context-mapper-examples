@@ -538,7 +538,7 @@ BoundedContext CustomerCore implements CustomerManagement {
 		}
 	}
 	
-		// our webpage content:
+	// our webpage content:
 	// https://contextmapper.org/docs/event-sourcing-and-cqrs-modeling/
 	
 	Aggregate CustomerRelationshipManagement {
@@ -564,7 +564,7 @@ BoundedContext CustomerCore implements CustomerManagement {
   			void updateCustomer(@CustomerDto customer);
   			boolean deleteCustomer(@CustomerId customer);
   			@CustomerDto findCustomerById(@CustomerId customerId);
- 			 List<@CustomerDto> findCustomersByName(String name);
+ 			List<@CustomerDto> findCustomersByName(String name);
 		}
 		
 		// CQRS Step 2:
@@ -594,25 +594,25 @@ BoundedContext CustomerCore implements CustomerManagement {
  		Entity Customer {
     		aggregateRoot
 
-   		 	-CustomerId customerId
-   	 		String firstName
-    		String lastName
-    		-List<@AddressDto> addresses
- 		 }
+			-CustomerId customerId
+			String firstName
+			String lastName
+			-List<@AddressDto> addresses
+ 		}
  
   		Entity Address // not designed in detail 
 
   		Service CustomerCommandService2 {
-    		@CustomerId createCustomer(@Customer customer);
-    		void updateCustomer(@Customer customer);
-    		boolean deleteCustomer(@CustomerId customer);
+			@CustomerId createCustomer(@Customer customer);
+			void updateCustomer(@Customer customer);
+			boolean deleteCustomer(@CustomerId customer);
   		}
 	}
 
 	Aggregate CustomerReadModel {
 		DataTransferObject CustomerDTO {
-    		String firstName
-    		String lastName
+			String firstName
+			String lastName
   		}
 
   		Service CustomerQueryService2 {
