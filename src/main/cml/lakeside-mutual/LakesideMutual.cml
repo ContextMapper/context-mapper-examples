@@ -616,10 +616,10 @@ BoundedContext CustomerCore implements CustomerManagement {
 			String lastName
   		}
 
-  		Service CustomerQueryService2 {
-    		@CustomerDTO findCustomerById(@CustomerId customerId);
-    		List<@CustomerDTO> findCustomersByName(String name);
-  		}
+		Service CustomerQueryService2 {
+			@CustomerDTO findCustomerById(@CustomerId customerId);
+			List<@CustomerDTO> findCustomersByName(String name);
+		}
 	}
 	
 	// proposal for representing slide 44 in speaker deck from MP:
