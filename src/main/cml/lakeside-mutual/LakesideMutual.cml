@@ -366,7 +366,7 @@ BoundedContext CustomerManagement implements CustomerManagement {
 			String customerId
 			String lastAcknowledgedInteractionId
 			String username
-			Collection<InteractionEntity> interactions
+			Collection<InteractionEntity> ^interactions
 		}
 		Entity interaction_logs_RootEntity {
 			aggregateRoot
