@@ -1,0 +1,266 @@
+/* Example Context Map written with 'ContextMapper DSL' */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+	
+	/* Add bounded contexts to this context map: */
+	contains CustomerManagement
+	contains CustomerSelfService
+	contains Printing
+	contains PolicyManagement
+	contains RiskManagement
+	contains DebtCollection
+	
+	/* Define the context relationships: */ 
+
+	CustomerSelfService [D,C]<-[U,S] CustomerManagement : Customer_Frontend_Backend_Relationship { // Relationship name is optional
+		exposedAggregates = Customers
+	}
+	
+	CustomerManagement [D,ACL]<-[U,OHS,PL] Printing {
+		implementationTechnology = "SOAP"
+		downstreamRights = INFLUENCER
+		exposedAggregates = Printing
+	}
+	
+	Printing [U,OHS,PL]->[D,ACL] PolicyManagement {
+		implementationTechnology = "SOAP"
+		exposedAggregates = Printing
+	}
+	
+	RiskManagement [P]<->[P] PolicyManagement {
+		implementationTechnology = "RabbitMQ"
+	}	
+
+	PolicyManagement [D,CF]<-[U,OHS,PL] CustomerManagement {
+		implementationTechnology = "RESTfulHTTP"
+		exposedAggregates = Customers
+	}
+
+	DebtCollection [D,ACL]<-[U,OHS,PL] Printing {
+		implementationTechnology = "SOAP"
+		exposedAggregates = Printing
+	}
+
+	PolicyManagement [SK]<->[SK] DebtCollection {
+		implementationTechnology = "Shared Java Library, Communication over RESTful HTTP"
+	}
+	
+}
+
+/* Bounded Context Definitions */
+BoundedContext CustomerManagement implements CustomerManagementDomain {
+	type = SYSTEM
+	domainVisionStatement = "The customer management context is responsible for managing all the data of the insurance companies customers."
+	implementationTechnology = "Java, JEE Application"
+	responsibilities = "Customers, Addresses"
+	
+	Aggregate Customers {
+		Entity Customer { 
+			aggregateRoot
+			
+			- SocialInsuranceNumber sin
+			String firstname
+			String lastname
+			- List<Address> addresses
+			
+			def AddressId createAddress(@Address address);
+			def boolean changeCustomer(String firstname, String lastname);
+		}
+		
+		Entity Address {
+			String street
+			int postalCode
+			String city
+		}
+		
+		ValueObject SocialInsuranceNumber {
+			String sin key
+		}
+	}
+	
+}
+
+BoundedContext CustomerSelfService implements CustomerManagementDomain {
+	type = SYSTEM
+	domainVisionStatement = "This context represents a web application which allows the customer to login and change basic data records like the address."
+	responsibilities = "AddressChange"
+	implementationTechnology = "PHP Web Application"
+	
+	Aggregate CustomerFrontend {
+		Entity CustomerAddressChange {
+			aggregateRoot
+			
+			- UserAccount issuer
+			- Address changedAddress
+		}
+	}
+	
+	Aggregate Acounts {
+		Entity UserAccount {
+			aggregateRoot
+			
+			String username
+			- Customer accountCustomer
+		}
+	}
+}
+
+BoundedContext Printing implements PrintingDomain {
+	type = SYSTEM
+	responsibilities = "Document Printing"
+	domainVisionStatement = "An external system which provides printing services to the other Bounded Contexts."
+	
+	Aggregate Printing {
+		Entity PrintingJob {
+			aggregateRoot
+			
+			int printingId
+			- Document document
+			- Template template
+			
+			def PrintStatus printJob(PrintingId printingId);
+		}
+		
+		Entity Document {
+			DomainObject source
+			String template
+		}
+	}
+	
+	Aggregate Templating {
+		Entity Template {
+			aggregateRoot
+			
+			int templateId
+			String templateName
+		}
+	}
+}
+
+BoundedContext PolicyManagement implements PolicyManagementDomain {
+	type = SYSTEM
+	domainVisionStatement = "This bounded context manages the contracts and policies of the customers."
+	responsibilities = "Offers, Contracts, Policies"
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Offers {
+		Entity Offer {
+			aggregateRoot
+			
+			int offerId
+			- Customer client
+			- List<Product> products
+			BigDecimal price
+		}
+	}
+	
+	Aggregate Products {
+		Entity Product {
+			aggregateRoot
+			
+			- ProductId identifier
+			String productName
+		}
+		
+		ValueObject ProductId {
+			int productId key
+		}
+	}
+	
+	Aggregate Contract {
+		Entity Contract {
+			aggregateRoot
+			
+			- ContractId identifier
+			- Customer client
+			- List<Product> products
+		}
+		
+		ValueObject ContractId {
+			int contractId key
+		}
+		
+		Entity Policy {
+			int policyNr
+			- Contract contract
+			BigDecimal price
+		}
+	}
+}
+
+BoundedContext RiskManagement implements RiskManagementDomain {
+	type = SYSTEM
+	domainVisionStatement = "Uses data from PolicyManagement context to calculate risks."
+	responsibilities = "Customer Risk Calculation"
+	implementationTechnology = "Java, Spring App"
+	
+	Aggregate Risks {
+		Entity CustomerRiskFactor {
+			aggregateRoot
+			
+			int totalRiskFactor
+			- List<Risk> risks
+			- Customer client
+		}
+		
+		ValueObject Risk {
+			int likelihood
+			String risk
+		}
+	}
+}
+
+BoundedContext DebtCollection implements DebtsDomain {
+	type = SYSTEM
+	domainVisionStatement = "The debt collection context is responsible for the financial income of the insurance company (the debts) which depend on the corresponding contracts and policies."
+	responsibilities = "Debts, Dunning"
+	implementationTechnology = "JEE"
+	
+	Aggregate Debts {
+		Entity Debt {
+			aggregateRoot
+			
+			int debtNr
+			- Policy policy
+			Date creationDate
+			Date paymentDate
+			Date paymentDeadline
+			BigDecimal price
+			PaymentStatus status
+			- List<Dunning> dunnigs
+		}
+		
+		Entity Dunning {
+			int dunningNr
+			// we have to remove this for now, since it is a bidirectional references that causes problems with the JHipster generator
+			//- Debt debt
+			Date dunningDate
+			Date paymentDeadline
+		}
+	}
+} 
+
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain CustomerManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing everything customer-related."
+	}
+	Subdomain PolicyManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing contracts and policies."
+	}
+	Subdomain PrintingDomain {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Service (external system) to solve printing for all kinds of documents (debts, policies, etc.)"
+	}
+	Subdomain RiskManagementDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdomain supporting everything which relates to risk management."
+	}
+	Subdomain DebtsDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subomain including everything related to the incoming money (debts, dunning, etc.)"
+	}
+}
