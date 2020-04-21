@@ -14,7 +14,7 @@ entity Address {
 }
 
 microservice Customer, Address with CustomerManagement
-	
+
 application {
 	config {
 		baseName CustomerManagement,
@@ -36,7 +36,7 @@ entity UserAccount {
 }
 
 microservice CustomerAddressChange, UserAccount with CustomerSelfService
-	
+
 application {
 	config {
 		baseName CustomerSelfService,
@@ -66,7 +66,7 @@ entity Template {
 }
 
 microservice PrintingJob, Document, Template with Printing
-	
+
 application {
 	config {
 		baseName Printing,
@@ -100,7 +100,7 @@ entity Policy {
 }
 
 microservice Offer, Product, Contract, Policy with PolicyManagement
-	
+
 application {
 	config {
 		baseName PolicyManagement,
@@ -118,7 +118,7 @@ entity CustomerRiskFactor {
 }
 
 microservice CustomerRiskFactor with RiskManagement
-	
+
 application {
 	config {
 		baseName RiskManagement,
@@ -148,7 +148,7 @@ entity Dunning {
 }
 
 microservice Debt, Dunning with DebtCollection
-	
+
 application {
 	config {
 		baseName DebtCollection,
