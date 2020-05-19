@@ -1,0 +1,181 @@
+/* Generated Bounded Contexts: */
+BoundedContext CustomerCoreContext implements CustomerManagement {
+	domainVisionStatement "This Bounded Context realizes the following subdomains: CustomerManagement"
+	/* This Aggregate contains the entities and services of the 'CustomerManagement' subdomain.
+	 * TODO: You can now refactor the Aggregate, for example by using the 'Split Aggregate by Entities' architectural refactoring.
+	 * TODO: Add attributes and operations to the entities.
+	 * TODO: Add operations to the services.
+	 * Find examples and further instructions on our website: https://contextmapper.org/docs/rapid-ooad/ */
+	Aggregate CustomerManagementAggregate {
+		Service CustomersService {
+			CreateCustomerProfileOutput createCustomerProfile (CreateCustomerProfileInput input);
+			UpdateCustomerProfileOutput updateCustomerProfile (UpdateCustomerProfileInput input);
+			CreateAddressOutput createAddress (CreateAddressInput input);
+			UpdateAddressOutput updateAddress (UpdateAddressInput input);
+		}
+		Entity CustomerProfile {
+			CustomerProfileID customerprofileId
+		}
+		Entity Address {
+			AddressID addressId
+		}
+	}
+}
+
+BoundedContext CustomerManagementContext implements CustomerInteraction {
+	domainVisionStatement "This Bounded Context realizes the following subdomains: CustomerInteraction"
+	/* This Aggregate contains the entities and services of the 'CustomerInteraction' subdomain.
+	 * TODO: You can now refactor the Aggregate, for example by using the 'Split Aggregate by Entities' architectural refactoring.
+	 * TODO: Add attributes and operations to the entities.
+	 * TODO: Add operations to the services.
+	 * Find examples and further instructions on our website: https://contextmapper.org/docs/rapid-ooad/ */
+	Aggregate CustomerInteractionAggregate {
+		Service InteractionLogService {
+			LogCustomerInteractionOutput logCustomerInteraction (LogCustomerInteractionInput input);
+		}
+		Service SelfServiceService {
+			CreateCustomerLoginOutput createCustomerLogin (CreateCustomerLoginInput input);
+			UpdateAddressOutput updateAddress (UpdateAddressInput input);
+			CreateInsuranceQuoteRequestOutput createInsuranceQuoteRequest (CreateInsuranceQuoteRequestInput input);
+		}
+		Entity CustomerInteraction {
+			CustomerInteractionID customerinteractionId
+		}
+		Entity CustomerLogin {
+			CustomerLoginID customerloginId
+		}
+		Entity Address {
+			AddressID addressId
+		}
+		Entity InsuranceQuoteRequest {
+			InsuranceQuoteRequestID insurancequoterequestId
+		}
+	}
+}
+
+BoundedContext PolicyAndRiskManagementContext implements PolicyAndRiskManagement {
+	domainVisionStatement "This Bounded Context realizes the following subdomains: PolicyAndRiskManagement"
+	/* This Aggregate contains the entities and services of the 'PolicyAndRiskManagement' subdomain.
+	 * TODO: You can now refactor the Aggregate, for example by using the 'Split Aggregate by Entities' architectural refactoring.
+	 * TODO: Add attributes and operations to the entities.
+	 * TODO: Add operations to the services.
+	 * Find examples and further instructions on our website: https://contextmapper.org/docs/rapid-ooad/ */
+	Aggregate PolicyAndRiskManagementAggregate {
+		Service PoliciesService {
+			AnswerInsuranceQuoteRequestOutput answerInsuranceQuoteRequest (AnswerInsuranceQuoteRequestInput input);
+			CreateInsuranceQuoteOutput createInsuranceQuote (CreateInsuranceQuoteInput input);
+			CreatePolicyOutput createPolicy (CreatePolicyInput input);
+			UpdatePolicyOutput updatePolicy (UpdatePolicyInput input);
+		}
+		Service RiskAssessmentService {
+			DownloadCustomerDataReportOutput downloadCustomerDataReport (DownloadCustomerDataReportInput input);
+			CreateRiskAssessmentOutput createRiskAssessment (CreateRiskAssessmentInput input);
+		}
+		Entity InsuranceQuoteRequest {
+			InsuranceQuoteRequestID insurancequoterequestId
+		}
+		Entity InsuranceQuote {
+			InsuranceQuoteID insurancequoteId
+		}
+		Entity Policy {
+			PolicyID policyId
+		}
+		Entity CustomerDataReport {
+			CustomerDataReportID customerdatareportId
+		}
+		Entity RiskAssessment {
+			RiskAssessmentID riskassessmentId
+		}
+	}
+}
+
+/* Generated subdomains: */
+Domain InsuranceDomain {
+	Subdomain CustomerManagement {
+		domainVisionStatement "Aims at promoting the following benefit for a Lakeside Mutual employee: I can manage the personal data about the individual customers (e.g., name, email, current address, etc.)."
+		Entity CustomerProfile
+		Entity Address
+		Service CustomersService {
+			createCustomerProfile;
+			updateCustomerProfile;
+			createAddress;
+			updateAddress;
+		}
+	}
+
+	Subdomain CustomerInteraction {
+		domainVisionStatement "Aims at promoting the following benefit for a Insurance Company: I can track all customer requests and interactions between my employees and the customers.; Aims at promoting the following benefit for a Customer: I can report address changes and request insurance quotes independently and without the help of an insurance employee."
+		Entity CustomerInteraction
+		Entity CustomerLogin
+		Entity Address
+		Entity InsuranceQuoteRequest
+		Service InteractionLogService {
+			logCustomerInteraction;
+		}
+		Service SelfServiceService {
+			createCustomerLogin;
+			updateAddress;
+			createInsuranceQuoteRequest;
+		}
+	}
+
+	Subdomain PolicyAndRiskManagement {
+		domainVisionStatement "Aims at promoting the following benefit for a Lakeside Mutual employee: I can manage the customers insurances/policies and respond to customer requests.; Aims at promoting the following benefit for a Lakeside Mutual employee: we can assess the customers risks and design the contracts and policies accordingly."
+		Entity InsuranceQuoteRequest
+		Entity InsuranceQuote
+		Entity Policy
+		Entity CustomerDataReport
+		Entity RiskAssessment
+		Service PoliciesService {
+			answerInsuranceQuoteRequest;
+			createInsuranceQuote;
+			createPolicy;
+			updatePolicy;
+		}
+		Service RiskAssessmentService {
+			downloadCustomerDataReport;
+			createRiskAssessment;
+		}
+	}
+
+}
+
+/* The manually written user stories for the Lakeside Mutual project: */
+UserStory Customers {
+	As a "Lakeside Mutual employee"
+		I want to create a "CustomerProfile"
+		I want to update a "CustomerProfile"
+		I want to create an "Address"
+		I want to update an "Address"
+	so that "I can manage the personal data about the individual customers (e.g., name, email, current address, etc.)."
+}
+
+UserStory InteractionLog {
+	As an "Insurance Company"
+		I want to "log" a "CustomerInteraction"
+	so that "I can track all customer requests and interactions between my employees and the customers."
+}
+
+UserStory SelfService {
+	As a "Customer"
+		I want to create a "CustomerLogin"
+		I want to update an "Address"
+		I want to create an "InsuranceQuoteRequest"
+	so that "I can report address changes and request insurance quotes independently and without the help of an insurance employee."
+}
+
+UserStory Policies {
+	As an "Lakeside Mutual employee"
+		I want to "answer" an "InsuranceQuoteRequest"
+		I want to create an "InsuranceQuote"
+		I want to create a "Policy"
+		I want to update a "Policy"
+	so that "I can manage the customers insurances/policies and respond to customer requests."
+}
+
+UserStory RiskAssessment {
+	As a "Lakeside Mutual employee"
+		I want to "download" a "CustomerDataReport"
+		I want to create an "RiskAssessment"
+	so that "we can assess the customers risks and design the contracts and policies accordingly."
+}
