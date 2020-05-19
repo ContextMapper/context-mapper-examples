@@ -1,0 +1,74 @@
+
+/* Bounded Context ClaimsManagement */
+
+entity Claim {
+	date LocalDate
+	amountClaimed Double
+	description String
+	claimId Blob
+}
+
+
+entity Policy {
+	startDate LocalDate
+	endDate LocalDate
+	policyId Blob
+}
+
+
+entity Contract {
+	contractId Blob
+}
+
+
+entity Agent {
+	personalID Long
+	firstName String
+	lastName String
+	agentId Blob
+}
+
+
+entity Claimant {
+	firstName String
+	lastName String
+	claimantId Blob
+}
+
+microservice Claim, Policy, Contract, Agent, Claimant with ClaimsManagement
+
+application {
+	config {
+		baseName ClaimsManagement,
+		packageName org.contextmapper.generated.claimsmanagement,
+		applicationType microservice
+		serverPort 8081
+	}
+	entities Claim, Policy, Contract, Agent, Claimant
+}
+
+/* relationships */
+relationship OneToMany {
+			Policy{claims} to Claim
+			Contract{policies} to Policy
+			Claimant{claims} to Claim
+}
+relationship OneToOne {
+			Claim{agent} to Agent
+}
+
+/* microservice gateway app */
+application {
+	config {
+		baseName gateway,
+		packageName org.contextmapper.generated.gateway,
+		applicationType gateway
+		serverPort 8080
+	}
+	entities Claim, Policy, Contract, Agent, Claimant
+}
+
+/* additional options */
+dto * with mapstruct
+service * with serviceImpl
+
