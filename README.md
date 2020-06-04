@@ -5,13 +5,15 @@ This project contains example DDD Context Maps written in the ContextMapper DSL.
 Find out more about our DSL and tools on our website [https://contextmapper.org/](https://contextmapper.org/) and [papers](https://contextmapper.org/background-and-publications/) published by [HSR](https://www.hsr.ch).
 
 ## IDE Requirements
-This is a Gradle project and can easily be imported into Eclipse by using the "Existing Gradle Project" importer.
+This is a Gradle project and can easily be imported into any IDE (ideally VS Code or Eclipse with Context Mapper installed) that supports Gradle.
 
-### ContextMapper Eclipse Plugin
-In order to have language support for editing the CML files (Context Mapper Language), you need to install the ContextMapper Eclipse Plugin.
-Use the following Eclipse Update Site to install it:
+### Context Mapper
+In order to have language support for editing the CML files (Context Mapper Language), you need to install ContextMapper in Eclipse or Visual Studio Code:
 
-**[https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/](https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/)**
+ * [Context Mapper for VS Code](https://marketplace.visualstudio.com/items?itemName=contextmapper.context-mapper-vscode-extension) (Marketplace)
+ * [Context Mapper for Eclipse](https://marketplace.eclipse.org/content/context-mapper) (Marketplace)
+   * Alternatively use this Eclipse update site URL for manual installation: 
+     <br>[https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/](https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/)
 
 ## The examples:
 The following graphical illustrations of the context maps are inspired by [Vernon][2] and [Brandolini][3]. Once you modelled your context map in CML you can [generate such graphical representations](https://contextmapper.org/docs/context-map-generator/).
