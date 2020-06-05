@@ -1,0 +1,7 @@
+tasks:
+  - init: ./gradlew build
+image:
+  file: .gitpod.Dockerfile
+vscode:
+  extensions:
+    - contextmapper.context-mapper-vscode-extension@5.12.1:Qyp9s4+yIylFMaNPx2FPtQ==
