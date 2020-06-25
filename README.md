@@ -4,6 +4,12 @@ This project contains example DDD Context Maps written in the ContextMapper DSL.
 
 Find out more about our DSL and tools on our website [https://contextmapper.org/](https://contextmapper.org/) and [papers](https://contextmapper.org/background-and-publications/) published by [HSR](https://www.hsr.ch).
 
+Start exploring the examples in the Context Mapper online IDE right now:
+
+<a href="https://gitpod.io/from-referrer/" style="padding: 10px;">
+    <img src="https://gitpod.io/button/open-in-gitpod.svg" width="150" alt="Push" align="center">
+</a>
+
 ## IDE Requirements
 This is a Gradle project and can easily be imported into any IDE (ideally VS Code or Eclipse with Context Mapper installed) that supports Gradle.
 
