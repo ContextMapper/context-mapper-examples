@@ -16,9 +16,9 @@ data type SolverConfiguration { "algorithm":D<string>, "solverPriorities":{ "cri
 data type SolverPriority { "IGNORE" | "XS" | "S" | "M" | "L" | "XL" | "XXL" }
 
 // Cutting result provided by Service Cutter
-data type SolverResult { "services":{ "nanoentities":D<string>*, "id":char }*, "relations":{ "serviceA":D<string>, "serviceB":D<string>, "sharedEntities":D<string>*, "direction":Direction }* }
+data type SolverResult { "services":{ "nanoentities":D<string>*, "id":Char }*, "relations":{ "serviceA":D<string>, "serviceB":D<string>, "sharedEntities":D<string>*, "direction":Direction }* }
 data type Direction { "OUTGOING" | "INCOMING" | "BIDIRECTIONAL" }
-data type char P // no char primitive type in MDSL
+data type Char P // no char primitive type in MDSL
 
 endpoint type ServiceCutterContextBuilder // stateful type
 	exposes
