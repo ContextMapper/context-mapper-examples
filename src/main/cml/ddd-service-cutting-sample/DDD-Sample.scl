@@ -1,0 +1,87 @@
+
+UseCase ViewTracking {
+	reads "Cargo.trackingId" "HandlingEvent.type" "HandlingEvent.location" "HandlingEvent.completionTime" "Delivery.transportStatus" "Delivery.estimatedArrivalTime" "Delivery.misdirected" "Voyage.voyageNumber" "RouteSpecification.destination"
+}
+UseCase ViewCargos {
+	reads "Cargo.trackingId" "RouteSpecification.destination" "RouteSpecification.arrivalDeadline" "Delivery.routingStatus" "Itinerary.itineraryNumber"
+}
+UseCase BookCargo {
+	reads "Location.unLocode"
+	writes "Cargo.trackingId" "RouteSpecification.origin" "RouteSpecification.arrivalDeadline" "RouteSpecification.destination"
+}
+UseCase ChangeCargoDestination {
+	reads "Cargo.trackingId" "RouteSpecification.destination"
+	writes "RouteSpecification.destination"
+}
+UseCase RouteCargo {
+	reads "Cargo.trackingId" "RouteSpecification.destination" "RouteSpecification.origin" "RouteSpecification.arrivalDeadline" "Location.unLocode" "Voyage.voyageNumber" "CarrierMovement.departureLocation" "CarrierMovement.arrivalLocation" "CarrierMovement.departureTime" "CarrierMovement.arrivalTime"
+	writes "Itinerary.itineraryNumber" "Leg.loadLocation" "Leg.unloadLocation" "Leg.loadTime" "Leg.unloadTime"
+}
+UseCase CreateLocation {
+	writes "Location.unLocode" "Location.name"
+}
+UseCase CreateVoyage {
+	writes "Voyage.voyageNumber"
+}
+UseCase AddCarrierMovement {
+	reads "Voyage.voyageNumber"
+	writes "CarrierMovement.departureLocation" "CarrierMovement.arrivalLocation" "CarrierMovement.departureTime" "CarrierMovement.arrivalTime"
+}
+UseCase HandleCargoEvent {
+	reads "Voyage.voyageNumber" "Cargo.trackingId"
+	writes "HandlingEvent.type" "HandlingEvent.completionTime" "HandlingEvent.registrationTime" "HandlingEvent.location" "Delivery.transportStatus" "Delivery.misdirected" "Delivery.estimatedArrivalTime" "Delivery.isUnloadedAtDestination" "Delivery.routingStatus"
+}
+/* These Aggregates are generated from the CML model. Note that they are overwritten each time you use the service cut generator! */
+Aggregate Cargo {
+	"Leg.loadTime" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "TrackingId.id" , "Delivery.eta" , "Leg.unloadTime" , "Delivery.misdirected" , "RouteSpecification.arrivalDeadline" , "HandlingActivity.handlingActivityType"
+}
+Aggregate Location {
+	"UnLocode.unlocode" , "Location.name"
+}
+Aggregate Handling {
+	"HandlingEvent.completionTime" , "HandlingEvent.registrationTime"
+}
+Aggregate Voyage {
+	"CarrierMovement.arrivalTime" , "VoyageNumber.number" , "CarrierMovement.departureTime"
+}
+/* These Entities are generated from the CML model. Note that they are overwritten each time you use the service cut generator! */
+Entity Cargo {
+}
+Entity Location {
+	"Location.name"
+}
+Entity Voyage {
+}
+/* These predefined services are generated from the CML model. Note that they are overwritten each time you use the service cut generator! */
+PredefinedService CargoTracking {
+	"CarrierMovement.arrivalTime" , "Leg.loadTime" , "VoyageNumber.number" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "Delivery.eta" , "RouteSpecification.arrivalDeadline" , "HandlingEvent.registrationTime" , "CarrierMovement.departureTime" , "HandlingEvent.completionTime" , "UnLocode.unlocode" , "TrackingId.id" , "Location.name" , "Leg.unloadTime" , "Delivery.misdirected" , "HandlingActivity.handlingActivityType"
+}
+
+Compatibilities {
+	ContentVolatility {
+		characteristic Often
+		"HandlingEvent.type", "HandlingEvent.completionTime", "HandlingEvent.registrationTime", "HandlingEvent.location", "Delivery.transportStatus"	
+	}
+	ContentVolatility {
+		characteristic Rarely
+		"Location.unLocode", "Location.name"
+	}
+	StructuralVolatility {
+		characteristic Rarely
+		"Location.unLocode", "Location.name"
+	}
+}
+/* These shared owner groups are generated from the CML model. Note that they are overwritten each time you use the service cut generator! */
+SharedOwnerGroup CargoTracker {
+	"HandlingEvent.completionTime" , "HandlingEvent.registrationTime"
+}
+SharedOwnerGroup VoyageManager {
+	"CarrierMovement.arrivalTime" , "VoyageNumber.number" , "CarrierMovement.departureTime"
+}
+SharedOwnerGroup Administrators {
+	"UnLocode.unlocode" , "Location.name"
+}
+SharedOwnerGroup CargoPlaner {
+	"Leg.loadTime" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "TrackingId.id" , "Delivery.eta" , "Leg.unloadTime" , "Delivery.misdirected" , "RouteSpecification.arrivalDeadline" , "HandlingActivity.handlingActivityType"
+}
+
