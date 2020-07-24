@@ -1,0 +1,24 @@
+algorithm: LEUNG
+algorithmParams:
+  numberOfClusters: 3.0
+  leungDelta: 0.55
+  prune: 0.0
+  extraClusters: 0.0
+  leungM: 0.1
+  power: 1.0
+  inflation: 2.0
+priorities:
+  Identity & Lifecycle Commonality: M
+  Security Constraint: M
+  Storage Similarity: XS
+  Security Criticality: XS
+  Latency: M
+  Structural Volatility: XS
+  Consistency Criticality: XS
+  Predefined Service Constraint: M
+  Availability Criticality: XS
+  Semantic Proximity: M
+  Consistency Constraint: M
+  Shared Owner: M
+  Content Volatility: XS
+  Security Contextuality: M
