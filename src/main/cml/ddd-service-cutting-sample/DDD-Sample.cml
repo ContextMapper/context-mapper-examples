@@ -27,6 +27,7 @@ BoundedContext CargoTracking {
 			- Voyage currentVoyage
 			boolean misdirected
 			Date eta
+			Date estimatedArrivalTime
 			- HandlingActivity nextExpectedActivity
 			boolean isUnloadedAtDestination
 			- RoutingStatus routingStatus
@@ -115,11 +116,11 @@ BoundedContext Administrators { type TEAM }
 
 /* Use Cases (taken from Service Cutter examples) */
 UseCase ViewTracking {
-    reads "Cargo.trackingId", "HandlingEvent.type", "HandlingEvent.location", "HandlingEvent.completionTime", "Delivery.transportStatus", "Delivery.estimatedArrivalTime", "Delivery.misdirected", "Voyage.voyageNumber", "RouteSpecification.destination"
+    reads "Cargo.trackingId", "HandlingEvent.handlingEventType", "HandlingEvent.location", "HandlingEvent.completionTime", "Delivery.transportStatus", "Delivery.estimatedArrivalTime", "Delivery.misdirected", "Voyage.voyageNumber", "RouteSpecification.destination"
 }
 
 UseCase ViewCargos {
-    reads "Cargo.trackingId", "RouteSpecification.destination", "RouteSpecification.arrivalDeadline", "Delivery.routingStatus", "Itinerary.itineraryNumber"
+    reads "Cargo.trackingId", "RouteSpecification.destination", "RouteSpecification.arrivalDeadline", "Delivery.routingStatus"
 }
 
 UseCase BookCargo {
@@ -134,7 +135,7 @@ UseCase ChangeCargoDestination {
 
 UseCase RouteCargo {
     reads "Cargo.trackingId", "RouteSpecification.destination", "RouteSpecification.origin", "RouteSpecification.arrivalDeadline", "Location.unLocode", "Voyage.voyageNumber", "CarrierMovement.departureLocation", "CarrierMovement.arrivalLocation", "CarrierMovement.departureTime", "CarrierMovement.arrivalTime"
-    writes "Itinerary.itineraryNumber", "Leg.loadLocation", "Leg.unloadLocation", "Leg.loadTime", "Leg.unloadTime"
+    writes "Leg.loadLocation", "Leg.unloadLocation", "Leg.loadTime", "Leg.unloadTime"
 }
 
 UseCase CreateLocation {
@@ -152,5 +153,5 @@ UseCase AddCarrierMovement {
 
 UseCase HandleCargoEvent {
     reads "Voyage.voyageNumber", "Cargo.trackingId"
-    writes "HandlingEvent.type", "HandlingEvent.completionTime", "HandlingEvent.registrationTime", "HandlingEvent.location", "Delivery.transportStatus", "Delivery.misdirected", "Delivery.estimatedArrivalTime", "Delivery.isUnloadedAtDestination", "Delivery.routingStatus"
+    writes "HandlingEvent.handlingEventType", "HandlingEvent.completionTime", "HandlingEvent.registrationTime", "HandlingEvent.location", "Delivery.transportStatus", "Delivery.misdirected", "Delivery.estimatedArrivalTime", "Delivery.isUnloadedAtDestination", "Delivery.routingStatus"
 }
