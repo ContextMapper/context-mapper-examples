@@ -1,10 +1,10 @@
-/* This is an example input file for the 'Split Bounded Context by Use Cases' refactoring and shows a small part of the insurance example. */
+/* This is an example input file for the 'Split Bounded Context by Features' refactoring and shows a small part of the insurance example. */
 ContextMap {
 	contains PolicyManagementContext
 
 }
 
-/* With a right-click on the 'PolicyManagementContext' bounded context you can execute the 'Split Bounded Context by Use Cases' refactoring.
+/* With a right-click on the 'PolicyManagementContext' bounded context you can execute the 'Split Bounded Context by Features' refactoring.
  * It will split the existing bounded context and group the two aggregates of the 'CreateOffer4Customer' use case together. The 'Contract'
  * aggregate used by the 'UpdateContract' use case will be separated.
  */
