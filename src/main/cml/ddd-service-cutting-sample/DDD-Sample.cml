@@ -116,42 +116,65 @@ BoundedContext Administrators { type TEAM }
 
 /* Use Cases (taken from Service Cutter examples) */
 UseCase ViewTracking {
-    reads "Cargo.trackingId", "HandlingEvent.handlingEventType", "HandlingEvent.location", "HandlingEvent.completionTime", "Delivery.transportStatus", "Delivery.estimatedArrivalTime", "Delivery.misdirected", "Voyage.voyageNumber", "RouteSpecification.destination"
+	interactions
+		read "Cargo" with its "trackindId",
+		read "HandlingEvent" with its "handlingEventType", "location", "completionTime",
+		read "Delivery" with its "transportStatus", "estimatedArrivalTime", "misdirected", 
+		read "Voyage" with its "voyageNumber",
+		read "RouteSpecification" with its "destination"
 }
 
 UseCase ViewCargos {
-    reads "Cargo.trackingId", "RouteSpecification.destination", "RouteSpecification.arrivalDeadline", "Delivery.routingStatus"
+	interactions
+		read "Cargo" with its "trackingId",
+		read "RouteSpecification" with its "destination", "arrivalDeadline",
+		read "Delivery" with its "routingStatus"
 }
 
 UseCase BookCargo {
-    reads "Location.unLocode"
-    writes "Cargo.trackingId", "RouteSpecification.origin", "RouteSpecification.arrivalDeadline", "RouteSpecification.destination"
+	interactions
+		read "Location" with its "unLocode",
+		update "Cargo" with its "trackingId",
+		update "RouteSpecification" with its "origin", "arrivalDeadline", "destination"
 }
 
 UseCase ChangeCargoDestination {
-    reads "Cargo.trackingId", "RouteSpecification.destination"
-    writes "RouteSpecification.destination"
+	interactions
+		read "Cargo" with its "trackingId",
+		read "RouteSpecification" with its "destination",
+		update "RouteSpecification" with its "destination"
 }
 
 UseCase RouteCargo {
-    reads "Cargo.trackingId", "RouteSpecification.destination", "RouteSpecification.origin", "RouteSpecification.arrivalDeadline", "Location.unLocode", "Voyage.voyageNumber", "CarrierMovement.departureLocation", "CarrierMovement.arrivalLocation", "CarrierMovement.departureTime", "CarrierMovement.arrivalTime"
-    writes "Leg.loadLocation", "Leg.unloadLocation", "Leg.loadTime", "Leg.unloadTime"
+	interactions
+		read "Cargo" with its "trackingId",
+		read "RouteSpecification" with its "destination", "origin", "arrivalDeadline",
+		read "Location" with its "unLocode",
+		read "Voyage" with its "voyageNumber",
+		read "CarrierMovement" with its "departureLocation", "arrivalLocation", "departureTime", "arrivalTime",
+		update "Leg" with its "loadLocation", "unloadLocation", "loadTime", "unloadTime"
 }
 
 UseCase CreateLocation {
-    writes "Location.unLocode", "Location.name"
+	interactions
+		create "Location" with its "unLocode", "name"
 }
 
 UseCase CreateVoyage {
-    writes "Voyage.voyageNumber"
+	interactions
+		create "Voyage" with its "voyageNumber"
 }
 
 UseCase AddCarrierMovement {
-    reads "Voyage.voyageNumber"
-    writes "CarrierMovement.departureLocation", "CarrierMovement.arrivalLocation", "CarrierMovement.departureTime", "CarrierMovement.arrivalTime"
+	interactions
+		read "Voyage" with its "voyageNumber",
+		create "CarrierMovement" with its "departureLocation", "arrivalLocation", "departureTime", "arrivalTime"
 }
 
 UseCase HandleCargoEvent {
-    reads "Voyage.voyageNumber", "Cargo.trackingId"
-    writes "HandlingEvent.handlingEventType", "HandlingEvent.completionTime", "HandlingEvent.registrationTime", "HandlingEvent.location", "Delivery.transportStatus", "Delivery.misdirected", "Delivery.estimatedArrivalTime", "Delivery.isUnloadedAtDestination", "Delivery.routingStatus"
+	interactions
+		read "Voyage" with its "voyageNumber",
+		read "Cargo" with its "trackingId",
+		update "HandlingEvent" with its "handlingEventType", "completionTime", "registrationTime", "location",
+		update "Delivery" with its "transportStatus", "misdirected", "estimatedArrivalTime", "isUnloadedAtDestination", "routingStatus"
 }
