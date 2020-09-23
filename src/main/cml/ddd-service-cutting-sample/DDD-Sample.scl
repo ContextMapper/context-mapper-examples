@@ -1,21 +1,21 @@
 
 UseCase ViewTracking {
-	reads "Cargo.trackingId" "HandlingEvent.handlingEventType" "HandlingEvent.location" "HandlingEvent.completionTime" "Delivery.transportStatus" "Delivery.estimatedArrivalTime" "Delivery.misdirected" "Voyage.voyageNumber" "RouteSpecification.destination"
+	reads "HandlingEvent.completionTime" "Delivery.estimatedArrivalTime" "Cargo.trackindId" "HandlingEvent.handlingEventType" "Delivery.misdirected" "Delivery.transportStatus" "Voyage.voyageNumber" "RouteSpecification.destination" "HandlingEvent.location"
 }
 UseCase ViewCargos {
-	reads "Cargo.trackingId" "RouteSpecification.destination" "RouteSpecification.arrivalDeadline" "Delivery.routingStatus"
+	reads "Cargo.trackingId" "RouteSpecification.arrivalDeadline" "RouteSpecification.destination" "Delivery.routingStatus"
 }
 UseCase BookCargo {
 	reads "Location.unLocode"
-	writes "Cargo.trackingId" "RouteSpecification.origin" "RouteSpecification.arrivalDeadline" "RouteSpecification.destination"
+	writes "Cargo.trackingId" "RouteSpecification.arrivalDeadline" "RouteSpecification.destination" "RouteSpecification.origin"
 }
 UseCase ChangeCargoDestination {
 	reads "Cargo.trackingId" "RouteSpecification.destination"
 	writes "RouteSpecification.destination"
 }
 UseCase RouteCargo {
-	reads "Cargo.trackingId" "RouteSpecification.destination" "RouteSpecification.origin" "RouteSpecification.arrivalDeadline" "Location.unLocode" "Voyage.voyageNumber" "CarrierMovement.departureLocation" "CarrierMovement.arrivalLocation" "CarrierMovement.departureTime" "CarrierMovement.arrivalTime"
-	writes "Leg.loadLocation" "Leg.unloadLocation" "Leg.loadTime" "Leg.unloadTime"
+	reads "Location.unLocode" "CarrierMovement.arrivalTime" "Cargo.trackingId" "CarrierMovement.departureLocation" "RouteSpecification.arrivalDeadline" "Voyage.voyageNumber" "RouteSpecification.destination" "CarrierMovement.arrivalLocation" "CarrierMovement.departureTime" "RouteSpecification.origin"
+	writes "Leg.loadLocation" "Leg.loadTime" "Leg.unloadTime" "Leg.unloadLocation"
 }
 UseCase CreateLocation {
 	writes "Location.unLocode" "Location.name"
@@ -25,62 +25,51 @@ UseCase CreateVoyage {
 }
 UseCase AddCarrierMovement {
 	reads "Voyage.voyageNumber"
-	writes "CarrierMovement.departureLocation" "CarrierMovement.arrivalLocation" "CarrierMovement.departureTime" "CarrierMovement.arrivalTime"
+	writes "CarrierMovement.arrivalTime" "CarrierMovement.departureLocation" "CarrierMovement.arrivalLocation" "CarrierMovement.departureTime"
 }
 UseCase HandleCargoEvent {
-	reads "Voyage.voyageNumber" "Cargo.trackingId"
-	writes "HandlingEvent.handlingEventType" "HandlingEvent.completionTime" "HandlingEvent.registrationTime" "HandlingEvent.location" "Delivery.transportStatus" "Delivery.misdirected" "Delivery.estimatedArrivalTime" "Delivery.isUnloadedAtDestination" "Delivery.routingStatus"
+	reads "Cargo.trackingId" "Voyage.voyageNumber"
+	writes "HandlingEvent.completionTime" "Delivery.estimatedArrivalTime" "Delivery.isUnloadedAtDestination" "HandlingEvent.handlingEventType" "Delivery.misdirected" "Delivery.transportStatus" "HandlingEvent.registrationTime" "HandlingEvent.location" "Delivery.routingStatus"
+}
+Compatibilities {
 }
 /* These Aggregates are generated from the CML model. Note that they are overwritten each time you use the service cut generator! */
-Aggregate Cargo {
-	"Leg.loadTime" , "Delivery.estimatedArrivalTime" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "TrackingId.id" , "Delivery.eta" , "Leg.unloadTime" , "Delivery.misdirected" , "RouteSpecification.arrivalDeadline" , "HandlingActivity.handlingActivityType"
+Aggregate "Cargo" {
+	"Leg.loadLocation" , "Delivery.currentVoyage" , "Leg.loadTime" , "HandlingActivity.location" , "Delivery.transportStatus" , "RouteSpecification.destination" , "Cargo.delivery" , "Cargo.trackingId" , "RouteSpecification.origin" , "Cargo.routeSpecification" , "Cargo.itinerary" , "Delivery.routingStatus" , "Delivery.estimatedArrivalTime" , "Delivery.lastKnownLocation" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "Delivery.eta" , "RouteSpecification.arrivalDeadline" , "Leg.voyage" , "HandlingActivity.voyage" , "Delivery.nextExpectedActivity" , "TrackingId.id" , "Itinerary.legs" , "Delivery.lastEvent" , "Leg.unloadTime" , "Delivery.misdirected" , "Leg.unloadLocation" , "HandlingActivity.handlingActivityType" , "Cargo.origin"
 }
-Aggregate Location {
-	"UnLocode.unlocode" , "Location.name"
+Aggregate "Location" {
+	"Location.unLocode" , "UnLocode.unlocode" , "Location.name"
 }
-Aggregate Handling {
-	"HandlingEvent.completionTime" , "HandlingEvent.registrationTime"
+Aggregate "Handling" {
+	"HandlingHistory.handlingEvents" , "HandlingEvent.completionTime" , "HandlingEvent.handlingEventType" , "HandlingEvent.voyage" , "HandlingEvent.cargo" , "HandlingEvent.registrationTime" , "HandlingEvent.location"
 }
-Aggregate Voyage {
-	"CarrierMovement.arrivalTime" , "VoyageNumber.number" , "CarrierMovement.departureTime"
+Aggregate "Voyage" {
+	"CarrierMovement.arrivalTime" , "VoyageNumber.number" , "CarrierMovement.departureLocation" , "Voyage.voyageNumber" , "Voyage.schedule" , "CarrierMovement.arrivalLocation" , "CarrierMovement.departureTime" , "Schedule.carrierMovements"
 }
 /* These Entities are generated from the CML model. Note that they are overwritten each time you use the service cut generator! */
-Entity Cargo {
+Entity "Cargo" {
+	"Cargo.trackingId" , "Cargo.origin" , "Cargo.routeSpecification" , "Cargo.itinerary" , "Cargo.delivery"
 }
-Entity Location {
-	"Location.name"
+Entity "Location" {
+	"Location.unLocode" , "Location.name"
 }
-Entity Voyage {
+Entity "Voyage" {
+	"Voyage.voyageNumber" , "Voyage.schedule"
 }
 /* These predefined services are generated from the CML model. Note that they are overwritten each time you use the service cut generator! */
-PredefinedService CargoTracking {
-	"CarrierMovement.arrivalTime" , "Leg.loadTime" , "Delivery.estimatedArrivalTime" , "VoyageNumber.number" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "Delivery.eta" , "RouteSpecification.arrivalDeadline" , "HandlingEvent.registrationTime" , "CarrierMovement.departureTime" , "HandlingEvent.completionTime" , "UnLocode.unlocode" , "TrackingId.id" , "Location.name" , "Leg.unloadTime" , "Delivery.misdirected" , "HandlingActivity.handlingActivityType"
-}
-
-Compatibilities {
-	ContentVolatility {
-		characteristic Often
-		"HandlingEvent.handlingEventType", "HandlingEvent.completionTime", "HandlingEvent.registrationTime", "HandlingEvent.location", "Delivery.transportStatus"	
-	}
-	ContentVolatility {
-		characteristic Rarely
-		"Location.unLocode", "Location.name"
-	}
-	StructuralVolatility {
-		characteristic Rarely
-		"Location.unLocode", "Location.name"
-	}
+PredefinedService "CargoTracking" {
+	"Location.unLocode" , "Leg.loadLocation" , "Delivery.currentVoyage" , "Leg.loadTime" , "HandlingActivity.location" , "HandlingEvent.cargo" , "Delivery.transportStatus" , "RouteSpecification.destination" , "HandlingEvent.registrationTime" , "CarrierMovement.departureTime" , "Cargo.delivery" , "Schedule.carrierMovements" , "HandlingEvent.completionTime" , "UnLocode.unlocode" , "Cargo.trackingId" , "HandlingEvent.handlingEventType" , "Location.name" , "CarrierMovement.arrivalLocation" , "RouteSpecification.origin" , "Cargo.routeSpecification" , "Cargo.itinerary" , "Delivery.routingStatus" , "HandlingHistory.handlingEvents" , "CarrierMovement.arrivalTime" , "Delivery.estimatedArrivalTime" , "Delivery.lastKnownLocation" , "VoyageNumber.number" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "CarrierMovement.departureLocation" , "Delivery.eta" , "RouteSpecification.arrivalDeadline" , "Leg.voyage" , "Voyage.voyageNumber" , "Voyage.schedule" , "HandlingActivity.voyage" , "HandlingEvent.location" , "Delivery.nextExpectedActivity" , "TrackingId.id" , "HandlingEvent.voyage" , "Itinerary.legs" , "Delivery.lastEvent" , "Leg.unloadTime" , "Delivery.misdirected" , "Leg.unloadLocation" , "HandlingActivity.handlingActivityType" , "Cargo.origin"
 }
 /* These shared owner groups are generated from the CML model. Note that they are overwritten each time you use the service cut generator! */
-SharedOwnerGroup CargoTracker {
-	"HandlingEvent.completionTime" , "HandlingEvent.registrationTime"
+SharedOwnerGroup "CargoTracker" {
+	"HandlingHistory.handlingEvents" , "HandlingEvent.completionTime" , "HandlingEvent.handlingEventType" , "HandlingEvent.voyage" , "HandlingEvent.cargo" , "HandlingEvent.registrationTime" , "HandlingEvent.location"
 }
-SharedOwnerGroup VoyageManager {
-	"CarrierMovement.arrivalTime" , "VoyageNumber.number" , "CarrierMovement.departureTime"
+SharedOwnerGroup "VoyageManager" {
+	"CarrierMovement.arrivalTime" , "VoyageNumber.number" , "CarrierMovement.departureLocation" , "Voyage.voyageNumber" , "Voyage.schedule" , "CarrierMovement.arrivalLocation" , "CarrierMovement.departureTime" , "Schedule.carrierMovements"
 }
-SharedOwnerGroup Administrators {
-	"UnLocode.unlocode" , "Location.name"
+SharedOwnerGroup "Administrators" {
+	"Location.unLocode" , "UnLocode.unlocode" , "Location.name"
 }
-SharedOwnerGroup CargoPlaner {
-	"Leg.loadTime" , "Delivery.estimatedArrivalTime" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "TrackingId.id" , "Delivery.eta" , "Leg.unloadTime" , "Delivery.misdirected" , "RouteSpecification.arrivalDeadline" , "HandlingActivity.handlingActivityType"
+SharedOwnerGroup "CargoPlaner" {
+	"Leg.loadLocation" , "Delivery.currentVoyage" , "Leg.loadTime" , "HandlingActivity.location" , "Delivery.transportStatus" , "RouteSpecification.destination" , "Cargo.delivery" , "Cargo.trackingId" , "RouteSpecification.origin" , "Cargo.routeSpecification" , "Cargo.itinerary" , "Delivery.routingStatus" , "Delivery.estimatedArrivalTime" , "Delivery.lastKnownLocation" , "Delivery.calculatedAt" , "Delivery.isUnloadedAtDestination" , "Delivery.eta" , "RouteSpecification.arrivalDeadline" , "Leg.voyage" , "HandlingActivity.voyage" , "Delivery.nextExpectedActivity" , "TrackingId.id" , "Itinerary.legs" , "Delivery.lastEvent" , "Leg.unloadTime" , "Delivery.misdirected" , "Leg.unloadLocation" , "HandlingActivity.handlingActivityType" , "Cargo.origin"
 }

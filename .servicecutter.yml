@@ -1,15 +1,10 @@
 algorithm: MARKOV_CLUSTERING
 algorithmParams:
-  numberOfClusters: 3.0
   leungDelta: 0.55
   mclExpansionOperations: 2.0
   mclPowerCoefficient: 2.0
-  prune: 0.0
-  extraClusters: 0.0
   leungM: 0.1
   cwNodeWeighting: 0.0
-  power: 1.0
-  inflation: 2.0
 priorities:
   Identity & Lifecycle Commonality: M
   Security Constraint: M

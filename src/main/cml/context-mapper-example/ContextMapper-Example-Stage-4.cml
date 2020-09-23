@@ -122,7 +122,7 @@ BoundedContext StructuredServiceDecomposition {
 			- List<^Entity> entities
 			- List<PredefinedService> predefinedServices
 			- List<SeparatedSecurityZone> separtedSecurityZones
-			- List<SecurityAccessGroup> securityAccessGroup
+			- List<SecurityAccessGroup> ^securityAccessGroup
 			- List<Compatibilities> compatibilities
 		}
 		
@@ -151,12 +151,12 @@ BoundedContext StructuredServiceDecomposition {
 		}
 		
 		Entity Compatibilities {
-			- List<Characteristic> contentVolatility
-			- List<Characteristic> structuralVolatility
-			- List<Characteristic> availabilityCriticality
-			- List<Characteristic> consistencyCriticality
-			- List<Characteristic> storageSimilarity
-			- List<Characteristic> securityCriticality
+			- List<Characteristic> ^contentVolatility
+			- List<Characteristic> ^structuralVolatility
+			- List<Characteristic> ^availabilityCriticality
+			- List<Characteristic> ^consistencyCriticality
+			- List<Characteristic> ^storageSimilarity
+			- List<Characteristic> ^securityCriticality
 		}
 		
 		Entity Characteristic {
