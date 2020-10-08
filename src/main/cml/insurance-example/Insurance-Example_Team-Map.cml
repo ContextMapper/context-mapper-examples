@@ -3,20 +3,26 @@ ContextMap InsuranceTeamMap {
 	type = ORGANIZATIONAL
 	state = TO_BE
 	
+	/* Add contexts that represent subsystems/components to this organizational map: */
+	contains CustomerManagementContext, CustomerSelfServiceContext, PolicyManagementContext, RiskManagementContext
+
 	/* Add teams to this organizational map: */
-	contains CustomersFrontofficeTeam
-	contains CustomersBackofficeTeam
-	contains ContractsTeam
-	contains ClaimsTeam
+	contains CustomersBackofficeTeam, CustomersFrontofficeTeam, ContractsTeam
 	
+	/* Define the subsystem/component relationships: */
+
+	CustomerSelfServiceContext [D,C]<-[U,S] CustomerManagementContext
+
+	PolicyManagementContext [D,CF]<-[U,OHS,PL] CustomerManagementContext
+		
+	PolicyManagementContext [P]<->[P] RiskManagementContext
+
 	/* Define the team relationships: */
 	 
-	CustomersBackofficeTeam [U,S]->[D,C] CustomersFrontofficeTeam : CustomerTeamsRelationship
+	CustomersBackofficeTeam [U,S]->[D,C] CustomersFrontofficeTeam
 	
 	CustomersBackofficeTeam [U]->[D] ContractsTeam
 	
-	ContractsTeam [P]<->[P] ClaimsTeam 
-	 
 }
 
 /* Team Definitions */
@@ -30,14 +36,9 @@ BoundedContext CustomersFrontofficeTeam implements CustomerManagementDomain real
 	domainVisionStatement = "This team is responsible for implementing the front-office application for the insurance customers."
 }
 
-BoundedContext ContractsTeam implements PolicyManagementDomain realizes PolicyManagementContext {
+BoundedContext ContractsTeam implements PolicyManagementDomain, RiskManagementDomain realizes PolicyManagementContext, RiskManagementContext {
 	type = TEAM
-	domainVisionStatement = "This team is responsible for implementing the contract- and policy-management modules in the back-office system."
-}
-
-BoundedContext ClaimsTeam implements RiskManagementDomain realizes RiskManagementContext {
-	type = TEAM
-	domainVisionStatement = "This team is responsible for for implementing the claims module and providing customer risks information."
+	domainVisionStatement = "This team is responsible for implementing the contract-, policy-, and risk-management modules in the back-office system."
 }
 
 /* Bounded Context Definitions */

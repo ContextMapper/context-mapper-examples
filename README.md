@@ -44,7 +44,7 @@ The insurance example contains an example for a classic DDD context map written 
 #### Team Map
 It further contains a team map, illustrating the teams and their relationships. Additionally, CML allows to define which bounded contexts are implemented by which teams.
 
-<img alt="Insurance Company Example Context Map" src="./src/main/cml/insurance-example/images/TeamMap-Illustration.png" width="600px">
+<img alt="Insurance Company Example Context Map" src="./src/main/cml/insurance-example/images/TeamMap-Illustration-1.png">
 
 ### [Lakeside Mutual](./src/main/cml/lakeside-mutual)
 The [Lakeside Mutual](https://github.com/Microservice-API-Patterns/LakesideMutual) microservice project is another fictitious insurance application that demonstrates microservices and the application of 

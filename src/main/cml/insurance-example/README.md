@@ -30,11 +30,17 @@ The following bounded contexts are involved in the system:
 ## Team Map
 Besides classic context maps with bounded contexts, CML supports modeling teams and their relationships as it is possible with bounded contexts. This is done by simply change the type of a bounded context from SYSTEM, FEATURE or APPLICATION to TEAM. Note that the type of the context map is ORGANIZATIONAL in this case.
 
- * [Insurance-Example_Team-Map](./Insurance-Example_Team-Map.cml): A team map example for the insurance example
+ * [Insurance-Example_Team-Map](./Insurance-Example_Team-Map.cml): A team map example for the insurance scenario
 
-The following figure is an illustration of the team map, additionally showing the `realization` references:
+As you can see in the example linked above, you can further use the _realizes_ to define which teams work on which systems, applications, or features. By using the graphical Context Map generator, you can then generate team maps that illustrate the relations between development teams and system bounded contexts.
 
-<img alt="Insurance Company Example Team Map" src="./images/TeamMap-Illustration.png" width="650px">
+Depending how you parameterize the generator, the produced illustrations will be unclustered...
+
+<img alt="Insurance Company Example Team Map (Unclustered)" src="./images/TeamMap-Illustration-1.png">
+
+... or clustered:
+
+<img alt="Insurance Company Example Team Map (Clustered)" src="./images/TeamMap-Illustration-2.png">
 
 ## Bounded Contexts
  
