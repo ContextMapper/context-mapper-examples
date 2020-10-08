@@ -36,11 +36,11 @@ As you can see in the example linked above, you can further use the _realizes_ t
 
 Depending how you parameterize the generator, the produced illustrations will be unclustered...
 
-<img alt="Insurance Company Example Team Map (Unclustered)" src="./images/TeamMap-Illustration-1.png" width="650px">
+<img alt="Insurance Company Example Team Map (Unclustered)" src="./images/TeamMap-Illustration-1.png">
 
 ... or clustered:
 
-<img alt="Insurance Company Example Team Map (Clustered)" src="./images/TeamMap-Illustration-2.png" width="650px">
+<img alt="Insurance Company Example Team Map (Clustered)" src="./images/TeamMap-Illustration-2.png">
 
 ## Bounded Contexts
  
