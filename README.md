@@ -2,7 +2,7 @@
 # DSL Examples [![Build Status](https://travis-ci.com/ContextMapper/context-mapper-examples.svg?branch=master)](https://travis-ci.com/ContextMapper/context-mapper-examples) [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/ContextMapper/context-mapper-examples) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 This project contains example DDD Context Maps written in the ContextMapper DSL. The examples are provided for two different types of users. The simpler business analysis examples should be easy to understand for business analysts without technical background, while the detailed examples are meant for software architects and/or engineers.  
 
-Find out more about our DSL and tools on our website [https://contextmapper.org/](https://contextmapper.org/) and [papers](https://contextmapper.org/background-and-publications/) published by [HSR](https://www.hsr.ch).
+Find out more about our DSL and tools on our website [https://contextmapper.org/](https://contextmapper.org/) and [papers](https://contextmapper.org/background-and-publications/) published by [OST (former HSR)](https://www.ost.ch).
 
 Start exploring the examples in the Context Mapper online IDE right now:
 
