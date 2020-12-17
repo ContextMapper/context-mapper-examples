@@ -1,0 +1,60 @@
+BoundedContext ClaimsManagement {
+	Application {
+		Command SubmitClaim
+		Command CheckClaimDocumentation
+		Command CheckInsurance
+		Command AcceptClaim
+		Command RejectClaim
+		Command SchedulePayment
+		Command NofifyCustomer
+		
+		Flow ClaimsFlow {
+			command SubmitClaim emits event ClaimSubmitted
+			event ClaimSubmitted triggers command CheckClaimDocumentation
+			
+			command CheckClaimDocumentation emits event ClaimRegistered
+			event ClaimRegistered triggers command CheckInsurance
+			command CheckInsurance emits event AssessmentPerformed
+			event AssessmentPerformed triggers command AcceptClaim X RejectClaim // X: alternative command invokation (exclusive; only one); 
+			                                                                     // +: concurrent command invokation (all commands called); 
+			                                                                     // O: alternative command invokation (inclusive; one or multiple)
+			
+			command AcceptClaim delegates to Claims [OPEN -> ACCEPTED] emits event ClaimAccepted // optional: define state transition that is done on command invokation
+			command RejectClaim delegates to Claims [OPEN -> REJECTED] emits event ClaimRejected
+			
+			event ClaimAccepted triggers command SchedulePayment
+			command SchedulePayment emits event PaymentPerformed
+			
+			event PaymentPerformed triggers command NofifyCustomer
+			event ClaimRejected triggers command NofifyCustomer
+			
+			command NofifyCustomer delegates to Claims [ACCEPTED, REJECTED -> CUSTOMER_NOTIFIED] emits event CustomerNotified
+		}
+	}
+	
+	Aggregate Claims {
+		Entity Claim {
+			aggregateRoot
+			long claimId
+			CustomerId customer
+			String description
+			Blob requestDocument
+			boolean isComplete
+			boolean isAssessed
+			- ClaimState claimState
+		}
+		enum ClaimState {
+			aggregateLifecycle // enum marked as "state defining" for this aggregate
+			OPEN, REJECTED, ACCEPTED, CUSTOMER_NOTIFIED
+		}
+		
+		DomainEvent ClaimSubmitted
+		DomainEvent ClaimRegistered
+		DomainEvent AssessmentPerformed
+		DomainEvent ClaimAccepted
+		DomainEvent ClaimRejected
+		DomainEvent PaymentPerformed
+		DomainEvent CustomerNotified
+	}
+}
+

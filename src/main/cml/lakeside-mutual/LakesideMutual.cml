@@ -113,11 +113,11 @@ BoundedContext ClaimsManagement implements ClaimsManagement {
 		DomainEvent ClaimRejected extends @AbstractClaimEvent // triggers NofifyCustomer command
 	
 		Service ClaimService {
-			@ClaimRegistered checkDocumentation(@CheckClaimDocumentation command);
+			@ClaimRegistered checkDocumentation(@CheckClaimDocumentation cmd);
 			
-			@AssessmentPerformed checkInsurance(@CheckInsurance command);
+			@AssessmentPerformed checkInsurance(@CheckInsurance cmd);
 			
-			@ClaimAccepted acceptClaim(@AcceptClaim command);
+			@ClaimAccepted acceptClaim(@AcceptClaim cmd);
 			
 			@ClaimRejected rejectClaim(@RejectClaim commandcal);
 		}
@@ -153,9 +153,9 @@ BoundedContext ClaimsManagement implements ClaimsManagement {
 		DomainEvent PaymentPerformed extends @AbstractNotificationEvent // triggers NofifyCustomer command
 		
 		Service PaymentService {
-			@PaymentScheduled schedulePayment(@SchedulePayment command);
+			@PaymentScheduled schedulePayment(@SchedulePayment cmd);
 			
-			@PaymentPerformed performPayment(@PerformPayment command);
+			@PaymentPerformed performPayment(@PerformPayment cmd);
 		}
 	}
 	
@@ -173,7 +173,7 @@ BoundedContext ClaimsManagement implements ClaimsManagement {
 		}
 		
 		Service NotificationService {
-			@CustomerNotified notifyCustomer(@NofifyCustomer command);
+			@CustomerNotified notifyCustomer(@NofifyCustomer cmd);
 		}
 	}
 }

@@ -1,0 +1,67 @@
+/**
+ * A RequestStatus is a value object that is used to represent
+ * the current status of an insurance quote request.
+ *
+ * The following diagram shows the possible state transitions:
+ *
+ * <pre>
+ *
+ *                                               │
+ *                                               ▼
+ *                                        ┌────────────┐
+ *                                        │  REQUEST_  │
+ *                                        │ SUBMITTED  │
+ *                                        └────────────┘
+ *                                               │
+ *                             ┌─────────────────┴────────────────┐
+ *                             │                                  │
+ *                             ▼                                  ▼
+ *                      ┌────────────┐                     ╔════════════╗
+ *                      │   QUOTE_   │                     ║  REQUEST_  ║
+ *          ┌───────────│  RECEIVED  │─────────────┐       ║  REJECTED  ║
+ *          │           └────────────┘             │       ╚════════════╝
+ *          │                  │                   │
+ *          │                  │                   │
+ *          ▼                  ▼                   ▼
+ *   ╔════════════╗     ┌────────────┐      ╔════════════╗
+ *   ║   QUOTE_   ║     │   QUOTE_   │      ║   QUOTE_   ║
+ *   ║  REJECTED  ║     │  ACCEPTED  │─────▶║  EXPIRED   ║
+ *   ╚════════════╝     └────────────┘      ╚════════════╝
+ *                             │
+ *                             │
+ *                             ▼
+ *                      ╔════════════╗
+ *                      ║  POLICY_   ║
+ *                      ║  CREATED   ║
+ *                      ╚════════════╝
+ *
+ * </pre>
+ */
+ BoundedContext InsuranceQuotes {
+ 	
+ 	Aggregate QuoteRequest {
+ 		
+ 		// also possible on Entity operations:
+ 		Entity QuoteRequest {
+ 			aggregateRoot
+ 			
+ 			// just grammar examples:
+ 			// def @Object readOperation() : read-only;
+ 			// def void writeOperation(@Object param) : write;
+ 			// def void writeOperation(@Object param) : write [STATE1 -> STATE2];
+ 			// def void writeOperation(@Object param) : write [STATE1 -> STATE2 X STATE3];
+ 			
+ 			def void submit() : write [-> REQUEST_SUBMITTED];
+ 			def void reject(): write [REQUEST_SUBMITTED -> REQUEST_REJECTED];
+ 			def void receiveQuote() : write [REQUEST_SUBMITTED -> QUOTE_RECEIVED];
+ 			def void checkQuote() : write [QUOTE_RECEIVED -> QUOTE_REJECTED X QUOTE_ACCEPTED X QUOTE_EXPIRED];
+ 			def void createPolicy() : write [QUOTE_ACCEPTED -> POLICY_CREATED X QUOTE_EXPIRED];
+ 		}
+ 		
+ 		enum RequestState {
+ 			aggregateLifecycle
+ 			REQUEST_SUBMITTED, QUOTE_RECEIVED, REQUEST_REJECTED, QUOTE_ACCEPTED, QUOTE_REJECTED, QUOTE_EXPIRED, POLICY_CREATED
+ 		}
+ 	}
+ 	
+ }
