@@ -1,4 +1,4 @@
-name: Build Context Mapper Examples
+name: Build
 
 on: 
   push:
