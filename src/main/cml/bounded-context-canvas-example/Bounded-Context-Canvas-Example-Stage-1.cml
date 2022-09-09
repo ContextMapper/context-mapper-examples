@@ -1,0 +1,22 @@
+/* Example Context Map written using a Bounded Context Canvas. */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+
+	/* Add bounded contexts to this context map: */
+	contains CustomerManagementContext
+}
+
+/* Domain & Subdomain Definitions */
+Domain InsuranceDomain {
+	Subdomain CustomerManagementDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdomain managing everything customer-related."
+	}
+}
+
+/* Bounded Context Definitions */
+BoundedContext CustomerManagementContext implements CustomerManagementDomain {
+    businessModel = ENGAGEMENT
+    evolution = CUSTOM_BUILT
+}
