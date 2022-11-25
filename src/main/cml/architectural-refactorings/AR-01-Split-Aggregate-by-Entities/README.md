@@ -53,7 +53,6 @@ BoundedContext CustomerManagementContext {
     Entity Customer {
       aggregateRoot
       
-      - SocialInsuranceNumber sin
       String firstname
       String lastname
       - List<Address> addresses
@@ -92,7 +91,6 @@ BoundedContext CustomerManagementContext {
     Entity Customer {
       aggregateRoot
       
-      - SocialInsuranceNumber sin
       String firstname
       String lastname
       - List<Address> addresses
