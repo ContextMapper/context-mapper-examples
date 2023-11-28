@@ -1,8 +1,5 @@
 /**
- * A RequestStatus is a value object that is used to represent
- * the current status of an insurance quote request.
- *
- * The following diagram shows the possible state transitions:
+ * Example coordination of services between three Bounded Contexts.
  *
  */
 ContextMap {
