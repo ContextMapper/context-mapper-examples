@@ -17,6 +17,6 @@ Domain InsuranceDomain {
 
 /* Bounded Context Definitions */
 BoundedContext CustomerManagementContext implements CustomerManagementDomain {
-    businessModel = ENGAGEMENT
+    businessModel = "ENGAGEMENT"
     evolution = CUSTOM_BUILT
 }
