@@ -1,13 +1,13 @@
 plugins {
   id "java"
-  id "org.xtext.builder" version "2.0.7"
+  id "org.xtext.builder" version "3.0.2"
 }
 
 group 'org.contextmapper.dsl'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 repositories {
     jcenter()
