@@ -1,0 +1,54 @@
+/**
+ * A RequestStatus is a value object that is used to represent
+ * the current status of an insurance quote request.
+ *
+ * The following diagram shows the possible state transitions:
+ *
+ */
+ContextMap {
+	contains ClaimsManagement
+	contains InsuranceManagement
+	contains PaymentManagement
+
+	ClaimsManagement <-> InsuranceManagement
+
+	ClaimsManagement <-> PaymentManagement
+}
+
+BoundedContext ClaimsManagement {
+	Application {
+
+		Coordination SubmitValidClaimCoordination {
+			ClaimsManagement::ClaimsApplicationService::submitClaim;
+			InsuranceManagement::InsuranceApplicationService::checkInsurance;
+			ClaimsManagement::ClaimsApplicationService::acceptClaim;
+			PaymentManagement::PaymentApplicationService::performPayment;
+		}
+		
+		Service ClaimsApplicationService {
+			void submitClaim(@Claim claim);
+			void acceptClaim(@Claim claim);
+		}
+	}
+	
+	Aggregate Claims {
+		Entity Claim
+	}
+}
+
+BoundedContext InsuranceManagement {
+	Application {
+		Service InsuranceApplicationService {
+			void checkInsurance(@Claim claim);
+		}
+	}
+}
+
+BoundedContext PaymentManagement {
+	Application {
+		Service PaymentApplicationService {
+			void performPayment(@Claim claim);
+		}
+	}
+}
+
