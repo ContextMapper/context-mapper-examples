@@ -1,0 +1,16 @@
+import 'bounded-context-definition.cml'
+
+ContextMap {
+  type = SYSTEM_LANDSCAPE
+  state = AS_IS
+
+  contains ContextoRecopilacionDeDatos
+  contains ContextoInvestigacion
+  contains ContextoAnalitica
+  contains ContextoCalidad
+ 	
+  ContextoRecopilacionDeDatos [P]<->[P] ContextoInvestigacion
+  ContextoAnalitica [ACL] <- [U] ContextoRecopilacionDeDatos
+  ContextoAnalitica [ACL] <- [U] ContextoInvestigacion
+  ContextoAnalitica [U] -> [D] ContextoCalidad
+}
