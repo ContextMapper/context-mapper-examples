@@ -55,23 +55,3 @@ Domain DominioProveerInformacionDeBienesComerciales {
   }
 
 }
-
-BoundedContext ContextoRecopilacionDeDatos implements DominioProveerInformacionDeBienesComerciales {
-  type = FEATURE  
-  domainVisionStatement = "Recopilar de forma completa, precisa y oportuna todos los datos relevantes sobre propiedades, inquilinos y transacciones inmobiliarias en los mercados de interés, para entregar información valiosa a nuestros clientes"
-}
-
-BoundedContext ContextoInvestigacion implements DominioProveerInformacionDeBienesComerciales {
-  type = FEATURE  
-  domainVisionStatement = "Investigar y entender a profundidad las necesidades y dinámicas de los mercados inmobiliarios en donde tenemos presencia, para diseñar los mejores productos y servicios de información para nuestros clientes"
-}
-
-BoundedContext ContextoAnalitica implements DominioProveerInformacionDeBienesComerciales {
-  type = FEATURE  
-  domainVisionStatement = "Proveer información procesable, integrada y de alto valor agregado a partir del análisis de grandes volúmenes de datos inmobiliarios, para soportar la toma de decisiones de negocio de nuestros clientes"
-}
-
-BoundedContext ContextoCalidad implements DominioProveerInformacionDeBienesComerciales {
-  type = FEATURE  
-  domainVisionStatement = "Cumplir con los más altos estándares de calidad, actualidad y precisión de los datos entregados a clientes, para consolidar nuestra posición como el proveedor de información inmobiliaria más confiable del mercado"
-}
