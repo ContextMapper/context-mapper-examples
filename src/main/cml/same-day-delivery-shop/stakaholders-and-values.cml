@@ -1,0 +1,127 @@
+
+
+BoundedContext SameDayDelivery
+
+Stakeholders of SameDayDelivery {
+	StakeholderGroup Online_Shopping_Company {
+		Stakeholder Development_Team {
+			influence MEDIUM
+			interest HIGH
+		}
+		Stakeholder Product_Management {
+			influence HIGH
+			interest HIGH
+		}
+		Stakeholder Customer_Relationship_Manager {
+			influence HIGH
+			interest MEDIUM
+		}
+	}
+	
+	StakeholderGroup Product_Suppliers {
+		Stakeholder Managers
+		Stakeholder Logistics_Warehouse_Staff_of_Suppliers
+		Stakeholder Delivery_Staff_of_Suppliers
+	}
+	
+	StakeholderGroup Delivery_Partners {
+		Stakeholder Route_Planners
+		Stakeholder Drivers
+	}
+	
+	StakeholderGroup Competing_Companies
+	
+	StakeholderGroup Logistics_Team {
+		Stakeholder Logistics_Manager
+		Stakeholder Warehouse_Staff
+	}
+	
+	
+	Stakeholder Government
+	
+	StakeholderGroup Customers_and_Shoppers {
+		Stakeholder Shoppers_in_Emergency_Situations
+		Stakeholder Others
+	}
+}
+
+ValueRegister SD_Values for SameDayDelivery {
+	
+	// just values without using "cluster"
+	
+	Value WorkLifeBalance {
+		core 
+		demonstrator "Drivers value a healthy work-life-balance"
+		Stakeholder Drivers {
+			priority HIGH
+			impact HIGH
+			consequences
+				bad "SDD will harm work-life-balance of drivers"
+				action "hire more drivers" ACT	
+		}
+	}	
+	
+	Value Revenue {
+		demonstrator "Online shopping company needs revenue"
+		Stakeholder Online_Shopping_Company {
+			priority HIGH
+			impact MEDIUM
+			consequences
+				good "increased number of customers"
+		} 
+	}
+	
+	// using cluster
+	
+	ValueCluster Autonomy {
+		core AUTONOMY
+		demonstrator "customer values potentially increased freedom"
+		demonstrator "delivery staff's freedom might suffer because of work-life-balance"
+		
+		Value Freedom {
+			Stakeholder Customers_and_Shoppers {
+				priority HIGH
+				impact MEDIUM
+				consequences
+					good "increased freedom"
+			}
+			
+			Stakeholder Delivery_Staff_of_Suppliers {
+				priority HIGH
+				impact HIGH
+				consequences
+					bad "work-life-balance"
+			}
+		}
+		
+		Value Sustainability {
+			Stakeholder Shoppers_in_Emergency_Situations  {
+				priority HIGH
+				impact LOW
+				consequences
+					bad "fostering unsustainable behavior (always ordering last minute)"
+			}
+		}
+	}
+	
+	// using ESE formats:
+	
+	ValueEpic IncreasedFreedom {
+		As a Customers_and_Shoppers I value "Freedom" as demonstrated in
+			realization of "being able to order quickly in an emergency situation"
+			reduction of "Sustainability"
+	}
+	
+	ValueNarrative IncreasedFreedom2 {
+		When the SOI executes "Same Day Delivery", stakeholders expect it to promote, protect or create "Freedom", possibly degrading or prohibiting "Sustainability"
+		with the following externally observable and/or internally auditable behavior: "preAndPostConditions"
+	}
+	
+	ValueWeigthing IncreasedFreedom3 {
+		In the context of the SOI, stakeholder Customers_and_Shoppers values "Freedom" more than "Sustainability" 
+		expecting benefits such as "less stress in emergency situation" running the risk of harms such as "more rides of drivers harm environmental sustainability"
+	}
+}
+
+
+
