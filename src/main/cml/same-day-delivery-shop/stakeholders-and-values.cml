@@ -123,5 +123,19 @@ ValueRegister SD_Values for SameDayDelivery {
 	}
 }
 
+// user story extensions
+
+UserStory SameDayDelivery_1 {
+	As a "Shopper" I want to "instantly receive" an "Order" so that "I am efficient" 
+	and that "MyQualityOfLife" is promoted
+	accepting that "WorkLifeBalanceOfDeliveryStaff"  is reduced   	
+}
+
+UserStory SameDayDelivery_2 {
+	As a "Shopper" I want to "instantly receive" an "Order" so that "I am efficient" 
+	and that "MyQualityOfLife", "Autonomy" are promoted
+	accepting that "WorkLifeBalanceOfDeliveryStaff", "Transparency" are harmed   	
+}
+
 
 
