@@ -1,0 +1,101 @@
+
+
+BoundedContext SameDayDelivery
+
+
+Stakeholders of SameDayDelivery {
+	StakeholderGroup Online_Shopping_Company {
+		Stakeholder Development_Team {
+			influence MEDIUM
+			interest HIGH
+		}
+		Stakeholder Product_Management {
+			influence HIGH
+			interest HIGH
+		}
+		Stakeholder Customer_Relationship_Manager {
+			influence HIGH
+			interest MEDIUM
+		}
+	}
+	StakeholderGroup Product_Suppliers {
+		Stakeholder Managers
+		Stakeholder Logistics_Warehouse_Staff_of_Suppliers
+		Stakeholder Delivery_Staff_of_Suppliers
+	}
+	StakeholderGroup Delivery_Partners {
+		Stakeholder Route_Planners
+		Stakeholder Drivers
+	}
+	StakeholderGroup Competing_Companies
+	
+	StakeholderGroup Logistics_Team {
+		Stakeholder Logistics_Manager
+		Stakeholder Warehouse_Staff
+	}
+	Stakeholder Government
+	
+	StakeholderGroup Customers_and_Shoppers {
+		Stakeholder Shoppers_in_Emergency_Situations
+		Stakeholder Others
+	}
+}
+ValueRegister SD_Values for SameDayDelivery {
+	ValueCluster Autonomy {
+		core AUTONOMY
+		demonstrator "customer values potentially increased freedom"
+		demonstrator "delivery staff's freedom might suffer because of work-life-balance"
+		Value Freedom {
+			Stakeholder Customers_and_Shoppers {
+				priority HIGH
+				impact MEDIUM
+				consequences
+					good "increased freedom"
+			}
+		}
+		Value Quality_of_Life {
+			Stakeholder Customers_and_Shoppers {
+				consequences
+					good "less stress in emergendy situations"
+			}
+		}
+		Value Sustainability {
+			Stakeholder Customers_and_Shoppers  {
+				priority HIGH
+				impact LOW
+				consequences
+					bad "fostering unsustainable behavior (always ordering last minute)"
+					action "Limit Availability of Feature" ACT
+			}
+		}
+		Value Ability_to_be_patient {
+			Stakeholder Customers_and_Shoppers {
+				priority MEDIUM
+				impact HIGH
+				consequences
+					bad "patience of customer will further increase"
+					action "Only allow feature for emergency (don't make it the default)" ACT
+			}
+		}
+	}
+	Value WorkLifeBalance {
+		isCore
+		demonstrator "Drivers value a healthy work-life-balance"
+		Stakeholder Drivers {
+			priority HIGH
+			impact HIGH
+			consequences
+				bad "SDD will harm work-life-balance of drivers"
+				action "hire more drivers, adjust availability to workload" ACT
+		}
+	}
+	Value Revenue {
+		demonstrator "Online shopping company needs revenue"
+		Stakeholder Online_Shopping_Company {
+			priority HIGH
+			impact MEDIUM
+			consequences
+			good "increased number of customers"
+		}
+	}
+}

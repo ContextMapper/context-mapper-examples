@@ -179,7 +179,7 @@ BoundedContext StructuredServiceDecomposition {
 		
 		ValueObject CriterionPriority {
 			String criterion
-			- SolverPriority priority
+			- SolverPriority ^priority
 		}
 		
 		enum SolverPriority {
