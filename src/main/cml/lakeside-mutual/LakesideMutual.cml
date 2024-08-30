@@ -70,7 +70,7 @@ BoundedContext ClaimsManagement implements ClaimsManagement {
 			aggregateRoot
 			long claimId
 			- CustomerId customer
-			String description
+			String ^description
 			Blob requestDocument
 			boolean isComplete
 			boolean isAssessed

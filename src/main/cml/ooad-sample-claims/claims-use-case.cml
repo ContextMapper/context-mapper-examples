@@ -25,7 +25,7 @@ BoundedContext ClaimsManagement implements ClaimsManagement {
 		Entity Claim {
 			Date date
 			Double amountClaimed
-			String description
+			String ^description
 			ClaimID claimId
 			- Agent agent
 		}
@@ -64,7 +64,7 @@ Domain Insurance_Application {
 		Entity Claim {
 			Date date
 			Double amountClaimed
-			String description
+			String ^description
 			- Agent agent
 		}
 		Entity Policy {
