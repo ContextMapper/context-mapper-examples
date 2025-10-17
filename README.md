@@ -1,28 +1,17 @@
 ![Context Mapper](https://raw.githubusercontent.com/wiki/ContextMapper/context-mapper-dsl/logo/cm-logo-github-small.png)  
-# DSL Examples ![Build](https://github.com/ContextMapper/context-mapper-examples/workflows/Build/badge.svg) [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/ContextMapper/context-mapper-examples) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+# DSL Examples ![Build](https://github.com/ContextMapper/context-mapper-examples/workflows/Build/badge.svg) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 This project contains example DDD Context Maps written in the ContextMapper DSL. The examples are provided for two different types of users. The simpler business analysis examples should be easy to understand for business analysts without technical background, while the detailed examples are meant for software architects and/or engineers.  
 
 Find out more about our DSL and tools on our website [https://contextmapper.org/](https://contextmapper.org/) and [papers](https://contextmapper.org/background-and-publications/) published by [OST (former HSR)](https://www.ost.ch).
 
-Start exploring the examples in the Context Mapper online IDE right now:
-
-<a href="https://gitpod.io/#https://github.com/ContextMapper/context-mapper-examples" style="padding: 10px;">
-    <img src="https://gitpod.io/button/open-in-gitpod.svg" width="150" alt="Push" align="center">
-</a>
-
 ## IDE Requirements
-This is a Gradle project and can easily be imported into any IDE (ideally VS Code or Eclipse with Context Mapper installed) that supports Gradle.
+This is a Gradle project and can easily be imported into any IDE (ideally VS Code with Context Mapper installed) that supports Gradle.
 
 ### Context Mapper
-In order to have language support for editing the CML files (Context Mapper Language), you need to install ContextMapper in Eclipse, Visual Studio Code, or use the online IDE Gitpod:
+In order to have language support for editing the CML files (Context Mapper Language), you need to install ContextMapper in Visual Studio Code:
 
  * [Context Mapper for VS Code](https://marketplace.visualstudio.com/items?itemName=contextmapper.context-mapper-vscode-extension) (Marketplace)
- * [Context Mapper for Eclipse](https://marketplace.eclipse.org/content/context-mapper) (Marketplace)
-   * Alternatively use this Eclipse update site URL for manual installation: 
-     <br>[https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/](https://dl.bintray.com/contextmapper/context-mapping-dsl/updates/)
  * [VS Code Extension in Open VSX](https://open-vsx.org/extension/contextmapper/context-mapper-vscode-extension)
-   * Can be found easily in your Gitpod's.
-   * Or: [Start right now by using our demo repository](https://contextmapper.org/demo/).
 
 ## The examples:
 The following graphical illustrations of the context maps are inspired by [Vernon][2] and [Brandolini][3]. Once you modelled your context map in CML you can [generate such graphical representations](https://contextmapper.org/docs/context-map-generator/).
